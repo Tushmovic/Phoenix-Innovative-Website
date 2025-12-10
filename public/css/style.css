@@ -196,3 +196,65 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(229, 90, 0, 0.3);
 }
+/* Why Choose Us Section */
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(253, 126, 20, 0.1);
+}
+
+/* Testimonials */
+.testimonial-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.client-avatar {
+    width: 60px;
+    height: 60px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CTA Banner */
+#cta-banner {
+    background: linear-gradient(135deg, var(--phoenix-blue) 0%, #0043a5 100%) !important;
+}
+
+/* Footer */
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--phoenix-orange);
+    transform: translateY(-3px);
+}
+
+footer a:hover {
+    color: var(--phoenix-orange) !important;
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
