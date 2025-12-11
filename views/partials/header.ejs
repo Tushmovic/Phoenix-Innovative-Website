@@ -1,6 +1,36 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- Top Contact Bar -->
+    <div class="top-contact-bar">
         <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="contact-info">
+                        <span class="contact-item">
+                            <i class="bi bi-telephone me-1"></i> +234 913 592 6075
+                        </span>
+                        <span class="contact-item ms-4">
+                            <i class="bi bi-envelope me-1"></i> Phoenixinnovative2025@gmail.com
+                        </span>
+                        <span class="contact-item ms-4">
+                            <i class="bi bi-clock me-1"></i> Mon - Fri: 8:00 AM - 6:00 PM
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div class="social-icons-top">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation with Mega Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container position-relative">
             <a class="navbar-brand fw-bold" href="/">
                 <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix Innovative Technologies" height="40" class="d-inline-block align-text-top me-2">
                 Phoenix Innovative Technologies 
@@ -13,12 +43,137 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/services">Services</a>
+                    
+                    <!-- Services Mega Menu - UPDATED VERSION -->
+                    <li class="nav-item dropdown megamenu services-hover-dropdown">
+                        <a class="nav-link dropdown-toggle" href="/services" id="servicesDropdown">
+                            Services
+                        </a>
+                        <div class="dropdown-menu megamenu-content services-dropdown-preview" aria-labelledby="servicesDropdown">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <!-- Left Column: Services List -->
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6 class="megamenu-title">Infrastructure Solutions</h6>
+                                                <ul class="list-unstyled services-list">
+                                                    <li>
+                                                        <a href="/services/renewable-energy" class="dropdown-item service-item" data-service="renewable-energy" data-image="/images/services/renewable-energy.jpg" data-title="Renewable Energy & Solar" data-description="Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.">
+                                                            <i class="bi bi-sun-fill text-warning me-2"></i>
+                                                            Renewable Energy & Solar
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/services/network-infrastructure" class="dropdown-item service-item" data-service="network-infrastructure" data-image="/images/services/network-infrastructure.jpg" data-title="Network Infrastructure" data-description="Build robust and scalable network infrastructure with our expert solutions. From cabling to core networking equipment, we ensure reliable connectivity and optimal performance for your business operations.">
+                                                            <i class="bi bi-hdd-stack-fill text-info me-2"></i>
+                                                            Network Infrastructure
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/services/isp-internet" class="dropdown-item service-item" data-service="isp-internet" data-image="/images/services/isp-internet.jpg" data-title="ISP & Internet Services" data-description="Get reliable, high-speed internet connectivity with our ISP services. We provide dedicated business internet solutions with guaranteed uptime, security, and technical support to keep your business connected.">
+                                                            <i class="bi bi-wifi text-success me-2"></i>
+                                                            ISP & Internet Services
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="megamenu-title">Digital Solutions</h6>
+                                                <ul class="list-unstyled services-list">
+                                                    <li>
+                                                        <a href="/services/cctv-security" class="dropdown-item service-item" data-service="cctv-security" data-image="/images/services/cctv-security.jpg" data-title="CCTV & Security Systems" data-description="Protect your assets with our advanced CCTV and security solutions. We design and install comprehensive surveillance systems with remote monitoring, analytics, and 24/7 support for complete peace of mind.">
+                                                            <i class="bi bi-camera-video-fill text-primary me-2"></i>
+                                                            CCTV & Security Systems
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/services/web-development" class="dropdown-item service-item" data-service="web-development" data-image="/images/services/web-development.jpg" data-title="Web Development" data-description="Create a powerful online presence with our custom web development services. We build responsive, secure, and scalable websites and web applications that drive engagement and business growth.">
+                                                            <i class="bi bi-code-slash text-dark me-2"></i>
+                                                            Web Development
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/services/it-consulting" class="dropdown-item service-item" data-service="it-consulting" data-image="/images/services/it-consulting.jpg" data-title="IT Consulting & Procurement" data-description="Optimize your IT strategy with our expert consulting services. We provide technology assessment, procurement solutions, and strategic planning to align your IT investments with business objectives.">
+                                                            <i class="bi bi-briefcase-fill text-secondary me-2"></i>
+                                                            IT Consulting & Procurement
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Right Column: Interactive Preview Area -->
+                                    <div class="col-lg-4">
+                                        <div class="service-preview-area">
+                                            <div class="preview-image-container mb-3">
+                                                <img src="/images/services/renewable-energy.jpg" alt="Service Preview" class="img-fluid rounded service-preview-image" id="servicePreviewImage">
+                                            </div>
+                                            <div class="preview-content">
+                                                <h5 class="service-preview-title" id="servicePreviewTitle">Renewable Energy & Solar</h5>
+                                                <p class="service-preview-description small" id="servicePreviewDescription">
+                                                    Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.
+                                                </p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="/services" class="btn btn-sm btn-warning">View Service Details</a>
+                                                    <span class="badge bg-primary service-indicator">Hover over services</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
+                    
+                    <!-- About Mega Menu -->
+                    <li class="nav-item dropdown megamenu">
+                        <a class="nav-link dropdown-toggle" href="/about" id="aboutDropdown">
+                            About
+                        </a>
+                        <div class="dropdown-menu megamenu-content" aria-labelledby="aboutDropdown">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6 class="megamenu-title">Our Company</h6>
+                                                <ul class="list-unstyled">
+                                                    <li><a href="/about/company" class="dropdown-item">Company Overview</a></li>
+                                                    <li><a href="/about/mission" class="dropdown-item">Mission & Vision</a></li>
+                                                    <li><a href="/about/values" class="dropdown-item">Our Values</a></li>
+                                                    <li><a href="/about/certifications" class="dropdown-item">Certifications</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="megamenu-title">Our Team</h6>
+                                                <ul class="list-unstyled">
+                                                    <li><a href="/about/team" class="dropdown-item">Leadership Team</a></li>
+                                                    <li><a href="/about/experts" class="dropdown-item">Technical Experts</a></li>
+                                                    <li><a href="/about/careers" class="dropdown-item">Careers</a></li>
+                                                    <li><a href="/about/contact" class="dropdown-item">Contact Team</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="megamenu-featured">
+                                            <div class="featured-image">
+                                                <img src="/images/CCTV Banner 1.png" alt="About Us" class="img-fluid">
+                                            </div>
+                                            <div class="featured-content">
+                                                <h6>Building Intelligent Systems</h6>
+                                                <p class="small">With over a decade of experience, we're committed to creating smarter solutions for a better world.</p>
+                                                <a href="/about" class="btn btn-sm btn-warning">Learn More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
@@ -26,4 +181,9 @@
             </div>
         </div>
     </nav>
+     <!-- Link to external CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Link to external JavaScript -->
+    <script src="/js/script.js" defer></script>
 </header>
