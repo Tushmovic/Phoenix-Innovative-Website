@@ -8,99 +8,250 @@ window.addEventListener('scroll', function() {
     }
 });
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all DOM elements
-    const serviceItems = document.querySelectorAll('.service-item');
-    const previewImage = document.getElementById('servicePreviewImage');
-    const previewTitle = document.getElementById('servicePreviewTitle');
-    const previewDescription = document.getElementById('servicePreviewDescription');
+    // Initialize Services Dropdown
+    initServicesDropdown();
+    
+    // Initialize About Dropdown
+    initAboutDropdown();
+    
+    // Add dropdown isolation fix
+    setupDropdownIsolation();
+});
+
+function setupDropdownIsolation() {
     const servicesDropdown = document.querySelector('.services-hover-dropdown');
-    let activeServiceItem = null;
+    const aboutDropdown = document.querySelector('.about-hover-dropdown');
+    const servicesMenu = servicesDropdown?.querySelector('.dropdown-menu');
+    const aboutMenu = aboutDropdown?.querySelector('.dropdown-menu');
     
-    // Default service data (fallback in case data attributes aren't set)
-    const defaultServices = {
-        'renewable-energy': {
-            image: '/images/services/renewable-energy.jpg',
-            title: 'Renewable Energy & Solar',
-            description: 'Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.'
-        },
-        'network-infrastructure': {
-            image: '/images/services/network-infrastructure.jpg',
-            title: 'Network Infrastructure',
-            description: 'Build robust and scalable network infrastructure with our expert solutions. From cabling to core networking equipment, we ensure reliable connectivity and optimal performance for your business operations.'
-        },
-        'isp-internet': {
-            image: '/images/services/isp-internet.jpg',
-            title: 'ISP & Internet Services',
-            description: 'Get reliable, high-speed internet connectivity with our ISP services. We provide dedicated business internet solutions with guaranteed uptime, security, and technical support to keep your business connected.'
-        },
-        'cctv-security': {
-            image: '/images/services/cctv-security.jpg',
-            title: 'CCTV & Security Systems',
-            description: 'Protect your assets with our advanced CCTV and security solutions. We design and install comprehensive surveillance systems with remote monitoring, analytics, and 24/7 support for complete peace of mind.'
-        },
-        'web-development': {
-            image: '/images/services/web-development.jpg',
-            title: 'Web Development',
-            description: 'Create a powerful online presence with our custom web development services. We build responsive, secure, and scalable websites and web applications that drive engagement and business growth.'
-        },
-        'it-consulting': {
-            image: '/images/services/it-consulting.jpg',
-            title: 'IT Consulting & Procurement',
-            description: 'Optimize your IT strategy with our expert consulting services. We provide technology assessment, procurement solutions, and strategic planning to align your IT investments with business objectives.'
-        }
-    };
+    if (!servicesDropdown || !aboutDropdown) return;
     
-    // Initialize with first service
-    function initializePreview() {
-        if (serviceItems.length > 0) {
-            const firstService = serviceItems[0];
-            const serviceId = firstService.dataset.service || 'renewable-energy';
-            
-            // Use data attributes or fallback to default data
-            const imageSrc = firstService.dataset.image || defaultServices[serviceId]?.image || '';
-            const title = firstService.dataset.title || defaultServices[serviceId]?.title || '';
-            const description = firstService.dataset.description || defaultServices[serviceId]?.description || '';
-            
-            updatePreview(imageSrc, title, description);
-            setActiveService(firstService);
+    // Track which dropdown is currently active
+    let activeDropdown = null;
+    
+    // Services dropdown events
+    servicesDropdown.addEventListener('mouseenter', function() {
+        activeDropdown = 'services';
+        // Ensure Services menu is on top
+        if (servicesMenu) {
+            servicesMenu.style.zIndex = '1001';
         }
+        if (aboutMenu) {
+            aboutMenu.style.zIndex = '1000';
+        }
+    });
+    
+    servicesDropdown.addEventListener('mouseleave', function(e) {
+        // Check if mouse is moving to Services menu or gap
+        const relatedTarget = e.relatedTarget;
+        const isMovingToServicesMenu = relatedTarget && (
+            relatedTarget === servicesMenu || 
+            relatedTarget.closest('.services-dropdown-preview')
+        );
+        const isMovingToGap = relatedTarget && (
+            relatedTarget.classList?.contains('dropdown-gap') ||
+            relatedTarget.closest?.('.dropdown-gap')
+        );
+        
+        if (!isMovingToServicesMenu && !isMovingToGap) {
+            // Mouse is leaving Services area completely
+            setTimeout(() => {
+                if (!servicesDropdown.matches(':hover') && 
+                    !(servicesMenu && servicesMenu.matches(':hover'))) {
+                    activeDropdown = null;
+                }
+            }, 50);
+        }
+    });
+    
+    // Services menu events
+    if (servicesMenu) {
+        servicesMenu.addEventListener('mouseleave', function(e) {
+            // Check if mouse is moving back to Services dropdown or gap
+            const relatedTarget = e.relatedTarget;
+            const isMovingToServices = relatedTarget && (
+                relatedTarget.closest('.services-hover-dropdown')
+            );
+            const isMovingToGap = relatedTarget && (
+                relatedTarget.classList?.contains('dropdown-gap') ||
+                relatedTarget.closest?.('.dropdown-gap')
+            );
+            
+            if (!isMovingToServices && !isMovingToGap) {
+                // Mouse is leaving Services menu completely
+                setTimeout(() => {
+                    if (!servicesMenu.matches(':hover') && 
+                        !servicesDropdown.matches(':hover')) {
+                        activeDropdown = null;
+                    }
+                }, 50);
+            }
+        });
     }
     
-    // Update preview with new service data
-    function updatePreview(imageSrc, title, description) {
-        if (!previewImage || !previewTitle || !previewDescription) return;
+    // About dropdown events
+    aboutDropdown.addEventListener('mouseenter', function() {
+        activeDropdown = 'about';
+        // Ensure About menu is on top
+        if (aboutMenu) {
+            aboutMenu.style.zIndex = '1001';
+        }
+        if (servicesMenu) {
+            servicesMenu.style.zIndex = '1000';
+        }
+    });
+    
+    aboutDropdown.addEventListener('mouseleave', function(e) {
+        // Check if mouse is moving to About menu or gap
+        const relatedTarget = e.relatedTarget;
+        const isMovingToAboutMenu = relatedTarget && (
+            relatedTarget === aboutMenu || 
+            relatedTarget.closest('.about-dropdown-preview')
+        );
+        const isMovingToGap = relatedTarget && (
+            relatedTarget.classList?.contains('dropdown-gap') ||
+            relatedTarget.closest?.('.dropdown-gap')
+        );
         
-        // Add fade effect for image
-        if (previewImage) {
-            previewImage.classList.remove('fade-in');
-            void previewImage.offsetWidth; // Trigger reflow
-            previewImage.classList.add('fade-in');
-            
-            // Update image with smooth transition
-            previewImage.style.opacity = '0.7';
+        if (!isMovingToAboutMenu && !isMovingToGap) {
+            // Mouse is leaving About area completely
             setTimeout(() => {
-                previewImage.src = imageSrc;
-                previewImage.alt = title;
-                previewImage.style.opacity = '1';
-            }, 150);
+                if (!aboutDropdown.matches(':hover') && 
+                    !(aboutMenu && aboutMenu.matches(':hover'))) {
+                    activeDropdown = null;
+                }
+            }, 50);
+        }
+    });
+    
+    // About menu events
+    if (aboutMenu) {
+        aboutMenu.addEventListener('mouseleave', function(e) {
+            // Check if mouse is moving back to About dropdown or gap
+            const relatedTarget = e.relatedTarget;
+            const isMovingToAbout = relatedTarget && (
+                relatedTarget.closest('.about-hover-dropdown')
+            );
+            const isMovingToGap = relatedTarget && (
+                relatedTarget.classList?.contains('dropdown-gap') ||
+                relatedTarget.closest?.('.dropdown-gap')
+            );
+            
+            if (!isMovingToAbout && !isMovingToGap) {
+                // Mouse is leaving About menu completely
+                setTimeout(() => {
+                    if (!aboutMenu.matches(':hover') && 
+                        !aboutDropdown.matches(':hover')) {
+                        activeDropdown = null;
+                    }
+                }, 50);
+            }
+        });
+    }
+    
+    console.log('Dropdown isolation initialized');
+}
+
+function initServicesDropdown() {
+    // Get all DOM elements for services
+    const serviceItems = document.querySelectorAll('.service-item');
+    
+    if (serviceItems.length === 0) {
+        console.warn('Service items not found. Skipping initialization.');
+        return;
+    }
+    
+    // Get preview elements
+    const previewImage1 = document.getElementById('servicePreviewImage1');
+    const previewImage2 = document.getElementById('servicePreviewImage2');
+    const previewTitle = document.getElementById('servicePreviewTitle');
+    const previewTitle2 = document.getElementById('servicePreviewTitle2');
+    const previewDescription = document.getElementById('servicePreviewDescription');
+    const previewDescription2 = document.getElementById('servicePreviewDescription2');
+    
+    let activeServiceItem = null;
+    
+    // Function to update preview
+    function updatePreview(serviceItem) {
+        const serviceId = serviceItem.dataset.service || '';
+        
+        // Get data from attributes
+        let image1Src, image2Src, title, title2, description, description2;
+        
+        if (serviceItem.dataset.image1 && serviceItem.dataset.image2 && 
+            serviceItem.dataset.title && serviceItem.dataset.description && 
+            serviceItem.dataset.description2) {
+            // Use data attributes
+            image1Src = serviceItem.dataset.image1;
+            image2Src = serviceItem.dataset.image2;
+            title = serviceItem.dataset.title;
+            title2 = 'Advanced Solutions';
+            description = serviceItem.dataset.description;
+            description2 = serviceItem.dataset.description2;
+        } else {
+            return;
         }
         
-        // Update title and description
+        // Update images with fade effect
+        if (previewImage1) {
+            previewImage1.style.opacity = '0.7';
+            setTimeout(() => {
+                previewImage1.src = image1Src;
+                previewImage1.alt = title;
+                previewImage1.style.opacity = '1';
+            }, 100);
+        }
+        
+        if (previewImage2) {
+            previewImage2.style.opacity = '0.7';
+            setTimeout(() => {
+                previewImage2.src = image2Src;
+                previewImage2.alt = title + ' - Additional';
+                previewImage2.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Update text
         if (previewTitle) {
-            previewTitle.style.opacity = '0.8';
+            previewTitle.style.opacity = '0.7';
             setTimeout(() => {
                 previewTitle.textContent = title;
                 previewTitle.style.opacity = '1';
-            }, 150);
+            }, 100);
+        }
+        
+        if (previewTitle2) {
+            previewTitle2.style.opacity = '0.7';
+            setTimeout(() => {
+                previewTitle2.textContent = title2;
+                previewTitle2.style.opacity = '1';
+            }, 100);
         }
         
         if (previewDescription) {
-            previewDescription.style.opacity = '0.8';
+            previewDescription.style.opacity = '0.7';
             setTimeout(() => {
                 previewDescription.textContent = description;
                 previewDescription.style.opacity = '1';
-            }, 150);
+            }, 100);
         }
+        
+        if (previewDescription2) {
+            previewDescription2.style.opacity = '0.7';
+            setTimeout(() => {
+                previewDescription2.textContent = description2;
+                previewDescription2.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Update button URLs
+        const learnMoreBtn = document.querySelector('.services-dropdown-preview .col-lg-4 .btn-warning');
+        if (learnMoreBtn) {
+            learnMoreBtn.href = `/services/${serviceId}`;
+        }
+        
+        // Update active state
+        setActiveService(serviceItem);
     }
     
     // Set active service item
@@ -108,140 +259,35 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove active class from all items
         serviceItems.forEach(item => {
             item.classList.remove('active');
-            item.style.backgroundColor = '';
-            item.style.borderLeftColor = '';
         });
         
-        // Add active class to clicked/hovered item
-        if (serviceItem) {
-            serviceItem.classList.add('active');
-            serviceItem.style.backgroundColor = '#f0f7ff';
-            serviceItem.style.borderLeftColor = '#0d6efd';
-            activeServiceItem = serviceItem;
-        }
+        // Add active class to hovered item
+        serviceItem.classList.add('active');
+        activeServiceItem = serviceItem;
     }
     
-    // Handle service item hover
-    function handleServiceHover(event) {
-        const serviceItem = event.currentTarget;
-        const serviceId = serviceItem.dataset.service || '';
-        
-        // Get data from attributes or use defaults
-        let imageSrc, title, description;
-        
-        if (serviceItem.dataset.image && serviceItem.dataset.title && serviceItem.dataset.description) {
-            // Use data attributes if available
-            imageSrc = serviceItem.dataset.image;
-            title = serviceItem.dataset.title;
-            description = serviceItem.dataset.description;
-        } else if (serviceId && defaultServices[serviceId]) {
-            // Use default data
-            imageSrc = defaultServices[serviceId].image;
-            title = defaultServices[serviceId].title;
-            description = defaultServices[serviceId].description;
-        } else {
-            // Fallback to first service
-            imageSrc = defaultServices['renewable-energy'].image;
-            title = defaultServices['renewable-energy'].title;
-            description = defaultServices['renewable-energy'].description;
-        }
-        
-        updatePreview(imageSrc, title, description);
-        setActiveService(serviceItem);
-    }
-    
-    // Handle service item mouse leave
-    function handleServiceMouseLeave(event) {
-        // Only reset if mouse leaves the entire services list
-        const relatedTarget = event.relatedTarget;
-        
-        // Check if we're moving to another service item
-        if (relatedTarget && relatedTarget.classList && relatedTarget.classList.contains('service-item')) {
-            return; // Don't reset if moving to another service
-        }
-        
-        // Check if we're moving to the preview area
-        if (relatedTarget && (
-            relatedTarget.closest('.service-preview-area') || 
-            relatedTarget.classList.contains('service-preview-image') ||
-            relatedTarget.classList.contains('service-preview-title') ||
-            relatedTarget.classList.contains('service-preview-description')
-        )) {
-            return; // Don't reset if moving to preview area
-        }
-        
-        // Reset to active service after delay
-        setTimeout(() => {
-            if (!document.querySelector('.service-item:hover') && activeServiceItem) {
-                const serviceId = activeServiceItem.dataset.service || '';
-                
-                if (activeServiceItem.dataset.image && activeServiceItem.dataset.title && activeServiceItem.dataset.description) {
-                    updatePreview(
-                        activeServiceItem.dataset.image,
-                        activeServiceItem.dataset.title,
-                        activeServiceItem.dataset.description
-                    );
-                } else if (serviceId && defaultServices[serviceId]) {
-                    updatePreview(
-                        defaultServices[serviceId].image,
-                        defaultServices[serviceId].title,
-                        defaultServices[serviceId].description
-                    );
-                }
-                setActiveService(activeServiceItem);
-            }
-        }, 100);
-    }
-    
-    // Handle dropdown mouse leave
-    function handleDropdownMouseLeave(event) {
-        const relatedTarget = event.relatedTarget;
-        
-        // Check if we're moving to a service item or preview area
-        if (relatedTarget && (
-            relatedTarget.closest('.services-list') ||
-            relatedTarget.closest('.service-preview-area') ||
-            relatedTarget.classList.contains('service-item')
-        )) {
-            return; // Still inside dropdown
-        }
-        
-        // Reset to active service
-        if (activeServiceItem) {
-            const serviceId = activeServiceItem.dataset.service || '';
-            
-            if (activeServiceItem.dataset.image && activeServiceItem.dataset.title && activeServiceItem.dataset.description) {
-                updatePreview(
-                    activeServiceItem.dataset.image,
-                    activeServiceItem.dataset.title,
-                    activeServiceItem.dataset.description
-                );
-            } else if (serviceId && defaultServices[serviceId]) {
-                updatePreview(
-                    defaultServices[serviceId].image,
-                    defaultServices[serviceId].title,
-                    defaultServices[serviceId].description
-                );
-            }
-            setActiveService(activeServiceItem);
+    // Initialize with first service
+    function initializePreview() {
+        const firstService = serviceItems[0];
+        if (firstService) {
+            updatePreview(firstService);
         }
     }
     
     // Add event listeners
     function setupEventListeners() {
-        // Add hover event to each service item
         serviceItems.forEach(item => {
-            item.addEventListener('mouseenter', handleServiceHover);
-            item.addEventListener('mouseleave', handleServiceMouseLeave);
+            // Mouse enter event
+            item.addEventListener('mouseenter', function() {
+                updatePreview(this);
+            });
             
-            // Also handle click for mobile/touch devices
-            item.addEventListener('click', function(event) {
-                // Only prevent default if it's a touch device and we want to show preview
+            // Click event for mobile
+            item.addEventListener('click', function(e) {
                 if (window.innerWidth <= 992) {
-                    event.preventDefault();
-                    handleServiceHover(event);
+                    e.preventDefault();
+                    updatePreview(this);
                     
-                    // Scroll preview into view on mobile
                     const previewArea = document.querySelector('.service-preview-area');
                     if (previewArea) {
                         previewArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -249,38 +295,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
-        // Add mouse leave event to dropdown
-        const dropdownMenu = document.querySelector('.services-dropdown-preview');
-        if (dropdownMenu) {
-            dropdownMenu.addEventListener('mouseleave', handleDropdownMouseLeave);
-        }
-        
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            // Reset active state on mobile
-            if (window.innerWidth <= 992 && activeServiceItem) {
-                setActiveService(activeServiceItem);
-            }
-        });
     }
     
-    // Preload images for smoother transitions
+    // Preload images
     function preloadImages() {
         const imageUrls = new Set();
         
-        // Collect unique image URLs from data attributes
         serviceItems.forEach(item => {
-            if (item.dataset.image) {
-                imageUrls.add(item.dataset.image);
-            }
-        });
-        
-        // Also add default images
-        Object.values(defaultServices).forEach(service => {
-            if (service.image) {
-                imageUrls.add(service.image);
-            }
+            if (item.dataset.image1) imageUrls.add(item.dataset.image1);
+            if (item.dataset.image2) imageUrls.add(item.dataset.image2);
         });
         
         // Preload images
@@ -291,19 +314,178 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize everything
-    function init() {
-        if (serviceItems.length === 0 || !previewImage || !previewTitle || !previewDescription) {
-            console.warn('Services dropdown elements not found. Skipping initialization.');
+    preloadImages();
+    initializePreview();
+    setupEventListeners();
+    
+    console.log('Services dropdown initialized successfully.');
+}
+
+function initAboutDropdown() {
+    // Get all DOM elements for about
+    const aboutItems = document.querySelectorAll('.about-item');
+    
+    if (aboutItems.length === 0) {
+        console.warn('About items not found. Skipping initialization.');
+        return;
+    }
+    
+    // Get preview elements
+    const aboutImage1 = document.getElementById('aboutPreviewImage1');
+    const aboutImage2 = document.getElementById('aboutPreviewImage2');
+    const aboutTitle = document.getElementById('aboutPreviewTitle');
+    const aboutTitle2 = document.getElementById('aboutPreviewTitle2');
+    const aboutDescription = document.getElementById('aboutPreviewDescription');
+    const aboutDescription2 = document.getElementById('aboutPreviewDescription2');
+    
+    let activeAboutItem = null;
+    
+    // Function to update preview
+    function updatePreview(aboutItem) {
+        const aboutId = aboutItem.dataset.about || '';
+        
+        // Get data from attributes
+        let image1Src, image2Src, title, title2, description, description2;
+        
+        if (aboutItem.dataset.image1 && aboutItem.dataset.image2 && 
+            aboutItem.dataset.title && aboutItem.dataset.description && 
+            aboutItem.dataset.description2) {
+            // Use data attributes
+            image1Src = aboutItem.dataset.image1;
+            image2Src = aboutItem.dataset.image2;
+            title = aboutItem.dataset.title;
+            title2 = 'Our Journey';
+            description = aboutItem.dataset.description;
+            description2 = aboutItem.dataset.description2;
+        } else {
             return;
         }
         
-        preloadImages();
-        initializePreview();
-        setupEventListeners();
+        // Update images with fade effect
+        if (aboutImage1) {
+            aboutImage1.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutImage1.src = image1Src;
+                aboutImage1.alt = title;
+                aboutImage1.style.opacity = '1';
+            }, 100);
+        }
         
-        console.log('Services dropdown initialized successfully.');
+        if (aboutImage2) {
+            aboutImage2.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutImage2.src = image2Src;
+                aboutImage2.alt = title + ' - Additional';
+                aboutImage2.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Update text
+        if (aboutTitle) {
+            aboutTitle.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutTitle.textContent = title;
+                aboutTitle.style.opacity = '1';
+            }, 100);
+        }
+        
+        if (aboutTitle2) {
+            aboutTitle2.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutTitle2.textContent = title2;
+                aboutTitle2.style.opacity = '1';
+            }, 100);
+        }
+        
+        if (aboutDescription) {
+            aboutDescription.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutDescription.textContent = description;
+                aboutDescription.style.opacity = '1';
+            }, 100);
+        }
+        
+        if (aboutDescription2) {
+            aboutDescription2.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutDescription2.textContent = description2;
+                aboutDescription2.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Update button URLs
+        const learnMoreBtn = document.querySelector('.about-dropdown-preview .col-lg-4 .btn-warning');
+        if (learnMoreBtn) {
+            learnMoreBtn.href = `/about/${aboutId}`;
+        }
+        
+        // Update active state
+        setActiveAbout(aboutItem);
     }
     
-    // Start initialization
-    init();
-});
+    // Set active about item
+    function setActiveAbout(aboutItem) {
+        // Remove active class from all items
+        aboutItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Add active class to hovered item
+        aboutItem.classList.add('active');
+        activeAboutItem = aboutItem;
+    }
+    
+    // Initialize with first about item
+    function initializePreview() {
+        const firstAbout = aboutItems[0];
+        if (firstAbout) {
+            updatePreview(firstAbout);
+        }
+    }
+    
+    // Add event listeners
+    function setupEventListeners() {
+        aboutItems.forEach(item => {
+            // Mouse enter event
+            item.addEventListener('mouseenter', function() {
+                updatePreview(this);
+            });
+            
+            // Click event for mobile
+            item.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    updatePreview(this);
+                    
+                    const previewArea = document.querySelector('.about-preview-area');
+                    if (previewArea) {
+                        previewArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+            });
+        });
+    }
+    
+    // Preload images
+    function preloadImages() {
+        const imageUrls = new Set();
+        
+        aboutItems.forEach(item => {
+            if (item.dataset.image1) imageUrls.add(item.dataset.image1);
+            if (item.dataset.image2) imageUrls.add(item.dataset.image2);
+        });
+        
+        // Preload images
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+    }
+    
+    // Initialize everything
+    preloadImages();
+    initializePreview();
+    setupEventListeners();
+    
+    console.log('About dropdown initialized successfully.');
+}

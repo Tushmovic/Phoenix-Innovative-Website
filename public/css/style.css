@@ -585,96 +585,221 @@ body {
 .hero-carousel { background: rgba(0,0,255,0.2) !important; }
 */
 /* Services Hover Dropdown Styles */
-.services-hover-dropdown .dropdown-menu {
-    min-width: 800px;
-    padding: 1.5rem 0;
+.services-hover-dropdown,
+.about-hover-dropdown {
+    position: relative;
+}
+
+.services-hover-dropdown .dropdown-menu,
+.about-hover-dropdown .dropdown-menu {
+    min-width: 1100px;
+    padding: 2rem !important;
     border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    margin-top: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    margin-top: 15px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: none;
 }
 
-.services-dropdown-preview .services-list .service-item {
-    padding: 10px 15px;
-    border-radius: 6px;
-    margin-bottom: 5px;
-    transition: all 0.3s ease;
-    border-left: 3px solid transparent;
-    display: block;
-    text-decoration: none;
-    color: #212529;
-}
-
-.services-dropdown-preview .services-list .service-item:hover {
-    background-color: #f8f9fa;
-    border-left-color: #0d6efd;
-    transform: translateX(5px);
-    text-decoration: none;
-}
-
-.service-preview-area {
-    padding-left: 15px;
-    border-left: 1px solid #dee2e6;
-    height: 100%;
-}
-
-.preview-image-container {
-    height: 200px;
-    overflow: hidden;
-    border-radius: 6px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.service-preview-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease, opacity 0.3s ease;
-}
-
-.service-preview-title {
-    color: #0d6efd;
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.service-preview-description {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    min-height: 80px;
-    transition: all 0.3s ease;
-}
-
-.service-indicator {
-    font-size: 0.7rem;
-    font-weight: 500;
-}
-
-/* Make sure dropdown stays open when hovering over it */
-.services-hover-dropdown:hover .dropdown-menu {
+/* Show dropdown on hover - ONLY for direct parent hover */
+.services-hover-dropdown:hover .dropdown-menu,
+.about-hover-dropdown:hover .dropdown-menu {
     display: block !important;
 }
 
-/* Active service item highlight */
-.service-item.active {
-    background-color: #f0f7ff;
-    border-left-color: #0d6efd !important;
+/* Gap element - REMOVED OVERLAPPING ISSUE */
+.dropdown-gap {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+    z-index: 999;
+    pointer-events: none; /* This prevents interference */
 }
 
-/* Service icon styling */
-.service-item i {
-    font-size: 1.1rem;
-    width: 24px;
-    text-align: center;
+/* CRITICAL FIX: Ensure dropdowns don't overlap */
+.services-dropdown-preview,
+.about-dropdown-preview {
+    z-index: 1000;
+}
+
+/* Prevent Services dropdown from being affected by About hover */
+.services-hover-dropdown .dropdown-menu {
+    z-index: 1001;
+}
+
+.about-hover-dropdown .dropdown-menu {
+    z-index: 1000;
+}
+
+/* IMPORTANT: Hide dropdown when mouse leaves the entire area */
+.services-hover-dropdown .dropdown-menu:not(:hover),
+.about-hover-dropdown .dropdown-menu:not(:hover) {
+    /* This helps CSS handle the hide when not hovering */
+}
+
+/* Simplified list styling */
+.services-dropdown-preview .col-lg-3,
+.about-dropdown-preview .col-lg-3 {
+    border-right: 1px solid #eaeaea;
+    padding-right: 30px;
+}
+
+.section-title {
+    color: #ff6b35 !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #ff6b35;
+}
+
+/* Clean list items */
+.services-dropdown-preview .services-list,
+.about-dropdown-preview .about-list {
+    padding-left: 0;
+}
+
+.services-dropdown-preview .services-list .service-item,
+.about-dropdown-preview .about-list .about-item {
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.services-dropdown-preview .services-list .service-item:hover,
+.services-dropdown-preview .services-list .service-item:focus,
+.about-dropdown-preview .about-list .about-item:hover,
+.about-dropdown-preview .about-list .about-item:focus {
+    background-color: #f8f9fa;
+    border-left-color: #0d6efd;
+    transform: translateX(8px);
+    text-decoration: none;
+    color: #0d6efd;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Preview areas */
+.service-preview-area,
+.about-preview-area {
+    height: 100%;
+    padding: 0 20px;
+}
+
+.col-lg-4 .service-preview-area,
+.col-lg-4 .about-preview-area {
+    border-right: 1px solid #eaeaea;
+}
+
+/* Image containers - same size for both */
+.preview-image-container {
+    height: 220px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    margin-bottom: 1.5rem;
+}
+
+.service-preview-image,
+.about-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Title and description styling */
+.service-preview-title,
+.about-preview-title {
+    color: #0d6efd;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.service-preview-description,
+.about-preview-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Button styling */
+.btn-warning {
+    background-color: #ff6b35;
+    border-color: #ff6b35;
+    color: white;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #e55a2b;
+    border-color: #e55a2b;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+}
+
+.btn-outline-primary {
+    border-color: #0d6efd;
+    color: #0d6efd;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+}
+
+/* Active item highlight */
+.service-item.active,
+.about-item.active {
+    background-color: #f0f7ff !important;
+    border-left-color: #0d6efd !important;
+    color: #0d6efd !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 /* Responsive adjustments */
+@media (max-width: 1200px) {
+    .services-hover-dropdown .dropdown-menu,
+    .about-hover-dropdown .dropdown-menu {
+        min-width: 950px;
+        left: 0 !important;
+        transform: none !important;
+    }
+}
+
 @media (max-width: 992px) {
-    .services-hover-dropdown .dropdown-menu {
+    .services-hover-dropdown .dropdown-menu,
+    .about-hover-dropdown .dropdown-menu {
         min-width: auto;
         width: 100%;
         max-width: 100%;
@@ -682,83 +807,54 @@ body {
         transform: none !important;
         box-shadow: none;
         border: 1px solid #dee2e6;
-        margin-top: 5px;
+        margin-top: 10px;
+        padding: 1.5rem !important;
+        left: 0 !important;
     }
     
-    .service-preview-area {
+    .dropdown-gap {
+        display: none;
+    }
+    
+    .services-dropdown-preview .col-lg-3,
+    .about-dropdown-preview .col-lg-3,
+    .col-lg-4 .service-preview-area,
+    .col-lg-4 .about-preview-area {
+        border-right: none;
+        border-bottom: 1px solid #eaeaea;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        padding-right: 0;
+    }
+    
+    .service-preview-area,
+    .about-preview-area {
         border-left: none;
-        border-top: 1px solid #dee2e6;
         padding-left: 0;
-        padding-top: 20px;
-        margin-top: 20px;
+        padding-right: 0;
     }
     
     .preview-image-container {
-        height: 180px;
+        height: 200px;
     }
     
-    .services-dropdown-preview .container-fluid {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    
-    .services-dropdown-preview .row {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .services-dropdown-preview .col-lg-8,
-    .services-dropdown-preview .col-lg-4 {
-        padding-left: 0;
-        padding-right: 0;
+    .section-title {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 768px) {
     .preview-image-container {
-        height: 150px;
+        height: 180px;
     }
     
-    .service-preview-title {
-        font-size: 1rem;
+    .service-preview-title,
+    .about-preview-title {
+        font-size: 1.2rem;
     }
     
-    .service-preview-description {
-        font-size: 0.85rem;
-        min-height: 70px;
-    }
-}
-
-/* Animation for image transitions */
-@keyframes fadeIn {
-    from { opacity: 0.7; }
-    to { opacity: 1; }
-}
-
-.service-preview-image.fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Ensure dropdown doesn't close on hover */
-.megamenu .dropdown-menu {
-    pointer-events: auto;
-}
-
-/* Bootstrap overrides for better dropdown behavior */
-.navbar-nav .dropdown-menu {
-    position: absolute;
-    left: 0;
-    top: 100%;
-}
-
-/* Prevent mobile tap issues */
-@media (max-width: 992px) {
-    .service-item {
-        padding: 12px 15px !important;
-    }
-    
-    .services-dropdown-preview {
-        max-height: 80vh;
-        overflow-y: auto;
+    .service-preview-description,
+    .about-preview-description {
+        font-size: 0.95rem;
     }
 }

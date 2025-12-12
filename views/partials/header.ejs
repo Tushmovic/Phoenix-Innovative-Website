@@ -44,80 +44,120 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     
-                    <!-- Services Mega Menu - UPDATED VERSION -->
+                    <!-- Services Mega Menu with Gap Solution -->
                     <li class="nav-item dropdown megamenu services-hover-dropdown">
                         <a class="nav-link dropdown-toggle" href="/services" id="servicesDropdown">
                             Services
                         </a>
-                        <div class="dropdown-menu megamenu-content services-dropdown-preview" aria-labelledby="servicesDropdown">
+                        <!-- Gap element to prevent dropdown from disappearing -->
+                        <div class="dropdown-gap"></div>
+                        <div class="dropdown-menu megamenu-content services-dropdown-preview p-4" aria-labelledby="servicesDropdown">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <!-- Left Column: Services List -->
-                                    <div class="col-lg-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h6 class="megamenu-title">Infrastructure Solutions</h6>
-                                                <ul class="list-unstyled services-list">
-                                                    <li>
-                                                        <a href="/services/renewable-energy" class="dropdown-item service-item" data-service="renewable-energy" data-image="/images/services/renewable-energy.jpg" data-title="Renewable Energy & Solar" data-description="Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.">
-                                                            <i class="bi bi-sun-fill text-warning me-2"></i>
-                                                            Renewable Energy & Solar
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/services/network-infrastructure" class="dropdown-item service-item" data-service="network-infrastructure" data-image="/images/services/network-infrastructure.jpg" data-title="Network Infrastructure" data-description="Build robust and scalable network infrastructure with our expert solutions. From cabling to core networking equipment, we ensure reliable connectivity and optimal performance for your business operations.">
-                                                            <i class="bi bi-hdd-stack-fill text-info me-2"></i>
-                                                            Network Infrastructure
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/services/isp-internet" class="dropdown-item service-item" data-service="isp-internet" data-image="/images/services/isp-internet.jpg" data-title="ISP & Internet Services" data-description="Get reliable, high-speed internet connectivity with our ISP services. We provide dedicated business internet solutions with guaranteed uptime, security, and technical support to keep your business connected.">
-                                                            <i class="bi bi-wifi text-success me-2"></i>
-                                                            ISP & Internet Services
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                    <!-- Left Column: Services List - Simplified -->
+                                    <div class="col-lg-3">
+                                        <h6 class="megamenu-title section-title mb-4">OUR LIST</h6>
+                                        <ul class="list-unstyled services-list">
+                                            <li class="mb-2">
+                                                <a href="/services/renewable-energy" class="dropdown-item service-item" 
+                                                   data-service="renewable-energy" 
+                                                   data-image1="/images/services/renewable-energy.jpg" 
+                                                   data-image2="/images/services/renewable-energy-2.jpg"
+                                                   data-title="Renewable Energy & Solar" 
+                                                   data-description="Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations."
+                                                   data-description2="Our renewable energy solutions include solar panel installation, battery storage systems, and energy management software. We help businesses and homes transition to clean energy with customized solutions that maximize savings and minimize environmental impact.">
+                                                    Renewable Energy & Solar
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/services/network-infrastructure" class="dropdown-item service-item" 
+                                                   data-service="network-infrastructure" 
+                                                   data-image1="/images/services/network-infrastructure.jpg"
+                                                   data-image2="/images/services/network-infrastructure-2.jpg"
+                                                   data-title="Network Infrastructure" 
+                                                   data-description="Build robust and scalable network infrastructure with our expert solutions. From cabling to core networking equipment, we ensure reliable connectivity and optimal performance for your business operations."
+                                                   data-description2="We provide end-to-end network infrastructure solutions including structured cabling, network design, installation, and maintenance. Our team ensures your network is secure, scalable, and capable of supporting your business growth.">
+                                                    Network Infrastructure
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/services/isp-internet" class="dropdown-item service-item" 
+                                                   data-service="isp-internet" 
+                                                   data-image1="/images/services/isp-internet.jpg"
+                                                   data-image2="/images/services/isp-internet-2.jpg"
+                                                   data-title="ISP & Internet Services" 
+                                                   data-description="Get reliable, high-speed internet connectivity with our ISP services. We provide dedicated business internet solutions with guaranteed uptime, security, and technical support to keep your business connected."
+                                                   data-description2="As a licensed Internet Service Provider, we offer fiber optic connections, dedicated business internet, managed Wi-Fi solutions, and 24/7 technical support to ensure your business stays connected and productive.">
+                                                    ISP & Internet Services
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/services/cctv-security" class="dropdown-item service-item" 
+                                                   data-service="cctv-security" 
+                                                   data-image1="/images/services/cctv-security.jpg"
+                                                   data-image2="/images/services/cctv-security-2.jpg"
+                                                   data-title="CCTV & Security Systems" 
+                                                   data-description="Protect your assets with our advanced CCTV and security solutions. We design and install comprehensive surveillance systems with remote monitoring, analytics, and 24/7 support for complete peace of mind."
+                                                   data-description2="Our security solutions include HD CCTV cameras, access control systems, alarm systems, and remote monitoring services. We provide customized security plans to protect your premises, assets, and personnel.">
+                                                    CCTV & Security Systems
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/services/software-development" class="dropdown-item service-item" 
+                                                   data-service="software-development" 
+                                                   data-image1="/images/services/software-development.jpg"
+                                                   data-image2="/images/services/software-development-2.jpg"
+                                                   data-title="Software Development" 
+                                                   data-description="Create powerful software solutions with our custom development services. We build scalable, secure applications that streamline operations and drive business growth."
+                                                   data-description2="Our software development team specializes in web applications, mobile apps, custom CRM/ERP systems, and software integration. We use modern technologies to deliver solutions that meet your specific business needs.">
+                                                    Software Development
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/services/it-consulting" class="dropdown-item service-item" 
+                                                   data-service="it-consulting" 
+                                                   data-image1="/images/services/it-consulting.jpg"
+                                                   data-image2="/images/services/it-consulting-2.jpg"
+                                                   data-title="IT Consulting & Procurement" 
+                                                   data-description="Optimize your IT strategy with our expert consulting services. We provide technology assessment, procurement solutions, and strategic planning to align your IT investments with business objectives."
+                                                   data-description2="Our IT consulting services include technology audits, strategic IT planning, hardware/software procurement, and implementation support. We help you make informed technology decisions that support your business goals.">
+                                                    IT Consulting & Procurement
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <!-- Middle Column: First Image & Text -->
+                                    <div class="col-lg-4">
+                                        <div class="service-preview-area h-100 d-flex flex-column">
+                                            <div class="preview-image-container mb-3 flex-grow-0">
+                                                <img src="/images/services/renewable-energy.jpg" alt="Service Preview" class="img-fluid rounded service-preview-image" id="servicePreviewImage1">
                                             </div>
-                                            <div class="col-md-6">
-                                                <h6 class="megamenu-title">Digital Solutions</h6>
-                                                <ul class="list-unstyled services-list">
-                                                    <li>
-                                                        <a href="/services/cctv-security" class="dropdown-item service-item" data-service="cctv-security" data-image="/images/services/cctv-security.jpg" data-title="CCTV & Security Systems" data-description="Protect your assets with our advanced CCTV and security solutions. We design and install comprehensive surveillance systems with remote monitoring, analytics, and 24/7 support for complete peace of mind.">
-                                                            <i class="bi bi-camera-video-fill text-primary me-2"></i>
-                                                            CCTV & Security Systems
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/services/web-development" class="dropdown-item service-item" data-service="web-development" data-image="/images/services/web-development.jpg" data-title="Web Development" data-description="Create a powerful online presence with our custom web development services. We build responsive, secure, and scalable websites and web applications that drive engagement and business growth.">
-                                                            <i class="bi bi-code-slash text-dark me-2"></i>
-                                                            Web Development
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/services/it-consulting" class="dropdown-item service-item" data-service="it-consulting" data-image="/images/services/it-consulting.jpg" data-title="IT Consulting & Procurement" data-description="Optimize your IT strategy with our expert consulting services. We provide technology assessment, procurement solutions, and strategic planning to align your IT investments with business objectives.">
-                                                            <i class="bi bi-briefcase-fill text-secondary me-2"></i>
-                                                            IT Consulting & Procurement
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            <div class="preview-content flex-grow-1">
+                                                <h5 class="service-preview-title mb-3" id="servicePreviewTitle">Renewable Energy & Solar</h5>
+                                                <p class="service-preview-description" id="servicePreviewDescription">
+                                                    Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.
+                                                </p>
+                                                <div class="mt-4">
+                                                    <a href="/services/renewable-energy" class="btn btn-warning px-4">Learn More</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <!-- Right Column: Interactive Preview Area -->
-                                    <div class="col-lg-4">
-                                        <div class="service-preview-area">
-                                            <div class="preview-image-container mb-3">
-                                                <img src="/images/services/renewable-energy.jpg" alt="Service Preview" class="img-fluid rounded service-preview-image" id="servicePreviewImage">
+                                    <!-- Right Column: Second Image & Text -->
+                                    <div class="col-lg-5">
+                                        <div class="service-preview-area h-100 d-flex flex-column">
+                                            <div class="preview-image-container mb-3 flex-grow-0">
+                                                <img src="/images/services/renewable-energy-2.jpg" alt="Service Preview 2" class="img-fluid rounded service-preview-image" id="servicePreviewImage2">
                                             </div>
-                                            <div class="preview-content">
-                                                <h5 class="service-preview-title" id="servicePreviewTitle">Renewable Energy & Solar</h5>
-                                                <p class="service-preview-description small" id="servicePreviewDescription">
-                                                    Harness the power of nature with our comprehensive renewable energy solutions. We design and install solar systems that reduce energy costs and environmental impact while providing reliable power for your operations.
+                                            <div class="preview-content flex-grow-1">
+                                                <h5 class="service-preview-title mb-3" id="servicePreviewTitle2">Advanced Solutions</h5>
+                                                <p class="service-preview-description" id="servicePreviewDescription2">
+                                                    Our renewable energy solutions include solar panel installation, battery storage systems, and energy management software. We help businesses and homes transition to clean energy with customized solutions that maximize savings and minimize environmental impact.
                                                 </p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="/services" class="btn btn-sm btn-warning">View Service Details</a>
-                                                    <span class="badge bg-primary service-indicator"></span>
+                                                <div class="mt-4">
+                                                    <a href="/contact" class="btn btn-outline-primary px-4">Get a Quote</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -127,45 +167,121 @@
                         </div>
                     </li>
                     
-                    <!-- About Mega Menu -->
-                    <li class="nav-item dropdown megamenu">
+                    <!-- About Mega Menu with Gap Solution -->
+                    <li class="nav-item dropdown megamenu about-hover-dropdown">
                         <a class="nav-link dropdown-toggle" href="/about" id="aboutDropdown">
                             About
                         </a>
-                        <div class="dropdown-menu megamenu-content" aria-labelledby="aboutDropdown">
+                        <!-- Gap element to prevent dropdown from disappearing -->
+                        <div class="dropdown-gap"></div>
+                        <div class="dropdown-menu megamenu-content about-dropdown-preview p-4" aria-labelledby="aboutDropdown">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h6 class="megamenu-title">Our Company</h6>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="/about/company" class="dropdown-item">Company Overview</a></li>
-                                                    <li><a href="/about/mission" class="dropdown-item">Mission & Vision</a></li>
-                                                    <li><a href="/about/values" class="dropdown-item">Our Values</a></li>
-                                                    <li><a href="/about/certifications" class="dropdown-item">Certifications</a></li>
-                                                </ul>
+                                    <!-- Left Column: About List -->
+                                    <div class="col-lg-3">
+                                        <h6 class="megamenu-title section-title mb-4">ABOUT US</h6>
+                                        <ul class="list-unstyled about-list">
+                                            <li class="mb-2">
+                                                <a href="/about/company" class="dropdown-item about-item" 
+                                                   data-about="company"
+                                                   data-image1="/images/about/company.jpg"
+                                                   data-image2="/images/about/team.jpg"
+                                                   data-title="Company Overview"
+                                                   data-description="Phoenix Innovative Technologies is a leading technology solutions provider with over a decade of experience in delivering cutting-edge solutions to businesses across various industries."
+                                                   data-description2="Founded in 2015, we have grown to become a trusted partner for businesses seeking innovative technology solutions. Our team of experts is dedicated to helping clients achieve their digital transformation goals.">
+                                                    Company Overview
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/about/mission" class="dropdown-item about-item" 
+                                                   data-about="mission"
+                                                   data-image1="/images/about/mission.jpg"
+                                                   data-image2="/images/about/vision.jpg"
+                                                   data-title="Mission & Vision"
+                                                   data-description="Our mission is to empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage in the digital age."
+                                                   data-description2="Our vision is to be the leading technology partner for businesses across Africa, recognized for our commitment to excellence, innovation, and customer success.">
+                                                    Mission & Vision
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/about/values" class="dropdown-item about-item" 
+                                                   data-about="values"
+                                                   data-image1="/images/about/values.jpg"
+                                                   data-image2="/images/about/culture.jpg"
+                                                   data-title="Our Values"
+                                                   data-description="We are guided by core values of integrity, innovation, excellence, and customer-centricity in everything we do."
+                                                   data-description2="Our company culture fosters collaboration, continuous learning, and a commitment to delivering exceptional value to our clients and partners.">
+                                                    Our Values
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/about/team" class="dropdown-item about-item" 
+                                                   data-about="team"
+                                                   data-image1="/images/about/leadership.jpg"
+                                                   data-image2="/images/about/experts.jpg"
+                                                   data-title="Our Team"
+                                                   data-description="Our team consists of experienced professionals with diverse backgrounds in technology, engineering, and business consulting."
+                                                   data-description2="We bring together technical expertise and industry knowledge to deliver comprehensive solutions that address our clients' unique challenges and opportunities.">
+                                                    Our Team
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/about/certifications" class="dropdown-item about-item" 
+                                                   data-about="certifications"
+                                                   data-image1="/images/about/certifications.jpg"
+                                                   data-image2="/images/about/awards.jpg"
+                                                   data-title="Certifications"
+                                                   data-description="We hold multiple industry certifications and partnerships with leading technology providers to ensure we deliver best-in-class solutions."
+                                                   data-description2="Our certifications include partnerships with Microsoft, Cisco, Huawei, and other technology leaders, ensuring we stay at the forefront of industry developments.">
+                                                    Certifications
+                                                </a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="/about/careers" class="dropdown-item about-item" 
+                                                   data-about="careers"
+                                                   data-image1="/images/about/careers.jpg"
+                                                   data-image2="/images/about/workplace.jpg"
+                                                   data-title="Careers"
+                                                   data-description="Join our team of innovators and problem-solvers. We offer exciting career opportunities for talented individuals passionate about technology."
+                                                   data-description2="We provide a dynamic work environment, competitive benefits, and opportunities for professional growth and development in the technology sector.">
+                                                    Careers
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <!-- Middle Column: First Image & Text -->
+                                    <div class="col-lg-4">
+                                        <div class="about-preview-area h-100 d-flex flex-column">
+                                            <div class="preview-image-container mb-3 flex-grow-0">
+                                                <img src="/images/about/company.jpg" alt="About Preview" class="img-fluid rounded about-preview-image" id="aboutPreviewImage1">
                                             </div>
-                                            <div class="col-md-6">
-                                                <h6 class="megamenu-title">Our Team</h6>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="/about/team" class="dropdown-item">Leadership Team</a></li>
-                                                    <li><a href="/about/experts" class="dropdown-item">Technical Experts</a></li>
-                                                    <li><a href="/about/careers" class="dropdown-item">Careers</a></li>
-                                                    <li><a href="/about/contact" class="dropdown-item">Contact Team</a></li>
-                                                </ul>
+                                            <div class="preview-content flex-grow-1">
+                                                <h5 class="about-preview-title mb-3" id="aboutPreviewTitle">Company Overview</h5>
+                                                <p class="about-preview-description" id="aboutPreviewDescription">
+                                                    Phoenix Innovative Technologies is a leading technology solutions provider with over a decade of experience in delivering cutting-edge solutions to businesses across various industries.
+                                                </p>
+                                                <div class="mt-4">
+                                                    <a href="/about/company" class="btn btn-warning px-4">Learn More</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="megamenu-featured">
-                                            <div class="featured-image">
-                                                <img src="/images/CCTV Banner 1.png" alt="About Us" class="img-fluid">
+                                    
+                                    <!-- Right Column: Second Image & Text -->
+                                    <div class="col-lg-5">
+                                        <div class="about-preview-area h-100 d-flex flex-column">
+                                            <div class="preview-image-container mb-3 flex-grow-0">
+                                                <img src="/images/about/team.jpg" alt="About Preview 2" class="img-fluid rounded about-preview-image" id="aboutPreviewImage2">
                                             </div>
-                                            <div class="featured-content">
-                                                <h6>Building Intelligent Systems</h6>
-                                                <p class="small">With over a decade of experience, we're committed to creating smarter solutions for a better world.</p>
-                                                <a href="/about" class="btn btn-sm btn-warning">Learn More</a>
+                                            <div class="preview-content flex-grow-1">
+                                                <h5 class="about-preview-title mb-3" id="aboutPreviewTitle2">Our Journey</h5>
+                                                <p class="about-preview-description" id="aboutPreviewDescription2">
+                                                    Founded in 2015, we have grown to become a trusted partner for businesses seeking innovative technology solutions. Our team of experts is dedicated to helping clients achieve their digital transformation goals.
+                                                </p>
+                                                <div class="mt-4">
+                                                    <a href="/contact" class="btn btn-outline-primary px-4">Contact Us</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -181,7 +297,8 @@
             </div>
         </div>
     </nav>
-     <!-- Link to external CSS -->
+
+    <!-- Link to external CSS -->
     <link rel="stylesheet" href="/css/style.css">
     
     <!-- Link to external JavaScript -->
