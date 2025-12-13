@@ -603,43 +603,39 @@ body {
     display: none;
 }
 
-/* Show dropdown on hover - ONLY for direct parent hover */
+/* Show dropdown on hover - FOR BOTH BUTTON AND GAP */
 .services-hover-dropdown:hover .dropdown-menu,
-.about-hover-dropdown:hover .dropdown-menu {
+.about-hover-dropdown:hover .dropdown-menu,
+.services-hover-dropdown .dropdown-gap:hover ~ .dropdown-menu,
+.about-hover-dropdown .dropdown-gap:hover ~ .dropdown-menu {
     display: block !important;
 }
 
-/* Gap element - REMOVED OVERLAPPING ISSUE */
+/* Gap element - FIXED VERSION */
 .dropdown-gap {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: 25px; /* Increased for better usability */
     background: transparent;
     z-index: 999;
-    pointer-events: none; /* This prevents interference */
+    /* pointer-events: auto; - REMOVED THIS LINE */
 }
 
-/* CRITICAL FIX: Ensure dropdowns don't overlap */
-.services-dropdown-preview,
+/* Keep dropdown visible when hovering over it */
+.services-dropdown-preview:hover,
+.about-dropdown-preview:hover {
+    display: block !important;
+}
+
+/* Z-index layering to prevent overlap issues */
+.services-dropdown-preview {
+    z-index: 1000;
+}
+
 .about-dropdown-preview {
-    z-index: 1000;
-}
-
-/* Prevent Services dropdown from being affected by About hover */
-.services-hover-dropdown .dropdown-menu {
-    z-index: 1001;
-}
-
-.about-hover-dropdown .dropdown-menu {
-    z-index: 1000;
-}
-
-/* IMPORTANT: Hide dropdown when mouse leaves the entire area */
-.services-hover-dropdown .dropdown-menu:not(:hover),
-.about-hover-dropdown .dropdown-menu:not(:hover) {
-    /* This helps CSS handle the hide when not hovering */
+    z-index: 999; /* Slightly lower to prevent interference */
 }
 
 /* Simplified list styling */
