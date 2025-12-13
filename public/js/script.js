@@ -14,142 +14,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize About Dropdown
     initAboutDropdown();
     
-    // Add dropdown isolation fix
-    setupDropdownIsolation();
+    // Add simple fix for dropdown persistence
+    setupDropdownPersistence();
 });
 
-function setupDropdownIsolation() {
-    const servicesDropdown = document.querySelector('.services-hover-dropdown');
-    const aboutDropdown = document.querySelector('.about-hover-dropdown');
-    const servicesMenu = servicesDropdown?.querySelector('.dropdown-menu');
-    const aboutMenu = aboutDropdown?.querySelector('.dropdown-menu');
+function setupDropdownPersistence() {
+    // This simple function ensures dropdowns stay open when moving to them
+    // CSS already handles most of this with the gap solution
     
-    if (!servicesDropdown || !aboutDropdown) return;
+    console.log('Dropdown persistence initialized');
     
-    // Track which dropdown is currently active
-    let activeDropdown = null;
-    
-    // Services dropdown events
-    servicesDropdown.addEventListener('mouseenter', function() {
-        activeDropdown = 'services';
-        // Ensure Services menu is on top
-        if (servicesMenu) {
-            servicesMenu.style.zIndex = '1001';
-        }
-        if (aboutMenu) {
-            aboutMenu.style.zIndex = '1000';
-        }
-    });
-    
-    servicesDropdown.addEventListener('mouseleave', function(e) {
-        // Check if mouse is moving to Services menu or gap
-        const relatedTarget = e.relatedTarget;
-        const isMovingToServicesMenu = relatedTarget && (
-            relatedTarget === servicesMenu || 
-            relatedTarget.closest('.services-dropdown-preview')
-        );
-        const isMovingToGap = relatedTarget && (
-            relatedTarget.classList?.contains('dropdown-gap') ||
-            relatedTarget.closest?.('.dropdown-gap')
-        );
+    // Just ensure dropdowns stay open when hovering over their content
+    document.querySelectorAll('.services-dropdown-preview, .about-dropdown-preview').forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', function() {
+            // Keep dropdown visible
+            this.style.display = 'block';
+        });
         
-        if (!isMovingToServicesMenu && !isMovingToGap) {
-            // Mouse is leaving Services area completely
-            setTimeout(() => {
-                if (!servicesDropdown.matches(':hover') && 
-                    !(servicesMenu && servicesMenu.matches(':hover'))) {
-                    activeDropdown = null;
-                }
-            }, 50);
-        }
-    });
-    
-    // Services menu events
-    if (servicesMenu) {
-        servicesMenu.addEventListener('mouseleave', function(e) {
-            // Check if mouse is moving back to Services dropdown or gap
+        dropdown.addEventListener('mouseleave', function(e) {
+            // Let CSS handle hiding with delay
             const relatedTarget = e.relatedTarget;
-            const isMovingToServices = relatedTarget && (
-                relatedTarget.closest('.services-hover-dropdown')
-            );
-            const isMovingToGap = relatedTarget && (
-                relatedTarget.classList?.contains('dropdown-gap') ||
-                relatedTarget.closest?.('.dropdown-gap')
-            );
+            const parent = this.closest('.services-hover-dropdown, .about-hover-dropdown');
             
-            if (!isMovingToServices && !isMovingToGap) {
-                // Mouse is leaving Services menu completely
-                setTimeout(() => {
-                    if (!servicesMenu.matches(':hover') && 
-                        !servicesDropdown.matches(':hover')) {
-                        activeDropdown = null;
-                    }
-                }, 50);
+            // Check if mouse is moving back to parent or gap
+            if (relatedTarget && parent && 
+                (relatedTarget.closest('.services-hover-dropdown') === parent ||
+                 relatedTarget.closest('.about-hover-dropdown') === parent ||
+                 relatedTarget.classList.contains('dropdown-gap') ||
+                 (relatedTarget.parentElement && relatedTarget.parentElement.classList.contains('dropdown-gap')))) {
+                // Don't hide - mouse is still in the dropdown area
+                return;
             }
         });
-    }
-    
-    // About dropdown events
-    aboutDropdown.addEventListener('mouseenter', function() {
-        activeDropdown = 'about';
-        // Ensure About menu is on top
-        if (aboutMenu) {
-            aboutMenu.style.zIndex = '1001';
-        }
-        if (servicesMenu) {
-            servicesMenu.style.zIndex = '1000';
-        }
     });
-    
-    aboutDropdown.addEventListener('mouseleave', function(e) {
-        // Check if mouse is moving to About menu or gap
-        const relatedTarget = e.relatedTarget;
-        const isMovingToAboutMenu = relatedTarget && (
-            relatedTarget === aboutMenu || 
-            relatedTarget.closest('.about-dropdown-preview')
-        );
-        const isMovingToGap = relatedTarget && (
-            relatedTarget.classList?.contains('dropdown-gap') ||
-            relatedTarget.closest?.('.dropdown-gap')
-        );
-        
-        if (!isMovingToAboutMenu && !isMovingToGap) {
-            // Mouse is leaving About area completely
-            setTimeout(() => {
-                if (!aboutDropdown.matches(':hover') && 
-                    !(aboutMenu && aboutMenu.matches(':hover'))) {
-                    activeDropdown = null;
-                }
-            }, 50);
-        }
-    });
-    
-    // About menu events
-    if (aboutMenu) {
-        aboutMenu.addEventListener('mouseleave', function(e) {
-            // Check if mouse is moving back to About dropdown or gap
-            const relatedTarget = e.relatedTarget;
-            const isMovingToAbout = relatedTarget && (
-                relatedTarget.closest('.about-hover-dropdown')
-            );
-            const isMovingToGap = relatedTarget && (
-                relatedTarget.classList?.contains('dropdown-gap') ||
-                relatedTarget.closest?.('.dropdown-gap')
-            );
-            
-            if (!isMovingToAbout && !isMovingToGap) {
-                // Mouse is leaving About menu completely
-                setTimeout(() => {
-                    if (!aboutMenu.matches(':hover') && 
-                        !aboutDropdown.matches(':hover')) {
-                        activeDropdown = null;
-                    }
-                }, 50);
-            }
-        });
-    }
-    
-    console.log('Dropdown isolation initialized');
 }
 
 function initServicesDropdown() {
