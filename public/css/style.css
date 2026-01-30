@@ -52,7 +52,7 @@
     align-items: center;
 }
 
-/* Remove the old hero-section styles since we're using carousel now */
+
 .hero-section {
     display: none;
 }
