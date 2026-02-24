@@ -26,5 +26,5 @@ A multi-page website for Phoenix Innovative Technologies Ltd, featuring service 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/phoenix-innovative-website.git
+   git clone https://github.com/Tushmovic/phoenix-innovative-website.git
    cd phoenix-innovative-website
