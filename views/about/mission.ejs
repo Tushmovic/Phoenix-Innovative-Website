@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE, #3A0CA3);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            color: white !important;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.4rem;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mission Card */
+        .mission-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(46,196,182,0.2);
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(46,196,182,0.1), transparent);
+            animation: rotate 30s linear infinite;
+        }
+
+        .mission-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+        }
+
+        .mission-card h2 {
+            color: #333 !important;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .mission-card .lead {
+            color: #666 !important;
+            font-size: 1.2rem;
+        }
+
+        .mission-card .text-primary {
+            color: #2EC4B6 !important;
+        }
+
+        .mission-card p {
+            color: #666 !important;
+        }
+
+        /* Vision Card */
+        .vision-card {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(67,97,238,0.3);
+        }
+
+        .vision-card h3,
+        .vision-card h4,
+        .vision-card p,
+        .vision-card li,
+        .vision-card i {
+            color: white !important;
+        }
+
+        .vision-card i.bi-arrow-right-circle-fill {
+            color: rgba(255,255,255,0.9) !important;
+        }
+
+        /* Pillar Cards */
+        .pillar-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #2EC4B6;
+            box-shadow: 0 20px 40px rgba(46,196,182,0.15);
+        }
+
+        .pillar-card h4 {
+            color: #333 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .pillar-card p {
+            color: #666 !important;
+        }
+
+        .pillar-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+        }
+
+        /* Goal Cards */
+        .goal-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border-left: 4px solid #2EC4B6;
+        }
+
+        .goal-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(46,196,182,0.1);
+        }
+
+        .goal-card h4 {
+            color: #333 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .goal-card p {
+            color: #666 !important;
+        }
+
+        .progress-bar {
+            color: white !important;
+            font-weight: 600;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(46,196,182,0.3);
+        }
+
+        .stats-card .display-4,
+        .stats-card p {
+            color: white !important;
+        }
+
+        /* Quote Card */
+        .quote-card {
+            background: linear-gradient(135deg, #f8f9fa, white);
+            padding: 60px 40px;
+            border-radius: 30px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 150px;
+            color: rgba(46,196,182,0.1);
+            font-family: serif;
+        }
+
+        .quote-card::after {
+            content: '"';
+            position: absolute;
+            bottom: -60px;
+            right: 20px;
+            font-size: 150px;
+            color: rgba(46,196,182,0.1);
+            font-family: serif;
+            transform: rotate(180deg);
+        }
+
+        .quote-card h3 {
+            color: #333 !important;
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .quote-card h5 {
+            color: #333 !important;
+            font-weight: 700;
+        }
+
+        .quote-card p {
+            color: #666 !important;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .cta-section h2,
+        .cta-section p,
+        .cta-section .lead {
+            color: white !important;
+        }
+
+        .cta-section .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white !important;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light:hover {
+            background: white;
+            color: #333 !important;
+        }
+
+        /* Section Headers */
+        h2.display-5 {
+            color: #333 !important;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .text-muted {
+            color: #666 !important;
+        }
+
+        .text-success {
+            color: #28a745 !important;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2.display-5 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">Mission & Vision</h1>
+                    <p class="lead mb-4">Driving innovation, empowering progress</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="mission-card" data-aos="fade-up">
+                        <div class="mission-icon">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <h2 class="display-5 fw-bold text-center mb-4">Our Mission</h2>
+                        <p class="lead text-center mb-4">To empower businesses and communities across Africa with innovative technology solutions that drive growth, efficiency, and sustainable development.</p>
+                        <div class="row mt-5">
+                            <div class="col-md-4 text-center">
+                                <h3 class="fw-bold text-primary">500+</h3>
+                                <p>Projects Delivered</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="fw-bold text-primary">50+</h3>
+                                <p>Team Members</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="fw-bold text-primary">100%</h3>
+                                <p>Client Commitment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-4">Our Vision</h2>
+                    <p class="lead mb-4">To be Africa's most trusted technology partner, recognized for excellence, innovation, and lasting impact on the continent's digital transformation.</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                        <span>Leading technology innovator in Africa by 2030</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                        <span>Present in 20+ African countries</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                        <span>Empowering 1 million businesses</span>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="vision-card">
+                        <i class="bi bi-eye fs-1 mb-4"></i>
+                        <h3 class="fw-bold mb-4">2025-2030 Strategic Goals</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="bi bi-arrow-right-circle-fill me-2"></i> Expand to 10 African countries</li>
+                            <li class="mb-3"><i class="bi bi-arrow-right-circle-fill me-2"></i> Launch innovation hub in Lagos</li>
+                            <li class="mb-3"><i class="bi bi-arrow-right-circle-fill me-2"></i> Partner with 1000+ businesses</li>
+                            <li class="mb-3"><i class="bi bi-arrow-right-circle-fill me-2"></i> Achieve carbon neutrality</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Pillars -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Strategic Pillars</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-rocket"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Innovation First</h4>
+                        <p class="text-muted">Continuously exploring and implementing cutting-edge technologies to solve real-world problems.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Customer Success</h4>
+                        <p class="text-muted">Our clients' success is our success. We're committed to delivering exceptional value and support.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Sustainable Impact</h4>
+                        <p class="text-muted">Building solutions that contribute to sustainable development and environmental responsibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">2030 Impact Goals</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="goal-card">
+                        <h4 class="fw-bold mb-3">Digital Inclusion</h4>
+                        <p>Connect 500 underserved communities to the internet and provide digital skills training to 10,000 youth.</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-success" style="width: 35%">35%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="goal-card">
+                        <h4 class="fw-bold mb-3">Innovation Ecosystem</h4>
+                        <p>Establish tech innovation hubs in 5 major African cities, supporting 1000+ startups.</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-info" style="width: 20%">20%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+                    <div class="goal-card">
+                        <h4 class="fw-bold mb-3">Green Technology</h4>
+                        <p>Implement solar solutions for 1000 businesses, reducing carbon emissions by 50,000 tons.</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-warning" style="width: 45%">45%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="goal-card">
+                        <h4 class="fw-bold mb-3">Women in Tech</h4>
+                        <p>Achieve 40% female representation in technical roles and leadership positions.</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-danger" style="width: 30%">30%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="quote-card" data-aos="zoom-in">
+                <i class="bi bi-quote display-1 text-primary opacity-25"></i>
+                <h3 class="fw-light mb-4">"Our vision is not just about technology – it's about transforming lives, empowering communities, and building a brighter future for Africa through innovation."</h3>
+                <div>
+                    <h5 class="fw-bold mb-0">Dr. Adewale Ogunleye</h5>
+                    <p class="text-muted">Founder & CEO, Phoenix Innovative Technologies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="display-4 fw-bold counter-value" data-target="2025">0</div>
+                        <p class="mb-0">Founded</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
+                        <div class="display-4 fw-bold counter-value" data-target="9">0</div>
+                        <p class="mb-0">Countries Served</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="display-4 fw-bold counter-value" data-target="100">0</div>
+                        <p class="mb-0">Team Members</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
+                        <div class="display-4 fw-bold counter-value" data-target="500">0</div>
+                        <p class="mb-0">Projects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Be Part of Our Mission</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Join us in building a smarter, more connected Africa</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Partner With Us</a>
+                        <a href="/about/careers" class="btn btn-outline-light btn-lg px-5 py-3">Join Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

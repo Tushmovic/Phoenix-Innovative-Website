@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A, #E71D36);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            color: white !important;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.4rem;
+        }
+
+        .page-hero .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .page-hero .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Benefit Cards */
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .benefit-card h4 {
+            color: #333 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: #666 !important;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.3);
+        }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: white !important;
+        }
+
+        .stats-card p {
+            color: rgba(255,255,255,0.95) !important;
+        }
+
+        /* Culture Cards */
+        .culture-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            height: 100%;
+            border-left: 4px solid #FF6B35;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .culture-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+        }
+
+        .culture-card h4 {
+            color: #333 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .culture-card p {
+            color: #666 !important;
+        }
+
+        .value-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            color: white !important;
+            border-radius: 25px;
+            font-size: 12px;
+            margin: 2px;
+        }
+
+        /* Job Cards */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #4361EE);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-15px);
+            border-color: #FF6B35;
+            box-shadow: 0 30px 50px rgba(255,107,53,0.15);
+        }
+
+        .job-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .job-type {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            color: white !important;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .job-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333 !important;
+        }
+
+        .job-location {
+            color: #6c757d !important;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .job-location i {
+            color: #FF6B35 !important;
+        }
+
+        .job-tags {
+            margin: 20px 0;
+        }
+
+        .job-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 2px;
+            color: #666 !important;
+        }
+
+        .job-card p {
+            color: #666 !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            border: none;
+            color: white !important;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 8px;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .employee-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #FF6B35;
+        }
+
+        .testimonial-card h5 {
+            color: #333 !important;
+            font-weight: 700;
+        }
+
+        .testimonial-card small {
+            color: #666 !important;
+        }
+
+        .testimonial-card p {
+            color: #333 !important;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Application Form */
+        .application-form {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-label {
+            color: #333 !important;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            color: #333 !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 0.25rem rgba(255,107,53,0.25);
+        }
+
+        .form-control::placeholder {
+            color: #999 !important;
+        }
+
+        .upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .upload-area:hover {
+            border-color: #FF6B35;
+            background: #fff5f0;
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: #FF6B35 !important;
+            margin-bottom: 15px;
+        }
+
+        .upload-area h5 {
+            color: #333 !important;
+            font-weight: 600;
+        }
+
+        .upload-area p {
+            color: #666 !important;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            border: none;
+            color: white !important;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1C2541, #3A506B);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .cta-section h2,
+        .cta-section p,
+        .cta-section .lead {
+            color: white !important;
+        }
+
+        .cta-section .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        /* Section Headers */
+        h2.display-5 {
+            color: #333 !important;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .text-muted {
+            color: #666 !important;
+        }
+
+        /* Filter Select */
+        .form-select {
+            color: #333 !important;
+            background-color: white;
+            border: 2px solid #e9ecef;
+            padding: 12px 30px 12px 20px;
+            font-weight: 500;
+        }
+
+        .form-select option {
+            color: #333 !important;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2.display-5 {
+                font-size: 2.2rem;
+            }
+
+            .application-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">Join Our Team</h1>
+                    <p class="lead mb-4">Build your career at the forefront of technology innovation</p>
+                    <a href="#openings" class="btn btn-light btn-lg px-5 py-3">View Open Positions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Us -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Why Join Phoenix?</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Career Growth</h4>
+                        <p class="text-muted">Clear career progression paths, mentorship programs, and continuous learning opportunities.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Great Benefits</h4>
+                        <p class="text-muted">Competitive salary, health insurance, pension, and performance bonuses.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Great Culture</h4>
+                        <p class="text-muted">Collaborative, inclusive environment where your ideas matter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="stats-number counter-value" data-target="50">0</div>
+                        <p class="mb-0">Team Members</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
+                        <div class="stats-number counter-value" data-target="40">0</div>
+                        <p class="mb-0">Women in Tech</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
+                        <div class="stats-number counter-value" data-target="95">0</div>
+                        <p class="mb-0">Employee Satisfaction</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="stats-number counter-value" data-target="5">0</div>
+                        <p class="mb-0">Years Avg Tenure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Culture</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="culture-card">
+                        <h4 class="fw-bold mb-3">Innovation First</h4>
+                        <p>We encourage creative thinking and provide resources to explore new ideas and technologies.</p>
+                        <span class="value-badge">Innovation</span>
+                        <span class="value-badge">Creativity</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="culture-card">
+                        <h4 class="fw-bold mb-3">Work-Life Balance</h4>
+                        <p>Flexible hours, remote work options, and respect for personal time.</p>
+                        <span class="value-badge">Flexibility</span>
+                        <span class="value-badge">Wellness</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="culture-card">
+                        <h4 class="fw-bold mb-3">Continuous Learning</h4>
+                        <p>Training budgets, certification support, and regular knowledge-sharing sessions.</p>
+                        <span class="value-badge">Growth</span>
+                        <span class="value-badge">Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section class="py-5 bg-light" id="openings">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Open Positions</h2>
+            
+            <!-- Filter -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <select class="form-select d-inline-block w-auto" id="jobFilter" onchange="filterJobs()">
+                    <option value="all">All Departments</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="sales">Sales & Marketing</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="operations">Operations</option>
+                </select>
+            </div>
+
+            <div class="job-grid" id="jobGrid">
+                <!-- Engineering Jobs -->
+                <div class="job-card" data-department="engineering" data-aos="fade-up">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">Senior Software Engineer</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Abuja, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">React</span>
+                        <span class="job-tag">Node.js</span>
+                        <span class="job-tag">Python</span>
+                        <span class="job-tag">AWS</span>
+                    </div>
+                    <p class="text-muted mb-3">Lead development of scalable web applications and mentor junior developers.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('Senior Software Engineer')">Apply Now</a>
+                </div>
+
+                <div class="job-card" data-department="engineering" data-aos="fade-up" data-aos-delay="100">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">Network Engineer</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Lagos, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">Cisco</span>
+                        <span class="job-tag">MikroTik</span>
+                        <span class="job-tag">Firewalls</span>
+                        <span class="job-tag">CCNA</span>
+                    </div>
+                    <p class="text-muted mb-3">Design and implement enterprise network infrastructure for clients.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('Network Engineer')">Apply Now</a>
+                </div>
+
+                <div class="job-card" data-department="engineering" data-aos="fade-up" data-aos-delay="200">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">Security Specialist</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Abuja, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">Cybersecurity</span>
+                        <span class="job-tag">CISSP</span>
+                        <span class="job-tag">Pen Testing</span>
+                    </div>
+                    <p class="text-muted mb-3">Conduct security assessments and implement protection measures.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('Security Specialist')">Apply Now</a>
+                </div>
+
+                <!-- Sales Jobs -->
+                <div class="job-card" data-department="sales" data-aos="fade-up">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">Enterprise Sales Manager</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Lagos, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">B2B Sales</span>
+                        <span class="job-tag">CRM</span>
+                        <span class="job-tag">Negotiation</span>
+                    </div>
+                    <p class="text-muted mb-3">Drive enterprise sales and build relationships with key clients.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('Enterprise Sales Manager')">Apply Now</a>
+                </div>
+
+                <!-- Consulting Jobs -->
+                <div class="job-card" data-department="consulting" data-aos="fade-up">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">IT Consultant</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Abuja, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">Cloud Strategy</span>
+                        <span class="job-tag">Digital Transformation</span>
+                        <span class="job-tag">ITIL</span>
+                    </div>
+                    <p class="text-muted mb-3">Advise clients on technology strategy and digital transformation.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('IT Consultant')">Apply Now</a>
+                </div>
+
+                <!-- Operations Jobs -->
+                <div class="job-card" data-department="operations" data-aos="fade-up">
+                    <span class="job-type">Full Time</span>
+                    <h3 class="job-title">Project Manager</h3>
+                    <div class="job-location">
+                        <i class="bi bi-geo-alt"></i> Abuja, Nigeria
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">PMP</span>
+                        <span class="job-tag">Agile</span>
+                        <span class="job-tag">Scrum</span>
+                    </div>
+                    <p class="text-muted mb-3">Lead technology projects from initiation to successful delivery.</p>
+                    <a href="#apply" class="btn-primary" onclick="selectJob('Project Manager')">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Life at Phoenix</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/images/team/engineer1.jpg" alt="Employee" class="employee-image me-3">
+                            <div>
+                                <h5 class="mb-0">Amara Nwachukwu</h5>
+                                <small class="text-muted">Software Engineer, 3 years</small>
+                            </div>
+                        </div>
+                        <p>"Phoenix has been amazing for my career growth. The mentorship and learning opportunities are unparalleled."</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/images/team/sales1.jpg" alt="Employee" class="employee-image me-3">
+                            <div>
+                                <h5 class="mb-0">Chioma Eze</h5>
+                                <small class="text-muted">Sales Director, 5 years</small>
+                            </div>
+                        </div>
+                        <p>"The culture here is incredible. Everyone supports each other, and we're all working toward the same goals."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="py-5 bg-light" id="apply">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Apply Now</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="application-form" data-aos="fade-up">
+                        <form id="jobApplication" onsubmit="submitApplication(event)">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Position Applied For</label>
+                                <input type="text" class="form-control" id="appliedPosition" readonly value="Senior Software Engineer">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Upload CV</label>
+                                <div class="upload-area" onclick="document.getElementById('cvFile').click()">
+                                    <i class="bi bi-cloud-upload"></i>
+                                    <h5>Click to upload or drag and drop</h5>
+                                    <p class="text-muted">PDF, DOC, DOCX (Max 5MB)</p>
+                                    <input type="file" id="cvFile" style="display: none;" accept=".pdf,.doc,.docx">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Don't See the Right Role?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Send us your CV anyway. We're always looking for talented people.</p>
+                    <a href="/contact" class="btn btn-light btn-lg px-5 py-3" data-aos="fade-up" data-aos-delay="200">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+
+        function filterJobs() {
+            const filter = document.getElementById('jobFilter').value;
+            const jobs = document.querySelectorAll('.job-card');
+            
+            jobs.forEach(job => {
+                if (filter === 'all' || job.dataset.department === filter) {
+                    job.style.display = 'block';
+                } else {
+                    job.style.display = 'none';
+                }
+            });
+        }
+
+        function selectJob(position) {
+            document.getElementById('appliedPosition').value = position;
+            document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            alert('Thank you for your application! We will review it and get back to you soon.');
+            event.target.reset();
+        }
+
+        document.querySelector('.upload-area').addEventListener('click', function() {
+            document.getElementById('cvFile').click();
+        });
+    </script>
+</body>
+</html>

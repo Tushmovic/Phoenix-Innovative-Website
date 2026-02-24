@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3, #2EC4B6);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .page-hero p {
+            color: rgba(255,255,255,0.95);
+        }
+        
+        .page-hero .btn-light {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .page-hero .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .page-hero .btn-outline-light:hover {
+            background: white;
+            color: #333;
+        }
+        
+        /* Consultant Card */
+        .consultant-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .consultant-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .consultant-card h4 {
+            color: white;
+        }
+        
+        .consultant-card p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Service Cards */
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #4361EE, #2EC4B6);
+            transition: width 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+        
+        .service-card:hover::before {
+            width: 8px;
+        }
+        
+        .service-card h4 {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: #666;
+        }
+        
+        .service-card ul li {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .service-card ul li i {
+            color: #28a745;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        /* Strategy Diagram */
+        .strategy-diagram {
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 30px;
+        }
+        
+        .strategy-node {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(67,97,238,0.3);
+        }
+        
+        .strategy-node i {
+            font-size: 32px;
+            color: #4361EE;
+        }
+        
+        .strategy-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #4361EE, #2EC4B6);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .strategy-diagram p {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Process Steps */
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+        
+        .process-step h5 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .process-step p {
+            color: #666;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* Expertise Badges */
+        .expertise-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: white;
+            border-radius: 50px;
+            margin: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .expertise-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67,97,238,0.15);
+            border-color: #4361EE;
+        }
+        
+        /* Case Study Cards */
+        .case-study-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(67,97,238,0.2);
+        }
+        
+        .case-study-image {
+            height: 200px;
+            background: linear-gradient(135deg, #4361EE, #2EC4B6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-study-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .case-study-content {
+            padding: 25px;
+        }
+        
+        .case-study-content h5 {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .case-study-content p {
+            color: #666;
+        }
+        
+        .result-badge {
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        /* Stats Cards */
+        .stats-card {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        .stats-card p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.1rem;
+        }
+        
+        /* Testimonial Cards */
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 100px;
+            color: rgba(67,97,238,0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-card p {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-card h6 {
+            color: #333;
+            font-weight: 700;
+        }
+        
+        .testimonial-card small {
+            color: #666;
+        }
+        
+        /* Client Logos */
+        .client-logo {
+            height: 50px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .client-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4361EE, #2EC4B6);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3rem;
+        }
+        
+        .cta-section .btn-light {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .cta-section .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .cta-section .btn-outline-light:hover {
+            background: white;
+            color: #333;
+        }
+        
+        /* Section Headers */
+        h2.display-5 {
+            color: #333;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+        
+        .bg-light {
+            background-color: #f8f9fa;
+        }
+        
+        .text-muted {
+            color: #666 !important;
+        }
+        
+        .text-success {
+            color: #28a745 !important;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2.display-5 {
+                font-size: 2.2rem;
+            }
+            
+            .strategy-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4">IT Consulting & Procurement</h1>
+                    <p class="lead mb-4">Strategic technology consulting to optimize your IT investments. Expert guidance on infrastructure, software, and digital transformation.</p>
+                    <div class="d-flex gap-3">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Free Consultation</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3">Our Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="consultant-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-white rounded-circle p-3 me-3">
+                                <i class="bi bi-briefcase fs-1" style="color: #4361EE;"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white mb-1">20+ Years</h4>
+                                <p class="text-white-50 mb-0">Combined Experience</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="bg-white rounded-circle p-3 me-3">
+                                <i class="bi bi-trophy fs-1" style="color: #4361EE;"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white mb-1">500+ Projects</h4>
+                                <p class="text-white-50 mb-0">Successfully Delivered</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-white rounded-circle p-3 me-3">
+                                <i class="bi bi-people fs-1" style="color: #4361EE;"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white mb-1">50+ Clients</h4>
+                                <p class="text-white-50 mb-0">Across Industries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Consulting Services</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-clipboard-data"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">IT Strategy & Planning</h4>
+                        <p>Develop comprehensive IT roadmaps aligned with your business goals. We help you make informed decisions about technology investments.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Technology assessments</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Digital transformation roadmaps</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> IT governance frameworks</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Security & Compliance</h4>
+                        <p>Protect your business with comprehensive security assessments and compliance consulting for industry standards.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Security audits</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> GDPR/NDPR compliance</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Risk management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-cloud"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Cloud Strategy</h4>
+                        <p>Navigate the cloud landscape with expert guidance on migration, architecture, and cost optimization.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Cloud readiness assessment</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Migration strategy</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Cost optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-cart"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">IT Procurement</h4>
+                        <p>Source and procure the right technology at the best prices. We handle vendor negotiations and procurement processes.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Hardware sourcing</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Software licensing</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i> Vendor management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Framework Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Strategic Framework</h2>
+            <div class="strategy-diagram" data-aos="fade-up">
+                <div class="strategy-line"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="strategy-node">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <p class="text-center mt-3 fw-bold">Assess</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="strategy-node">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <p class="text-center mt-3 fw-bold">Plan</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="strategy-node">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <p class="text-center mt-3 fw-bold">Implement</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="strategy-node">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <p class="text-center mt-3 fw-bold">Optimize</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Areas -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Areas of Expertise</h2>
+            <div class="text-center">
+                <span class="expertise-badge">Digital Transformation</span>
+                <span class="expertise-badge">IT Infrastructure</span>
+                <span class="expertise-badge">Cybersecurity</span>
+                <span class="expertise-badge">Cloud Computing</span>
+                <span class="expertise-badge">Data Analytics</span>
+                <span class="expertise-badge">Business Continuity</span>
+                <span class="expertise-badge">IT Governance</span>
+                <span class="expertise-badge">Vendor Management</span>
+                <span class="expertise-badge">Software Selection</span>
+                <span class="expertise-badge">Network Architecture</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Success Stories</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-card">
+                        <div class="case-study-image"></div>
+                        <div class="case-study-content">
+                            <span class="result-badge mb-3">40% Cost Reduction</span>
+                            <h5 class="fw-bold">Financial Services</h5>
+                            <p class="text-muted">Optimized IT infrastructure and cloud strategy for a major bank, reducing costs by 40%.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-card">
+                        <div class="case-study-image"></div>
+                        <div class="case-study-content">
+                            <span class="result-badge mb-3">99.9% Uptime</span>
+                            <h5 class="fw-bold">Healthcare Provider</h5>
+                            <p class="text-muted">Implemented disaster recovery solution ensuring 99.9% system availability.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-card">
+                        <div class="case-study-image"></div>
+                        <div class="case-study-content">
+                            <span class="result-badge mb-3">3x Growth</span>
+                            <h5 class="fw-bold">E-commerce Startup</h5>
+                            <p class="text-muted">Scalable infrastructure design supporting 300% business growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="stats-number counter-value" data-target="150">0</div>
+                        <p class="mb-0">Projects Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
+                        <div class="stats-number counter-value" data-target="50">0</div>
+                        <p class="mb-0">Million ₦ Saved</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="stats-number counter-value" data-target="100">0</div>
+                        <p class="mb-0">% ROI Average</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
+                        <div class="stats-number counter-value" data-target="24">0</div>
+                        <p class="mb-0">Industries Served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">What Our Clients Say</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial-card">
+                        <p class="mb-3">"Phoenix's consulting team transformed our IT strategy. Their insights saved us millions and positioned us for growth."</p>
+                        <div>
+                            <h6 class="mb-0">Dr. Adebayo Ogunlesi</h6>
+                            <small>CEO, FirstBank</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial-card">
+                        <p class="mb-3">"The procurement process they managed saved us 30% on our infrastructure upgrade. Exceptional service."</p>
+                        <div>
+                            <h6 class="mb-0">Folake Williams</h6>
+                            <small>CTO, MTN Nigeria</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container position-relative">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Optimize Your IT?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Get a free 1-hour consultation with our experts.</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Book Consultation</a>
+                        <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

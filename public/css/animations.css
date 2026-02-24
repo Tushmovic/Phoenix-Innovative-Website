@@ -1,0 +1,330 @@
+/* ============================================
+   PHOENIX INNOVATIVE TECHNOLOGIES
+   ADVANCED ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+/* ===== PAGE TRANSITIONS ===== */
+.page-transition {
+    animation: pageEnter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes pageEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(20px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ===== SECTION REVEAL ANIMATIONS ===== */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered children reveal */
+.stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.stagger-children.revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-children.revealed > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.revealed > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.revealed > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.revealed > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children.revealed > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children.revealed > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* ===== TEXT REVEAL ANIMATIONS ===== */
+.text-reveal {
+    overflow: hidden;
+    position: relative;
+}
+
+.text-reveal span {
+    display: inline-block;
+    animation: textReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+@keyframes textReveal {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== PARALLAX EFFECT ===== */
+.parallax-section {
+    position: relative;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(11, 19, 43, 0.8) 0%, rgba(58, 80, 107, 0.6) 100%);
+    z-index: 1;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== VIDEO BACKGROUND ===== */
+.video-background {
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+    z-index: -1;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(11, 19, 43, 0.7) 0%, rgba(58, 80, 107, 0.5) 100%);
+    z-index: 0;
+}
+
+/* ===== CARD HOVER EFFECTS ===== */
+.hover-3d {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.hover-3d:hover {
+    transform: rotateX(5deg) rotateY(5deg) scale(1.05);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== GLOW EFFECTS ===== */
+.glow-on-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.glow-on-hover:hover::before {
+    left: 100%;
+}
+
+.glow-on-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
+/* ===== FLOATING ANIMATION ===== */
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ===== PULSE EFFECT ===== */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+}
+
+/* ===== SPLIT SCREEN ANIMATION ===== */
+.split-screen-left {
+    animation: slideFromLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.split-screen-right {
+    animation: slideFromRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== SCROLL TRIGGERED ZOOM ===== */
+.zoom-on-scroll {
+    transition: transform 0.1s linear;
+}
+
+/* ===== COUNTER ANIMATION ===== */
+.counter-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--gradient-sunset);
+    
+    /* Background clip for text gradient */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    
+    /* Text fill color transparent to show gradient */
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    text-fill-color: transparent;
+    
+    /* Fallback for browsers that don't support text gradients */
+    color: var(--phoenix-sunset);
+    
+    display: inline-block;
+}
+
+/* ===== LOADING SPINNER ===== */
+.phoenix-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 107, 53, 0.2);
+    border-top-color: var(--phoenix-sunset);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== HOVER REVEAL BUTTON ===== */
+.btn-reveal {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-sunset);
+    transition: left 0.3s;
+    z-index: -1;
+}
+
+.btn-reveal:hover::before {
+    left: 0;
+}
+
+.btn-reveal:hover {
+    color: white;
+    border-color: transparent;
+}
+
+/* ===== IMAGE REVEAL ON SCROLL ===== */
+.image-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-reveal img {
+    transition: transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.image-reveal:hover img {
+    transform: scale(1.1);
+}
+
+.image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--phoenix-electric), var(--phoenix-magenta));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.image-reveal:hover::before {
+    opacity: 0.2;
+}
+
+/* ===== MAGNETIC BUTTONS ===== */
+.magnetic-button {
+    transition: transform 0.2s;
+}

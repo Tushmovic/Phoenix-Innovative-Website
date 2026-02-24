@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A, #E71D36);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            color: white !important;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.4rem;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Contact Cards */
+        .contact-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-15px);
+            border-bottom-color: #FF6B35;
+            box-shadow: 0 30px 60px rgba(255,107,53,0.15);
+        }
+
+        .contact-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 38px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: rotateY(180deg);
+        }
+
+        .contact-card h3 {
+            color: #333 !important;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .contact-card p {
+            color: #666 !important;
+            margin-bottom: 10px;
+        }
+
+        .contact-link {
+            color: #FF6B35 !important;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateX(5px);
+            color: #F25F3A !important;
+        }
+
+        /* Contact Form */
+        .form-container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            color: #333 !important;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            color: #333 !important;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            padding: 14px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: #333 !important;
+            font-size: 1rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 0.25rem rgba(255,107,53,0.25);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: #999 !important;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            border: none;
+            color: white !important;
+            padding: 16px 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        .btn-submit i {
+            margin-right: 8px;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border: none;
+            margin-bottom: 15px;
+            border-radius: 15px !important;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .accordion-button {
+            padding: 20px 25px;
+            font-weight: 600;
+            color: #333 !important;
+            background-color: white;
+            border: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #FF6B35 !important;
+            background-color: white;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(255,107,53,0.25);
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FF6B35' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        }
+
+        .accordion-body {
+            padding: 0 25px 25px 25px;
+            color: #666 !important;
+        }
+
+        /* Social Connect */
+        .social-connect {
+            background: linear-gradient(135deg, #f8f9fa, white);
+            padding: 60px 0;
+        }
+
+        .social-icon-large {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            color: #FF6B35;
+            font-size: 32px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon-large:hover {
+            transform: translateY(-10px) rotate(360deg);
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            color: white !important;
+            box-shadow: 0 15px 30px rgba(255,107,53,0.3);
+        }
+
+        .social-icon-large.facebook:hover { background: linear-gradient(135deg, #1877f2, #0d5ab9); }
+        .social-icon-large.instagram:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcaf45); }
+        .social-icon-large.tiktok:hover { background: linear-gradient(135deg, #25f4ee, #fe2c55); }
+        .social-icon-large.whatsapp:hover { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .social-icon-large.email:hover { background: linear-gradient(135deg, #EA4335, #D44638); }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1C2541, #3A506B);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            color: white !important;
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.3rem;
+        }
+
+        .cta-section .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-section .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white !important;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section .btn-outline-light:hover {
+            background: white;
+            color: #333 !important;
+        }
+
+        /* Success/Error Alerts */
+        .alert {
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            animation: slideDown 0.5s ease;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724 !important;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24 !important;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .social-icon-large {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                margin: 0 5px;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/header'); %>
+    <%- include('partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">Get In Touch</h1>
+                    <p class="lead mb-4">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Cards Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Phone Card -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p class="mb-2"><strong>Sales:</strong> +234 913 592 6075</p>
+                        <p class="mb-2"><strong>Support:</strong> +234 913 592 6075</p>
+                        <p><strong>Office:</strong> +234 913 592 6075</p>
+                        <a href="tel:+2349135926075" class="contact-link">
+                            <i class="bi bi-whatsapp me-2"></i>Call Now <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Email Card -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p class="mb-2"><strong>General:</strong> phoenixinnovative2025@gmail.com</p>
+                        <p class="mb-2"><strong>Sales:</strong> phoenixinnovative2025@gmail.com</p>
+                        <p><strong>Support:</strong> phoenixinnovative2025@gmail.com</p>
+                        <a href="mailto:phoenixinnovative2025@gmail.com?subject=Inquiry%20from%20Website" class="contact-link">
+                            <i class="bi bi-envelope me-2"></i>Send Email <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p class="mb-2">No. 23 Technology Avenue,</p>
+                        <p class="mb-2">Central Business District,</p>
+                        <p class="mb-4">Abuja, Nigeria</p>
+                        <a href="https://maps.google.com/?q=Abuja,Nigeria" target="_blank" class="contact-link">
+                            <i class="bi bi-map me-2"></i>Get Directions <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="form-container" data-aos="fade-up">
+                        <h2 class="text-center">Send Us a Message</h2>
+                        
+                        <% if (locals.success) { %>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                <%= success %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        <% } %>
+                        
+                        <% if (locals.error) { %>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <%= error %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        <% } %>
+                        
+                        <form action="/contact" method="POST" id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" name="email" placeholder="john@example.com" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="+234 912 345 6789">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <select class="form-select" name="subject" required>
+                                        <option value="" selected disabled>Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="sales">Sales & Quotation</option>
+                                        <option value="partnership">Partnership Opportunity</option>
+                                        <option value="complaint">Complaint</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" name="message" rows="6" placeholder="How can we help you?" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-submit">
+                                        <i class="bi bi-send me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-container" data-aos="zoom-in">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.857888888888!2d7.4956!3d9.0579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b6b7f7b7b7b%3A0x0!2zOcKwMDMnMjguNCJOIDfCsDI5JzQ0LjIiRQ!5e0!3m2!1sen!2sng!4v1620000000000!5m2!1sen!2sng" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-container" data-aos="fade-up">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How quickly do you respond to inquiries?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We typically respond to all inquiries within 2-4 business hours during workdays. For urgent matters, we recommend calling our support line at <a href="tel:+2349135926075" style="color: #FF6B35; text-decoration: none;">+234 913 592 6075</a> or using our <a href="#" onclick="document.getElementById('chatbotToggle').click(); return false;" style="color: #FF6B35; text-decoration: none;">AI chatbot</a> for instant assistance.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Do you provide support outside business hours?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! We offer 24/7 support for our enterprise clients. For all clients, our <a href="#" onclick="document.getElementById('chatbotToggle').click(); return false;" style="color: #FF6B35; text-decoration: none;">AI chatbot</a> is available 24/7 to answer common questions. For emergencies, you can always call our support line at <a href="tel:+2349135926075" style="color: #FF6B35; text-decoration: none;">+234 913 592 6075</a>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                How can I request a quote?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Simply fill out the contact form above with details about your requirements, or call our sales team directly at <a href="tel:+2349135926075" style="color: #FF6B35; text-decoration: none;">+234 913 592 6075</a>. We'll provide a customized quote within 24 hours.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Do you have a WhatsApp number I can chat with?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! You can reach us on WhatsApp at <a href="https://wa.me/2349135926075" target="_blank" style="color: #FF6B35; text-decoration: none;">+234 913 592 6075</a>. Just click the WhatsApp button at the bottom right corner of your screen to start a chat immediately.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Connect Section -->
+    <section class="social-connect">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up" style="color: #333;">Connect With Us</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100" style="color: #666;">Follow us on social media for updates, news, and technology insights</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://www.facebook.com/share/18C4Nzh9hY/" target="_blank" class="social-icon-large facebook" title="Follow us on Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/phoenixintech?igsh=MTIyeHVmenlvcm1nag==" target="_blank" class="social-icon-large instagram" title="Follow us on Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@phoenixintech?_r=1&_t=ZS-949xlyDatRn" target="_blank" class="social-icon-large tiktok" title="Follow us on TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/2349135926075" target="_blank" class="social-icon-large whatsapp" title="Chat on WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="mailto:phoenixinnovative2025@gmail.com" class="social-icon-large email" title="Send us an email">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Start Your Project?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Get in touch today and let's discuss how we can help your business grow</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="tel:+2349135926075" class="btn btn-light btn-lg px-5 py-3">
+                            <i class="bi bi-telephone me-2"></i>Call Us Now
+                        </a>
+                        <a href="#" onclick="document.getElementById('chatbotToggle').click(); return false;" class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="bi bi-chat-dots me-2"></i>Chat with AI
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Function to open chatbot
+        function openChatbot() {
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            if (chatbotToggle) {
+                chatbotToggle.click();
+            }
+        }
+
+        // Add click handlers for chatbot links
+        document.querySelectorAll('[onclick*="chatbotToggle"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                openChatbot();
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            // Form will submit normally to the server
+            // The server will handle the redirect with success/error messages
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3, #2EC4B6);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            color: white !important;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.4rem;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.3);
+        }
+
+        .stats-card .display-4,
+        .stats-card p {
+            color: white !important;
+        }
+
+        /* Leadership Cards */
+        .leadership-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-card:hover {
+            transform: translateX(20px);
+            box-shadow: 0 30px 60px rgba(67,97,238,0.15);
+        }
+
+        .leader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #4361EE;
+            margin-right: 30px;
+        }
+
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leadership-card h3 {
+            color: #333 !important;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .leadership-card h5 {
+            color: #4361EE !important;
+            font-weight: 600;
+        }
+
+        .leadership-card p {
+            color: #666 !important;
+            line-height: 1.6;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 50px rgba(67,97,238,0.2);
+        }
+
+        .team-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(67,97,238,0.9), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover .team-overlay {
+            opacity: 1;
+        }
+
+        .team-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4361EE;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .team-social a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #4361EE;
+            color: white;
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #333 !important;
+        }
+
+        .team-position {
+            color: #4361EE !important;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .team-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white !important;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .value-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            margin: 2px;
+            font-size: 12px;
+            color: #333 !important;
+            font-weight: 500;
+        }
+
+        /* Department Tags */
+        .department-tag {
+            display: inline-block;
+            padding: 8px 25px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white !important;
+            border-radius: 50px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .department-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(67,97,238,0.3);
+        }
+
+        /* Join Card */
+        .join-card {
+            background: linear-gradient(135deg, #4361EE, #2EC4B6);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .join-card h2,
+        .join-card p {
+            color: white !important;
+        }
+
+        .join-card .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .join-card .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1C2541, #3A506B);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .cta-section h2,
+        .cta-section p,
+        .cta-section .lead {
+            color: white !important;
+        }
+
+        .cta-section .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white !important;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light:hover {
+            background: white;
+            color: #333 !important;
+        }
+
+        /* Section Headers */
+        h2.display-5 {
+            color: #333 !important;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .text-primary {
+            color: #4361EE !important;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2.display-5 {
+                font-size: 2.2rem;
+            }
+
+            .leadership-card {
+                padding: 25px;
+            }
+
+            .leader-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .leadership-card .row {
+                text-align: center;
+            }
+
+            .team-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">Our Team</h1>
+                    <p class="lead mb-4">Meet the brilliant minds behind Phoenix Innovative Technologies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="display-4 fw-bold counter-value" data-target="50">0</div>
+                        <p class="mb-0">Team Members</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
+                        <div class="display-4 fw-bold counter-value" data-target="15">0</div>
+                        <p class="mb-0">Years Avg Experience</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="display-4 fw-bold counter-value" data-target="12">0</div>
+                        <p class="mb-0">Nationalities</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
+                        <div class="display-4 fw-bold counter-value" data-target="40">0</div>
+                        <p class="mb-0">Women in Tech</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Leadership Team</h2>
+            
+            <!-- CEO -->
+            <div class="leadership-card" data-aos="fade-right">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="leader-image">
+                            <img src="/images/team/ceo.jpg" alt="CEO">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="fw-bold mb-2">Dr. Adewale Ogunleye</h3>
+                        <h5 class="text-primary mb-3">Founder & Chief Executive Officer</h5>
+                        <p class="mb-3">With over 20 years of experience in technology and business leadership, Dr. Ogunleye founded Phoenix with a vision to transform Africa's technology landscape. Previously led technology divisions at multinational corporations and holds a Ph.D. in Computer Science from University of Lagos.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTO -->
+            <div class="leadership-card" data-aos="fade-left">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="leader-image">
+                            <img src="/images/team/cto.jpg" alt="CTO">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="fw-bold mb-2">Engr. Chidi Okonkwo</h3>
+                        <h5 class="text-primary mb-3">Chief Technology Officer</h5>
+                        <p class="mb-3">Engineering visionary with 15+ years in software architecture and infrastructure. Led development of award-winning enterprise solutions. Certified AWS Solutions Architect and Cisco CCIE. Passionate about mentoring young engineers.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-github"></i></a>
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COO -->
+            <div class="leadership-card" data-aos="fade-right">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="leader-image">
+                            <img src="/images/team/coo.jpg" alt="COO">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="fw-bold mb-2">Funmi Adebayo</h3>
+                        <h5 class="text-primary mb-3">Chief Operating Officer</h5>
+                        <p class="mb-3">Operations expert with MBA from Lagos Business School. Previously managed operations for Fortune 500 companies. Spearheaded Phoenix's expansion to 5 countries. Champion of diversity and inclusion in the workplace.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Grid -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Meet the Team</h2>
+            
+            <!-- Department Filters -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="department-tag" onclick="filterTeam('all')">All</span>
+                <span class="department-tag" onclick="filterTeam('engineering')">Engineering</span>
+                <span class="department-tag" onclick="filterTeam('sales')">Sales & Marketing</span>
+                <span class="department-tag" onclick="filterTeam('operations')">Operations</span>
+                <span class="department-tag" onclick="filterTeam('consulting')">Consulting</span>
+            </div>
+
+            <div class="team-grid" id="teamGrid">
+                <!-- Team Member 1 -->
+                <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-image">
+                        <img src="/images/team/engineer1.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-github"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Amara Nwachukwu</h3>
+                        <div class="team-position">Senior Software Engineer</div>
+                        <span class="team-badge">Engineering</span>
+                        <div class="mt-2">
+                            <span class="value-badge">React</span>
+                            <span class="value-badge">Node.js</span>
+                            <span class="value-badge">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-image">
+                        <img src="/images/team/engineer2.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-github"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Michael Okafor</h3>
+                        <div class="team-position">Network Architect</div>
+                        <span class="team-badge">Engineering</span>
+                        <div class="mt-2">
+                            <span class="value-badge">Cisco</span>
+                            <span class="value-badge">MikroTik</span>
+                            <span class="value-badge">Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card" data-department="sales" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-image">
+                        <img src="/images/team/sales1.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Chioma Eze</h3>
+                        <div class="team-position">Sales Director</div>
+                        <span class="team-badge">Sales</span>
+                        <div class="mt-2">
+                            <span class="value-badge">Enterprise Sales</span>
+                            <span class="value-badge">CRM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card" data-department="consulting" data-aos="fade-up" data-aos-delay="400">
+                    <div class="team-image">
+                        <img src="/images/team/consultant1.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Tolu Adeleke</h3>
+                        <div class="team-position">Senior IT Consultant</div>
+                        <span class="team-badge">Consulting</span>
+                        <div class="mt-2">
+                            <span class="value-badge">Cloud Strategy</span>
+                            <span class="value-badge">Digital Transformation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card" data-department="operations" data-aos="fade-up" data-aos-delay="500">
+                    <div class="team-image">
+                        <img src="/images/team/ops1.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">James Okafor</h3>
+                        <div class="team-position">Operations Manager</div>
+                        <span class="team-badge">Operations</span>
+                        <div class="mt-2">
+                            <span class="value-badge">Project Management</span>
+                            <span class="value-badge">PMP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="600">
+                    <div class="team-image">
+                        <img src="/images/team/engineer3.jpg" alt="Team Member">
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-github"></i></a>
+                                <a href="#"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Sarah Johnson</h3>
+                        <div class="team-position">Security Specialist</div>
+                        <span class="team-badge">Engineering</span>
+                        <div class="mt-2">
+                            <span class="value-badge">Cybersecurity</span>
+                            <span class="value-badge">Ethical Hacking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join the Team Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="join-card" data-aos="zoom-in">
+                <h2 class="display-4 fw-bold mb-4">Join Our Team</h2>
+                <p class="lead mb-5">We're always looking for talented individuals passionate about technology</p>
+                <a href="/about/careers" class="btn btn-light btn-lg px-5 py-3">View Open Positions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Want to Work With Us?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Whether you're a client or future team member, we'd love to hear from you</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Contact Us</a>
+                        <a href="/about/careers" class="btn btn-outline-light btn-lg px-5 py-3">Join Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+
+        function filterTeam(department) {
+            const cards = document.querySelectorAll('.team-card');
+            cards.forEach(card => {
+                if (department === 'all' || card.dataset.department === department) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

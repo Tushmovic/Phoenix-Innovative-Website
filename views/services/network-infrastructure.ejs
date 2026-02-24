@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3, #2EC4B6);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .service-detail-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .service-detail-image:hover {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 0 30px 60px rgba(67,97,238,0.3);
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #4361EE;
+            box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 28px;
+        }
+        
+        .network-diagram {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .network-node {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67,97,238,0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(67,97,238,0); }
+            100% { box-shadow: 0 0 0 0 rgba(67,97,238,0); }
+        }
+        
+        .connection-line {
+            height: 2px;
+            background: linear-gradient(90deg, #4361EE, #2EC4B6);
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            border-radius: 30px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(67,97,238,0.3);
+        }
+        
+        .package-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(67,97,238,0.2);
+        }
+        
+        .package-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #FF6B35, #F25F3A);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .package-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #4361EE;
+            margin-bottom: 20px;
+        }
+        
+        .package-price small {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.3);
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4">Network Infrastructure Solutions</h1>
+                    <p class="lead mb-4">Build a robust, scalable, and secure network foundation for your business. From structured cabling to enterprise-grade networking equipment.</p>
+                    <div class="d-flex gap-3">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Get Free Consultation</a>
+                        <a href="#learn-more" class="btn btn-outline-light btn-lg px-5 py-3">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="service-detail-image">
+                        <img src="/images/Networking BANNER 1.png" alt="Network Infrastructure" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="py-5" id="learn-more">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-4">The Backbone of Your Digital Success</h2>
+                    <p class="lead mb-4">In today's connected world, your network is the lifeline of your business. We design and implement future-proof network infrastructure that ensures reliability, security, and scalability.</p>
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2 fs-4"></i>
+                                <span>99.9% Uptime Guarantee</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2 fs-4"></i>
+                                <span>Enterprise Security</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2 fs-4"></i>
+                                <span>Scalable Architecture</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2 fs-4"></i>
+                                <span>24/7 Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="network-diagram">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="network-node"><i class="bi bi-router"></i></div>
+                                <small>Core Switch</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="network-node"><i class="bi bi-hdd-stack"></i></div>
+                                <small>Servers</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="network-node"><i class="bi bi-shield-lock"></i></div>
+                                <small>Firewall</small>
+                            </div>
+                        </div>
+                        <div class="connection-line"></div>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <div class="network-node" style="width: 50px; height: 50px;"><i class="bi bi-laptop"></i></div>
+                                <small>Workstation</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="network-node" style="width: 50px; height: 50px;"><i class="bi bi-phone"></i></div>
+                                <small>Mobile</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="network-node" style="width: 50px; height: 50px;"><i class="bi bi-printer"></i></div>
+                                <small>Printers</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="network-node" style="width: 50px; height: 50px;"><i class="bi bi-camera"></i></div>
+                                <small>IP Cameras</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Comprehensive Network Solutions</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Structured Cabling</h4>
+                        <p class="text-muted">Category 6A and Fiber Optic cabling solutions for high-speed, reliable connectivity throughout your facility.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-router"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Enterprise Routing & Switching</h4>
+                        <p class="text-muted">Cisco and MikroTik enterprise-grade equipment for optimal network performance and traffic management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Wireless Solutions</h4>
+                        <p class="text-muted">Enterprise WiFi 6 and 6E deployments for seamless, high-speed wireless coverage across your premises.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Network Security</h4>
+                        <p class="text-muted">Next-gen firewalls, VPN solutions, and intrusion prevention systems to protect your digital assets.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-hdd-stack"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Server Infrastructure</h4>
+                        <p class="text-muted">On-premise and hybrid server setups with virtualization capabilities for maximum efficiency.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-cloud"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Cloud Integration</h4>
+                        <p class="text-muted">Seamless integration with major cloud platforms including AWS, Azure, and Google Cloud.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Technologies We Work With</h2>
+            <div class="text-center mb-5">
+                <span class="tech-badge">Cisco</span>
+                <span class="tech-badge">MikroTik</span>
+                <span class="tech-badge">Ubiquiti</span>
+                <span class="tech-badge">TP-Link</span>
+                <span class="tech-badge">D-Link</span>
+                <span class="tech-badge">HP Aruba</span>
+                <span class="tech-badge">Fortinet</span>
+                <span class="tech-badge">Palo Alto</span>
+                <span class="tech-badge">VMware</span>
+                <span class="tech-badge">Microsoft</span>
+                <span class="tech-badge">Linux</span>
+                <span class="tech-badge">AWS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="stats-number counter-value" data-target="200">0</div>
+                        <p class="mb-0">Networks Deployed</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
+                        <div class="stats-number counter-value" data-target="99.9">0</div>
+                        <p class="mb-0">Uptime %</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="stats-number counter-value" data-target="24">0</div>
+                        <p class="mb-0">Support (hrs)</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
+                        <div class="stats-number counter-value" data-target="5000">0</div>
+                        <p class="mb-0">Devices Managed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container position-relative">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Build Your Network?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Get a free network assessment and quote today. Our experts will design the perfect solution for your business.</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Get Free Assessment</a>
+                        <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Us Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

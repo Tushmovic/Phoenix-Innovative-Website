@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3, #2EC4B6);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .page-hero h1 {
+            color: white !important;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .page-hero p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.4rem;
+        }
+
+        /* Story Card */
+        .story-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(67,97,238,0.2);
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(67,97,238,0.05), transparent);
+            animation: rotate 30s linear infinite;
+        }
+
+        .story-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-card h2 {
+            color: #333 !important;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .story-card .lead {
+            color: #666 !important;
+            font-size: 1.2rem;
+        }
+
+        .story-card p {
+            color: #666 !important;
+            line-height: 1.8;
+        }
+
+        /* Value Boxes */
+        .value-box {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .value-box:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(67,97,238,0.3);
+        }
+
+        .value-box:nth-child(1) {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+        }
+
+        .value-box:nth-child(2) {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+        }
+
+        .value-box:nth-child(3) {
+            background: linear-gradient(135deg, #3A0CA3, #2EC4B6);
+        }
+
+        .value-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1;
+            color: white !important;
+        }
+
+        .value-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95) !important;
+        }
+
+        /* Timeline */
+        .milestone-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .milestone-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #4361EE, #3A0CA3, #2EC4B6);
+        }
+
+        .milestone-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .milestone-item:nth-child(odd) .milestone-content {
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 60px;
+        }
+
+        .milestone-item:nth-child(even) .milestone-content {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 60px;
+        }
+
+        .milestone-item:nth-child(odd) {
+            padding-right: 50%;
+        }
+
+        .milestone-item:nth-child(even) {
+            padding-left: 50%;
+        }
+
+        .milestone-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #4361EE;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .milestone-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .milestone-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+
+        .milestone-year {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #4361EE !important;
+            margin-bottom: 10px;
+        }
+
+        .milestone-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333 !important;
+        }
+
+        .milestone-description {
+            color: #666 !important;
+            font-size: 0.95rem;
+        }
+
+        /* Service Highlights */
+        .service-highlight {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid #4361EE;
+        }
+
+        .service-highlight:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+
+        .service-highlight h4 {
+            color: #333 !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .service-highlight p {
+            color: #666 !important;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Strength Cards */
+        .strength-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .strength-card:hover {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.2);
+        }
+
+        .strength-card h4 {
+            color: #333 !important;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .strength-card p {
+            color: #666 !important;
+            transition: color 0.3s ease;
+        }
+
+        .strength-card:hover h4,
+        .strength-card:hover p {
+            color: white !important;
+        }
+
+        .strength-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #4361EE;
+            transition: all 0.3s ease;
+        }
+
+        .strength-card:hover .strength-icon {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, #f8f9fa, white);
+            padding: 80px 0;
+        }
+
+        .quote-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .quote-mark {
+            font-size: 6rem;
+            position: absolute;
+            top: -30px;
+            left: 40px;
+            color: rgba(67,97,238,0.1);
+            font-family: serif;
+        }
+
+        .quote-card h3 {
+            color: #333 !important;
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .quote-card h5 {
+            color: #333 !important;
+            font-weight: 700;
+        }
+
+        .quote-card .text-muted {
+            color: #666 !important;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4361EE, #3A0CA3);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            color: white !important;
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.95) !important;
+            font-size: 1.3rem;
+        }
+
+        .cta-section .btn-light {
+            background: white;
+            color: #333 !important;
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white !important;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .cta-section .btn-outline-light:hover {
+            background: white;
+            color: #333 !important;
+        }
+
+        /* Section Headers */
+        h2.display-5 {
+            color: #333 !important;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .text-muted {
+            color: #666 !important;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2.display-5 {
+                font-size: 2.2rem;
+            }
+
+            .milestone-timeline::before {
+                left: 30px;
+            }
+
+            .milestone-item:nth-child(odd),
+            .milestone-item:nth-child(even) {
+                padding-left: 90px;
+                padding-right: 0;
+            }
+
+            .milestone-item:nth-child(odd) .milestone-content,
+            .milestone-item:nth-child(even) .milestone-content {
+                margin-left: 0;
+                margin-right: auto;
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .milestone-dot {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <h1 class="display-3 fw-bold mb-4">About Phoenix Innovative Technologies</h1>
+                    <p class="lead mb-4">Leading Africa's Digital Transformation Through Innovation, Excellence, and Impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="story-card" data-aos="fade-up">
+                        <div class="story-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h2 class="text-center fw-bold mb-4">Who We Are</h2>
+                        <p class="lead text-center mb-4">Phoenix Innovative Technologies is a forward-thinking technology company dedicated to delivering comprehensive digital solutions across Africa. Founded on the principles of innovation, integrity, and impact, we empower businesses, governments, and communities to thrive in the digital age.</p>
+                        <p>With a passionate team of cutting-edge technologists, engineers, and visionary leaders, we tackle Africa's most pressing technology challenges. From renewable energy solutions to secure surveillance systems, from high-speed internet infrastructure to transformative software development, we are committed to building a smarter, more connected, and more sustainable continent.</p>
+                        <p>Our commitment extends beyond technology – we believe in creating lasting value for our clients, fostering talent, and contributing to sustainable development across the African continent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Impact by Numbers</h2>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="value-box">
+                        <div class="value-number counter-value" data-target="500">0</div>
+                        <div class="value-label">+ Projects Delivered</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="value-box">
+                        <div class="value-number counter-value" data-target="9">0</div>
+                        <div class="value-label">African Countries Served</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="value-box">
+                        <div class="value-number counter-value" data-target="2">0</div>
+                        <div class="value-label">Decades of Excellence</div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="value-box">
+                        <div class="value-number counter-value" data-target="100">0</div>
+                        <div class="value-label">+ Team Members</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Timeline Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Journey</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="milestone-timeline">
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2010</div>
+                                <div class="milestone-title">Foundation</div>
+                                <div class="milestone-description">Phoenix Innovative Technologies was founded with a vision to revolutionize Africa's technology landscape.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2013</div>
+                                <div class="milestone-title">Regional Expansion</div>
+                                <div class="milestone-description">Expanded operations to 5 African countries, establishing our presence across West and Central Africa.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2016</div>
+                                <div class="milestone-title">Service Diversification</div>
+                                <div class="milestone-description">Launched comprehensive renewable energy and security solutions to serve diverse market needs.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2019</div>
+                                <div class="milestone-title">Industry Recognition</div>
+                                <div class="milestone-description">Received multiple awards for innovation, excellence, and contribution to Africa's digital transformation.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="500">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2022</div>
+                                <div class="milestone-title">Milestone Achievement</div>
+                                <div class="milestone-description">Reached 500 successful projects delivered and crossed 9 countries, serving industry leaders and startups alike.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="600">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2024</div>
+                                <div class="milestone-title">Digital Innovation Hub</div>
+                                <div class="milestone-description">Established state-of-the-art innovation centers and expanded team to 100+ dedicated professionals.</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item" data-aos="fade-up" data-aos-delay="700">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2025</div>
+                                <div class="milestone-title">Continental Leadership</div>
+                                <div class="milestone-description">Positioned as Africa's leading technology partner, driving sustainable digital transformation across the continent.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">What We Do</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">High-Speed Internet & ISP Solutions</h4>
+                        <p>Delivering reliable, high-speed internet connectivity to businesses and communities across Africa with cutting-edge infrastructure.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">CCTV & Security Systems</h4>
+                        <p>Advanced surveillance and security solutions protecting businesses, facilities, and communities with state-of-the-art technology.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Renewable Energy Solutions</h4>
+                        <p>Sustainable solar and renewable energy systems enabling businesses to reduce costs and environmental impact simultaneously.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Software Development</h4>
+                        <p>Custom software solutions tailored to unique business needs, from web applications to enterprise systems and mobile platforms.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Network Infrastructure</h4>
+                        <p>Robust network design and implementation providing secure, scalable infrastructure for modern organizations.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-highlight">
+                        <div class="service-icon">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">IT Consulting & Procurement</h4>
+                        <p>Strategic technology advisory and procurement services helping organizations navigate digital transformation effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Strengths Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Competitive Strengths</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Proven Expertise</h4>
+                        <p>With over a decade of experience, our deep industry knowledge ensures successful project delivery every time.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-gear-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Cutting-Edge Technology</h4>
+                        <p>Leveraging the latest technologies and best practices to deliver innovative solutions that drive real business value.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Expert Team</h4>
+                        <p>A diverse team of talented professionals committed to excellence, innovation, and client success.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Quality Assurance</h4>
+                        <p>Rigorous quality processes ensuring every deliverable meets the highest standards of excellence.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-globe"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">African Focus</h4>
+                        <p>Deep understanding of African markets, challenges, and opportunities enables tailored solutions for regional success.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="strength-card">
+                        <div class="strength-icon">
+                            <i class="bi bi-handshake"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Partnership Approach</h4>
+                        <p>We don't just deliver projects – we become true partners invested in your long-term success and growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="quote-card" data-aos="zoom-in">
+                        <div class="quote-mark">"</div>
+                        <h3 class="fw-light mb-4">At Phoenix Innovative Technologies, we believe technology has the power to transform lives and unlock potential across Africa. Our mission is to be the catalyst for that transformation, delivering solutions that empower businesses, communities, and individuals to achieve their dreams in an increasingly digital world.</h3>
+                        <div>
+                            <h5 class="fw-bold mb-0">Dr. Adewale Ogunleye</h5>
+                            <p class="text-muted">Founder & CEO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Partner With Us?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Let's transform your business and drive digital innovation together</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Get In Touch</a>
+                        <a href="/" class="btn btn-outline-light btn-lg px-5 py-3">View Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

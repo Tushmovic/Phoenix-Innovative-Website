@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE, #3A0CA3);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .speed-meter {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .speed-meter svg {
+            transform: rotate(-90deg);
+        }
+        
+        .speed-meter circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        
+        .speed-meter .bg-circle {
+            stroke: rgba(255,255,255,0.2);
+        }
+        
+        .speed-meter .progress-circle {
+            stroke: white;
+            stroke-dasharray: 502;
+            stroke-dashoffset: calc(502 - (502 * 0.8));
+            transition: stroke-dashoffset 1s ease;
+        }
+        
+        .speed-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            color: white;
+        }
+        
+        .speed-value small {
+            font-size: 1rem;
+            display: block;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .package-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 50px rgba(46,196,182,0.2);
+        }
+        
+        .package-card.popular::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .package-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2EC4B6;
+            margin-bottom: 20px;
+        }
+        
+        .package-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .package-price small {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        
+        .package-features li i {
+            color: #2EC4B6;
+            margin-right: 10px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(46,196,182,0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 32px;
+        }
+        
+        .coverage-map {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(46,196,182,0.3);
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .speed-test {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .speed-result {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #2EC4B6;
+            margin: 20px 0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(46,196,182,0.4);
+        }
+        
+        .btn-outline-primary {
+            color: #2EC4B6;
+            border: 2px solid #2EC4B6;
+            background: transparent;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-outline-primary:hover {
+            background: #2EC4B6;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #FF6B35;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-warning:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+        
+        .btn-light {
+            background: white;
+            border: none;
+            color: #333;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-outline-light:hover {
+            background: white;
+            color: #333;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2EC4B6, #4361EE);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        h2.display-5 {
+            color: #333;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+        
+        .bg-light {
+            background-color: #f8f9fa;
+        }
+        
+        .text-success {
+            color: #28a745 !important;
+        }
+        
+        .text-warning {
+            color: #ffc107 !important;
+        }
+        
+        .text-danger {
+            color: #dc3545 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .package-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4 text-white">ISP & Internet Services</h1>
+                    <p class="lead mb-4 text-white">Lightning-fast, reliable internet connectivity for businesses and homes. Fiber optic and wireless solutions with 99.9% uptime guarantee.</p>
+                    <div class="d-flex gap-3">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Check Availability</a>
+                        <a href="#packages" class="btn btn-outline-light btn-lg px-5 py-3">View Packages</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="speed-meter">
+                        <svg width="200" height="200">
+                            <circle class="bg-circle" cx="100" cy="100" r="80"></circle>
+                            <circle class="progress-circle" cx="100" cy="100" r="80"></circle>
+                        </svg>
+                        <div class="speed-value">
+                            1Gbps
+                            <small>Max Speed</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="py-5" id="packages">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Internet Packages</h2>
+            <div class="row align-items-center">
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="package-card">
+                        <div class="package-name">Basic</div>
+                        <div class="package-price">₦25,000<small>/mo</small></div>
+                        <ul class="package-features">
+                            <li><i class="bi bi-check-circle"></i> 20Mbps Download</li>
+                            <li><i class="bi bi-check-circle"></i> 10Mbps Upload</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Data</li>
+                            <li><i class="bi bi-check-circle"></i> Standard Support</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Static IP</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Business SLA</li>
+                        </ul>
+                        <a href="/contact" class="btn btn-outline-primary w-100">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="package-card popular">
+                        <div class="package-name">Business</div>
+                        <div class="package-price">₦65,000<small>/mo</small></div>
+                        <ul class="package-features">
+                            <li><i class="bi bi-check-circle"></i> 100Mbps Download</li>
+                            <li><i class="bi bi-check-circle"></i> 50Mbps Upload</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Data</li>
+                            <li><i class="bi bi-check-circle"></i> Priority Support</li>
+                            <li><i class="bi bi-check-circle"></i> Static IP Included</li>
+                            <li><i class="bi bi-check-circle"></i> Business SLA</li>
+                        </ul>
+                        <a href="/contact" class="btn btn-warning w-100">Most Popular</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
+                    <div class="package-card">
+                        <div class="package-name">Enterprise</div>
+                        <div class="package-price">₦150,000<small>/mo</small></div>
+                        <ul class="package-features">
+                            <li><i class="bi bi-check-circle"></i> 500Mbps Download</li>
+                            <li><i class="bi bi-check-circle"></i> 250Mbps Upload</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Data</li>
+                            <li><i class="bi bi-check-circle"></i> 24/7 Dedicated Support</li>
+                            <li><i class="bi bi-check-circle"></i> 5 Static IPs</li>
+                            <li><i class="bi bi-check-circle"></i> Premium SLA</li>
+                        </ul>
+                        <a href="/contact" class="btn btn-outline-primary w-100">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Why Choose Our Internet Service</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Blazing Fast Speeds</h4>
+                        <p class="text-muted">Fiber optic technology delivering up to 1Gbps symmetric speeds for seamless streaming, gaming, and business operations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">99.9% Uptime</h4>
+                        <p class="text-muted">Enterprise-grade infrastructure with redundant connections ensuring your business stays online 24/7.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">24/7 Local Support</h4>
+                        <p class="text-muted">Nigerian-based technical support team ready to assist you anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stats-card">
+                        <div class="stats-number counter-value" data-target="5000">0</div>
+                        <p class="mb-0">Happy Customers</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
+                        <div class="stats-number counter-value" data-target="50">0</div>
+                        <p class="mb-0">Cities Covered</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
+                        <div class="stats-number counter-value" data-target="1000">0</div>
+                        <p class="mb-0">KM Fiber Laid</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
+                        <div class="stats-number counter-value" data-target="99.9">0</div>
+                        <p class="mb-0">Uptime %</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speed Test Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="speed-test" data-aos="fade-up">
+                <h3 class="display-5 fw-bold mb-4">Experience the Speed</h3>
+                <p class="lead mb-4">Run a quick speed test to see what you could be getting</p>
+                <div class="speed-result" id="speedDisplay">0 Mbps</div>
+                <button class="btn btn-primary btn-lg px-5" onclick="runSpeedTest()">Run Speed Test</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Map -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Coverage Areas</h2>
+            <div class="coverage-map" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="mb-4">Currently Serving:</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Abuja (FCT)</li>
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Lagos</li>
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Port Harcourt</li>
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Kano</li>
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Ibadan</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mb-4">Coming Soon:</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="bi bi-hourglass-split text-warning me-2"></i> Enugu</li>
+                            <li class="mb-3"><i class="bi bi-hourglass-split text-warning me-2"></i> Kaduna</li>
+                            <li class="mb-3"><i class="bi bi-hourglass-split text-warning me-2"></i> Benin City</li>
+                            <li class="mb-3"><i class="bi bi-hourglass-split text-warning me-2"></i> Abeokuta</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial-card">
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="mt-3">"Since switching to Phoenix Internet, our office productivity has increased dramatically. The 100Mbps connection handles all our video calls and cloud services flawlessly."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <div>
+                                <h6 class="mb-0">Chidi Okonkwo</h6>
+                                <small>Tech Startup Founder</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial-card">
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="mt-3">"Finally, reliable internet in Abuja! No more dropped connections during important client meetings. The support team is fantastic too."</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <div>
+                                <h6 class="mb-0">Funmi Adebayo</h6>
+                                <small>Marketing Agency Owner</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container position-relative">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4 text-white">Ready to Get Connected?</h2>
+                    <p class="lead mb-5 text-white">Check availability in your area and get connected today!</p>
+                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Check Availability</a>
+                        <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        function runSpeedTest() {
+            const display = document.getElementById('speedDisplay');
+            display.textContent = 'Testing...';
+            
+            setTimeout(() => {
+                const speed = Math.floor(Math.random() * 200) + 50;
+                display.textContent = speed + ' Mbps';
+            }, 2000);
+        }
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-value');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseFloat(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

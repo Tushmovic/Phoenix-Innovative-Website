@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        :root {
+            --phoenix-sunset: #FF6B35;
+            --gradient-ocean: linear-gradient(135deg, #4361EE, #3A0CA3, #2EC4B6);
+            --gradient-sunset: linear-gradient(135deg, #FF6B35, #F25F3A);
+            --gradient-aurora: linear-gradient(135deg, #2EC4B6, #4361EE);
+        }
+
+        .service-hero {
+            background: var(--gradient-ocean);
+            color: white;
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/images/patterns/dots.svg') repeat;
+            opacity: 0.1;
+            animation: moveDots 20s linear infinite;
+        }
+        
+        @keyframes moveDots {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+        
+        .service-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .service-hero p {
+            color: rgba(255,255,255,0.95);
+        }
+        
+        .service-image-large {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: rotate(3deg);
+            transition: all 0.5s ease;
+        }
+        
+        .service-image-large:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        
+        .feature-box {
+            padding: 40px 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--phoenix-sunset);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+        }
+        
+        .feature-box h4 {
+            color: #333;
+        }
+        
+        .feature-box p {
+            color: #666;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-sunset);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 32px;
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--phoenix-sunset);
+            line-height: 1;
+        }
+        
+        .bg-light {
+            background-color: #f8f9fa;
+        }
+        
+        .btn-warning {
+            background: var(--phoenix-sunset);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-warning:hover {
+            background: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+        
+        .btn-light {
+            background: white;
+            border: none;
+            color: #333;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        
+        .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .cta-section {
+            background: var(--gradient-aurora);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section h2 {
+            color: white;
+        }
+        
+        .cta-section p {
+            color: rgba(255,255,255,0.95);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        h2.text-center {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header'); %>
+    <%- include('../partials/floating-buttons'); %>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6 reveal-section">
+                    <h1>Renewable Energy & Solar Solutions</h1>
+                    <p class="lead mb-4">Harness the power of the sun with our cutting-edge solar technology. Reduce energy costs and your carbon footprint.</p>
+                    <a href="/contact" class="btn btn-warning btn-lg px-5 py-3 glow-on-hover">Get Free Quote</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-image-large reveal-section">
+                        <img src="/images/solar_installers.jpg" alt="Solar Installation" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 reveal-section">Why Choose Our Solar Solutions</h2>
+            <div class="row g-4">
+                <div class="col-md-4 reveal-section">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="bi bi-sun"></i>
+                        </div>
+                        <h4>High Efficiency Panels</h4>
+                        <p>Latest monocrystalline panels with 22% efficiency rating, ensuring maximum power generation even in low light.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal-section">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="bi bi-battery-charging"></i>
+                        </div>
+                        <h4>Smart Battery Storage</h4>
+                        <p>Lithium-ion battery systems with intelligent management for 24/7 power availability.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal-section">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4>Real-time Monitoring</h4>
+                        <p>Track your energy production and consumption through our mobile app and web portal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 reveal-section">
+                    <div class="stats-number counter-number" data-target="500">0</div>
+                    <p>Systems Installed</p>
+                </div>
+                <div class="col-md-3 reveal-section">
+                    <div class="stats-number counter-number" data-target="40">0</div>
+                    <p>Energy Cost Saved</p>
+                </div>
+                <div class="col-md-3 reveal-section">
+                    <div class="stats-number counter-number" data-target="1000">0</div>
+                    <p>Tons CO₂ Reduced</p>
+                </div>
+                <div class="col-md-3 reveal-section">
+                    <div class="stats-number counter-number" data-target="10">0</div>
+                    <p>Years Warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container position-relative">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4 reveal-section">Ready to Go Solar?</h2>
+                    <p class="lead mb-5 reveal-section">Join hundreds of satisfied customers who are saving money and helping the environment.</p>
+                    <a href="/contact" class="btn btn-light btn-lg px-5 py-3 reveal-section">Contact Us Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <%- include('../partials/footer'); %>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/transitions.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const counters = document.querySelectorAll('.counter-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => observer.observe(counter));
+    </script>
+</body>
+</html>

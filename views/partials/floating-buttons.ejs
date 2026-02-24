@@ -1,0 +1,351 @@
+<!-- Floating Action Buttons - Always Visible -->
+<style>
+    .floating-buttons {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* WhatsApp Button */
+    .float-whatsapp {
+        width: 65px;
+        height: 65px;
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s ease;
+        animation: pulse-whatsapp 2s infinite;
+        text-decoration: none;
+        border: 3px solid white;
+        cursor: pointer;
+    }
+
+    /* Chatbot Button */
+    .float-chatbot {
+        width: 65px;
+        height: 65px;
+        background: linear-gradient(135deg, #FF6B35, #F25F3A);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 30px;
+        box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        transition: all 0.3s ease;
+        animation: pulse-chatbot 2s infinite;
+        text-decoration: none;
+        border: 3px solid white;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .float-whatsapp:hover, .float-chatbot:hover {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    @keyframes pulse-whatsapp {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    @keyframes pulse-chatbot {
+        0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+        70% { box-shadow: 0 0 0 18px rgba(255, 107, 53, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+    }
+
+    /* Tooltips */
+    .button-tooltip {
+        position: absolute;
+        right: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        white-space: nowrap;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border-left: 4px solid;
+        pointer-events: none;
+    }
+
+    .float-whatsapp:hover .button-tooltip,
+    .float-chatbot:hover .button-tooltip {
+        opacity: 1;
+        visibility: visible;
+        right: 85px;
+    }
+
+    .float-whatsapp .button-tooltip {
+        border-left-color: #25D366;
+    }
+
+    .float-chatbot .button-tooltip {
+        border-left-color: #FF6B35;
+    }
+
+    /* Chatbot Window */
+    .chatbot-container {
+        position: relative;
+    }
+
+    .chatbot-window {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        animation: slideIn 0.3s ease;
+        border: 1px solid rgba(255,107,53,0.2);
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .chatbot-header {
+        background: linear-gradient(135deg, #FF6B35, #F25F3A);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chatbot-header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        padding: 5px;
+    }
+
+    .chatbot-messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background: #f8f9fa;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        max-width: 80%;
+        animation: messagePop 0.3s ease;
+    }
+
+    @keyframes messagePop {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .bot-message {
+        background: white;
+        padding: 12px 15px;
+        border-radius: 18px 18px 18px 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        color: #333;
+    }
+
+    .user-message {
+        background: linear-gradient(135deg, #FF6B35, #F25F3A);
+        color: white;
+        padding: 12px 15px;
+        border-radius: 18px 18px 5px 18px;
+        margin-left: auto;
+    }
+
+    .chatbot-input {
+        padding: 15px 20px;
+        background: white;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 10px;
+    }
+
+    .chatbot-input input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 2px solid #eee;
+        border-radius: 25px;
+        outline: none;
+        transition: all 0.3s;
+    }
+
+    .chatbot-input input:focus {
+        border-color: #FF6B35;
+    }
+
+    .chatbot-input button {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #FF6B35, #F25F3A);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .chatbot-input button:hover {
+        transform: scale(1.1) rotate(90deg);
+    }
+
+    .typing-indicator {
+        display: flex;
+        gap: 5px;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 18px;
+        width: fit-content;
+    }
+
+    .typing-indicator span {
+        width: 8px;
+        height: 8px;
+        background: #999;
+        border-radius: 50%;
+        animation: typing 1s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-10px); }
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff4444;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        min-width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+    }
+
+    .btn-close-white {
+        filter: brightness(0) invert(1);
+        opacity: 0.8;
+    }
+
+    .btn-close-white:hover {
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .floating-buttons {
+            bottom: 20px;
+            right: 20px;
+            gap: 10px;
+        }
+
+        .float-whatsapp, .float-chatbot {
+            width: 55px;
+            height: 55px;
+            font-size: 26px;
+        }
+
+        .chatbot-window {
+            width: 300px;
+            height: 450px;
+            right: -10px;
+        }
+
+        .button-tooltip {
+            display: none;
+        }
+    }
+</style>
+
+<div class="floating-buttons">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/2349135926075?text=Hello%20Phoenix%20Innovative%20Technologies%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
+       class="float-whatsapp" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat with us on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+        <span class="button-tooltip">Chat on WhatsApp</span>
+    </a>
+
+    <!-- Chatbot Button -->
+    <div class="chatbot-container">
+        <div class="float-chatbot" id="chatbotToggle">
+            <i class="bi bi-chat-dots"></i>
+            <span class="notification-badge" id="chatNotification" style="display: none;">1</span>
+            <span class="button-tooltip">Ask AI Assistant</span>
+        </div>
+        
+        <!-- Chatbot Window -->
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix AI">
+                <div style="flex: 1;">
+                    <h6 class="mb-0 text-white">Phoenix AI Assistant</h6>
+                    <small class="text-white-50">Online • 24/7 Support</small>
+                </div>
+                <button class="btn-close btn-close-white" id="closeChatbot" aria-label="Close"></button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message">
+                    <div class="bot-message">
+                        👋 Hello! I'm your Phoenix AI assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendMessage"><i class="bi bi-send"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/chatbot.js"></script>
