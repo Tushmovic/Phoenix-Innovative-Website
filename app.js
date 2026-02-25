@@ -50,6 +50,20 @@ app.get('/', (req, res) => {
     req.session.error = null;
 });
 
+// ===== SERVICES MAIN PAGE =====
+app.get('/services', (req, res) => {
+    res.render('services', { 
+        title: 'Our Services - Phoenix Innovative Technologies' 
+    });
+});
+
+// ===== ABOUT MAIN PAGE =====
+app.get('/about', (req, res) => {
+    res.render('about', { 
+        title: 'About Us - Phoenix Innovative Technologies' 
+    });
+});
+
 // ===== CONTACT PAGE =====
 app.get('/contact', (req, res) => {
     res.render('contact', { 
