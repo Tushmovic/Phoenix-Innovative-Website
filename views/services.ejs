@@ -62,6 +62,20 @@
             transform: scale(1.1) rotate(2deg);
         }
         
+        /* Make the entire overlay a clickable link */
+        .service-overlay-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 2;
+        }
+        
         .service-overlay {
             position: absolute;
             top: 0;
@@ -74,6 +88,8 @@
             justify-content: center;
             opacity: 0;
             transition: all 0.4s ease;
+            width: 100%;
+            height: 100%;
         }
         
         .service-card:hover .service-overlay {
@@ -90,6 +106,7 @@
             backdrop-filter: blur(5px);
             transform: translateY(20px);
             transition: all 0.4s ease;
+            pointer-events: none; /* Prevents span from blocking click */
         }
         
         .service-card:hover .service-overlay span {
@@ -130,6 +147,7 @@
             border: none;
             position: relative;
             overflow: hidden;
+            z-index: 3;
         }
         
         .service-btn::before {
@@ -263,9 +281,12 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-image">
                         <img src="/images/solar_installers.jpg" alt="Renewable Energy">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <!-- Make the entire overlay clickable -->
+                        <a href="/services/renewable-energy" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>Renewable Energy & Solar</h3>
@@ -278,9 +299,11 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-image">
                         <img src="/images/Networking BANNER 1.png" alt="Network Infrastructure">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <a href="/services/network-infrastructure" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>Network Infrastructure</h3>
@@ -293,9 +316,11 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-image">
                         <img src="/images/fiber-cables-1200x675.jpg" alt="ISP Services">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <a href="/services/isp-internet" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>ISP & Internet Services</h3>
@@ -308,9 +333,11 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-image">
                         <img src="/images/CCTV Banner 1.png" alt="Security Systems">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <a href="/services/cctv-security" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>CCTV & Security Systems</h3>
@@ -323,9 +350,11 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-image">
                         <img src="/images/website-development-process-full-guide-1-fb.jpg" alt="Software Development">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <a href="/services/software-development" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>Software Development</h3>
@@ -338,9 +367,11 @@
                 <div class="service-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-image">
                         <img src="/images/Consultant Banner 1.png" alt="IT Consulting">
-                        <div class="service-overlay">
-                            <span>View Details</span>
-                        </div>
+                        <a href="/services/it-consulting" class="service-overlay-link">
+                            <div class="service-overlay">
+                                <span>View Details</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="service-content">
                         <h3>IT Consulting & Procurement</h3>
