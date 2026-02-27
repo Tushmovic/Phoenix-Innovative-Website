@@ -452,40 +452,43 @@
                         <% } %>
                         
                         <form action="/contact" method="POST" id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" name="email" placeholder="john@example.com" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" name="phone" placeholder="+234 912 345 6789">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Subject</label>
-                                    <select class="form-select" name="subject" required>
-                                        <option value="" selected disabled>Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="sales">Sales & Quotation</option>
-                                        <option value="partnership">Partnership Opportunity</option>
-                                        <option value="complaint">Complaint</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 mb-4">
-                                    <label class="form-label">Message</label>
-                                    <textarea class="form-control" name="message" rows="6" placeholder="How can we help you?" required></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn-submit">
-                                        <i class="bi bi-send me-2"></i>Send Message
-                                    </button>
-                                </div>
+                        <!-- CSRF Protection Token -->
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="John Doe" value="<%= formData ? formData.name : '' %>" required>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" placeholder="john@example.com" value="<%= formData ? formData.email : '' %>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" name="phone" placeholder="+234 912 345 6789" value="<%= formData ? formData.phone : '' %>">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Subject</label>
+                                <select class="form-select" name="subject" required>
+                                    <option value="" selected disabled>Select a subject</option>
+                                    <option value="general" <%= formData && formData.subject === 'general' ? 'selected' : '' %>>General Inquiry</option>
+                                    <option value="support" <%= formData && formData.subject === 'support' ? 'selected' : '' %>>Technical Support</option>
+                                    <option value="sales" <%= formData && formData.subject === 'sales' ? 'selected' : '' %>>Sales & Quotation</option>
+                                    <option value="partnership" <%= formData && formData.subject === 'partnership' ? 'selected' : '' %>>Partnership Opportunity</option>
+                                    <option value="complaint" <%= formData && formData.subject === 'complaint' ? 'selected' : '' %>>Complaint</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" name="message" rows="6" placeholder="How can we help you?" required><%= formData ? formData.message : '' %></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-submit">
+                                    <i class="bi bi-send me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
                         </form>
                     </div>
                 </div>

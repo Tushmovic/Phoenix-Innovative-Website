@@ -85,10 +85,16 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="copyright">&copy; 2024 Phoenix Innovative Technologies LTD. All rights reserved.</p>
+                    <p class="copyright">&copy; 2026 Phoenix Innovative Technologies LTD. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p class="credit">Designed with <i class="bi bi-heart-fill text-danger"></i> for a smarter world</p>
+                    <div class="footer-policy-links">
+                        <a href="/privacy" class="policy-link">Privacy Policy</a>
+                        <span class="policy-separator">|</span>
+                        <a href="/terms" class="policy-link">Terms of Service</a>
+                        <span class="policy-separator">|</span>
+                        <span class="credit">Designed with <i class="bi bi-heart-fill text-danger"></i></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -334,18 +340,54 @@
     z-index: 2;
 }
 
-.copyright, .credit {
+.copyright {
     color: rgba(255,255,255,0.6);
     margin: 0;
     transition: all 0.3s ease;
 }
 
-.copyright:hover, .credit:hover {
+.copyright:hover {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Policy Links */
+.footer-policy-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.policy-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.policy-link:hover {
+    color: #FF6B35;
+    transform: translateY(-2px);
+}
+
+.policy-separator {
+    color: rgba(255,255,255,0.3);
+}
+
+.credit {
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.credit:hover {
     color: rgba(255,255,255,0.9);
 }
 
 .credit i {
     animation: heartbeat 1.5s ease infinite;
+    display: inline-block;
 }
 
 @keyframes heartbeat {
@@ -378,6 +420,19 @@
     
     .footer-contact li {
         justify-content: center;
+    }
+    
+    .footer-bottom .row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .footer-policy-links {
+        justify-content: center;
+    }
+    
+    .copyright {
+        text-align: center;
     }
 }
 </style>

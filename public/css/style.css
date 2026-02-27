@@ -1091,3 +1091,19 @@ a:hover .bi-envelope {
 .dropdown-menu.megamenu-content {
     z-index: 9995 !important;
 }
+
+/* Make site header fixed across pages */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10500;
+    width: 100%;
+}
+
+/* Ensure top contact bar and navbar remain visible inside fixed header */
+.site-header .top-contact-bar,
+.site-header .navbar {
+    width: 100%;
+}
