@@ -44,6 +44,10 @@
             box-shadow: 0 20px 40px rgba(67,97,238,0.3);
         }
 
+        .stats-card:active {
+            transform: scale(0.98);
+        }
+
         .stats-card .display-4,
         .stats-card p {
             color: white !important;
@@ -62,6 +66,10 @@
         .leadership-card:hover {
             transform: translateX(20px);
             box-shadow: 0 30px 60px rgba(67,97,238,0.15);
+        }
+
+        .leadership-card:active {
+            transform: translateX(10px);
         }
 
         .leader-image {
@@ -117,6 +125,10 @@
             box-shadow: 0 30px 50px rgba(67,97,238,0.2);
         }
 
+        .team-card:active {
+            transform: translateY(-5px);
+        }
+
         .team-image {
             height: 300px;
             position: relative;
@@ -168,12 +180,17 @@
             color: #4361EE;
             text-decoration: none;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .team-social a:hover {
             transform: translateY(-5px) scale(1.1);
             background: #4361EE;
             color: white;
+        }
+
+        .team-social a:active {
+            transform: scale(0.95);
         }
 
         .team-info {
@@ -226,11 +243,16 @@
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .department-tag:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 20px rgba(67,97,238,0.3);
+        }
+
+        .department-tag:active {
+            transform: scale(0.95);
         }
 
         /* Join Card */
@@ -254,11 +276,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .join-card .btn-light:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .join-card .btn-light:active {
+            transform: scale(0.95);
         }
 
         /* CTA Section */
@@ -281,6 +308,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
 
         .cta-section .btn-outline-light {
@@ -290,11 +327,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333 !important;
+        }
+
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
 
         /* Section Headers */
@@ -313,30 +355,332 @@
             color: #4361EE !important;
         }
 
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
             .page-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
             }
-
-            h2.display-5 {
-                font-size: 2.2rem;
+            
+            .page-hero p {
+                font-size: 1rem !important;
+                padding: 0 15px;
             }
-
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
             .leadership-card {
-                padding: 25px;
-            }
-
-            .leader-image {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-
-            .leadership-card .row {
+                padding: 25px 20px !important;
                 text-align: center;
             }
-
+            
+            .leader-image {
+                margin: 0 auto 20px !important;
+                width: 120px;
+                height: 120px;
+            }
+            
+            .leadership-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .leadership-card h5 {
+                font-size: 1rem !important;
+            }
+            
+            .leadership-card p {
+                font-size: 0.95rem !important;
+            }
+            
             .team-social {
                 justify-content: center;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            .team-image {
+                height: 250px;
+            }
+            
+            .team-info {
+                padding: 15px;
+            }
+            
+            .team-name {
+                font-size: 1.3rem !important;
+            }
+            
+            .team-position {
+                font-size: 0.95rem !important;
+            }
+            
+            .team-badge {
+                font-size: 11px;
+                padding: 4px 12px;
+            }
+            
+            .value-badge {
+                font-size: 10px;
+                padding: 4px 10px;
+            }
+            
+            .department-tag {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            
+            .join-card {
+                padding: 40px 20px !important;
+            }
+            
+            .join-card h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .join-card p {
+                font-size: 1rem !important;
+            }
+            
+            .join-card .btn-light {
+                padding: 12px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn-light,
+            .cta-section .btn-outline-light {
+                padding: 12px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.2rem !important;
+            }
+            
+            .leadership-card {
+                padding: 30px 25px;
+            }
+            
+            .leader-image {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto 20px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .team-image {
+                height: 220px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.5rem !important;
+            }
+            
+            .leader-image {
+                width: 130px;
+                height: 130px;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn-light,
+            .btn-outline-light,
+            .department-tag,
+            .team-social a {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            .leadership-card:hover {
+                transform: none;
+            }
+            
+            .leadership-card:active {
+                transform: translateX(5px);
+            }
+            
+            .team-card:hover {
+                transform: none;
+            }
+            
+            .team-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .team-card:hover .team-overlay {
+                opacity: 0; /* Hide overlay on mobile, use click instead */
+            }
+            
+            .department-tag:hover {
+                transform: none;
+            }
+            
+            .department-tag:active {
+                transform: scale(0.95);
+            }
+            
+            .join-card .btn-light:hover {
+                transform: none;
+            }
+            
+            .join-card .btn-light:active {
+                transform: scale(0.95);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Center CTA buttons */
+            .cta-section .d-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px !important;
+            }
+            
+            /* Department filters scrollable on mobile */
+            .text-center.mb-5 {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .department-tag {
+                display: inline-block;
+                margin: 0 3px;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-image {
+                height: 200px;
+            }
+            
+            .join-card {
+                padding: 30px 15px !important;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero,
+            .stats-card,
+            .leadership-card,
+            .team-card,
+            .team-image img,
+            .team-overlay,
+            .department-tag,
+            .join-card,
+            .cta-section {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before {
+                animation: none;
             }
         }
     </style>
@@ -361,25 +705,25 @@
     <section class="py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="display-4 fw-bold counter-value" data-target="50">0</div>
                         <p class="mb-0">Team Members</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
                         <div class="display-4 fw-bold counter-value" data-target="15">0</div>
                         <p class="mb-0">Years Avg Experience</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="display-4 fw-bold counter-value" data-target="12">0</div>
                         <p class="mb-0">Nationalities</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
                         <div class="display-4 fw-bold counter-value" data-target="40">0</div>
                         <p class="mb-0">Women in Tech</p>
@@ -399,7 +743,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="leader-image">
-                            <img src="/images/Client 1.png" alt="CEO">
+                            <img src="/images/Client 1.png" alt="CEO" loading="lazy">
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -407,9 +751,9 @@
                         <h5 class="text-primary mb-3">Founder & Chief Executive Officer</h5>
                         <p class="mb-3">With over 20 years of experience in technology and business leadership, Dr. Ogunleye founded Phoenix with a vision to transform Africa's technology landscape. Previously led technology divisions at multinational corporations and holds a Ph.D. in Computer Science from University of Lagos.</p>
                         <div class="team-social">
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
-                            <a href="#"><i class="bi bi-twitter"></i></a>
-                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -420,7 +764,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="leader-image">
-                            <img src="/images/Mr Olalekan.jpg" alt="CTO">
+                            <img src="/images/Mr Olalekan.jpg" alt="CTO" loading="lazy">
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -428,9 +772,9 @@
                         <h5 class="text-primary mb-3">Chief Technology Officer</h5>
                         <p class="mb-3">Engineering visionary with 15+ years in software architecture and infrastructure. Led development of award-winning enterprise solutions. Certified AWS Solutions Architect and Cisco CCIE. Passionate about mentoring young engineers.</p>
                         <div class="team-social">
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
-                            <a href="#"><i class="bi bi-github"></i></a>
-                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -441,7 +785,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="leader-image">
-                            <img src="/images/Client 3.png" alt="COO">
+                            <img src="/images/Client 3.png" alt="COO" loading="lazy">
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -449,9 +793,9 @@
                         <h5 class="text-primary mb-3">Chief Operating Officer</h5>
                         <p class="mb-3">Operations expert with MBA from Lagos Business School. Previously managed operations for Fortune 500 companies. Spearheaded Phoenix's expansion to 5 countries. Champion of diversity and inclusion in the workplace.</p>
                         <div class="team-social">
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
-                            <a href="#"><i class="bi bi-twitter"></i></a>
-                            <a href="#"><i class="bi bi-envelope"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -477,12 +821,12 @@
                 <!-- Team Member 1 -->
                 <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-image">
-                        <img src="/images/Mr Olalekan.jpg" alt="Team Member">
+                        <img src="/images/Mr Olalekan.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-github"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -501,12 +845,12 @@
                 <!-- Team Member 2 -->
                 <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="200">
                     <div class="team-image">
-                        <img src="/images/Mr Joshua.jpg" alt="Team Member">
+                        <img src="/images/Mr Joshua.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-github"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -525,12 +869,12 @@
                 <!-- Team Member 3 -->
                 <div class="team-card" data-department="sales" data-aos="fade-up" data-aos-delay="300">
                     <div class="team-image">
-                        <img src="/images/Mr Joshua.jpg" alt="Team Member">
+                        <img src="/images/Mr Joshua.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-twitter"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -548,11 +892,11 @@
                 <!-- Team Member 4 -->
                 <div class="team-card" data-department="consulting" data-aos="fade-up" data-aos-delay="400">
                     <div class="team-image">
-                        <img src="/images/Mr Olalekan.jpg" alt="Team Member">
+                        <img src="/images/Mr Olalekan.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -570,11 +914,11 @@
                 <!-- Team Member 5 -->
                 <div class="team-card" data-department="operations" data-aos="fade-up" data-aos-delay="500">
                     <div class="team-image">
-                        <img src="/images/Mr Joshua.jpg" alt="Team Member">
+                        <img src="/images/Mr Joshua.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -592,12 +936,12 @@
                 <!-- Team Member 6 -->
                 <div class="team-card" data-department="engineering" data-aos="fade-up" data-aos-delay="600">
                     <div class="team-image">
-                        <img src="/images/Mr Joshua.jpg" alt="Team Member">
+                        <img src="/images/Mr Joshua.jpg" alt="Team Member" loading="lazy">
                         <div class="team-overlay">
                             <div class="team-social">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-github"></i></a>
-                                <a href="#"><i class="bi bi-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
                             </div>
                         </div>
                     </div>
@@ -633,7 +977,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Want to Work With Us?</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Whether you're a client or future team member, we'd love to hear from you</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Contact Us</a>
                         <a href="/about/careers" class="btn btn-outline-light btn-lg px-5 py-3">Join Our Team</a>
                     </div>

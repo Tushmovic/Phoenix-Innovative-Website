@@ -27,6 +27,7 @@
         text-decoration: none;
         border: 3px solid white;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
     }
 
     /* Chatbot Button */
@@ -47,11 +48,18 @@
         border: 3px solid white;
         cursor: pointer;
         position: relative;
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
     }
 
     .float-whatsapp:hover, .float-chatbot:hover {
         transform: scale(1.15) rotate(5deg);
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Active/Touch states for mobile */
+    .float-whatsapp:active, .float-chatbot:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
     }
 
     @keyframes pulse-whatsapp {
@@ -149,6 +157,7 @@
         border-radius: 50%;
         background: white;
         padding: 5px;
+        object-fit: contain;
     }
 
     .chatbot-messages {
@@ -181,6 +190,7 @@
         border-radius: 18px 18px 18px 5px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         color: #333;
+        word-wrap: break-word;
     }
 
     .user-message {
@@ -189,6 +199,7 @@
         padding: 12px 15px;
         border-radius: 18px 18px 5px 18px;
         margin-left: auto;
+        word-wrap: break-word;
     }
 
     .chatbot-input {
@@ -201,11 +212,12 @@
 
     .chatbot-input input {
         flex: 1;
-        padding: 10px 15px;
+        padding: 12px 15px; /* Slightly larger for mobile touch */
         border: 2px solid #eee;
         border-radius: 25px;
         outline: none;
         transition: all 0.3s;
+        font-size: 16px; /* Prevents zoom on mobile */
     }
 
     .chatbot-input input:focus {
@@ -213,19 +225,27 @@
     }
 
     .chatbot-input button {
-        width: 45px;
-        height: 45px;
+        width: 48px; /* Slightly larger for better touch target */
+        height: 48px;
         background: linear-gradient(135deg, #FF6B35, #F25F3A);
         border: none;
         border-radius: 50%;
         color: white;
-        font-size: 18px;
+        font-size: 20px;
         cursor: pointer;
         transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .chatbot-input button:hover {
         transform: scale(1.1) rotate(90deg);
+    }
+
+    .chatbot-input button:active {
+        transform: scale(0.95);
     }
 
     .typing-indicator {
@@ -273,16 +293,33 @@
     .btn-close-white {
         filter: brightness(0) invert(1);
         opacity: 0.8;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        min-width: 30px;
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .btn-close-white:hover {
         opacity: 1;
     }
 
-    @media (max-width: 768px) {
+    .btn-close-white:active {
+        transform: scale(0.95);
+    }
+
+    /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+
+    /* Extra small devices (phones, 576px and down) */
+    @media (max-width: 576px) {
         .floating-buttons {
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             gap: 10px;
         }
 
@@ -290,15 +327,233 @@
             width: 55px;
             height: 55px;
             font-size: 26px;
+            border-width: 2px; /* Slightly thinner border on mobile */
+        }
+
+        /* Adjust pulse animations for mobile (less aggressive) */
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes pulse-chatbot {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 107, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+
+        /* Chatbot window adjustments for small phones */
+        .chatbot-window {
+            width: calc(100vw - 30px); /* Full width minus margins */
+            max-width: 320px;
+            height: 500px;
+            right: -5px;
+            bottom: 70px;
+        }
+
+        .chatbot-header {
+            padding: 12px 15px;
+        }
+
+        .chatbot-header img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .chatbot-header h6 {
+            font-size: 0.95rem;
+        }
+
+        .chatbot-header small {
+            font-size: 0.8rem;
+        }
+
+        .chatbot-messages {
+            padding: 15px;
+        }
+
+        .message {
+            max-width: 85%; /* Slightly wider on mobile */
+        }
+
+        .bot-message, .user-message {
+            padding: 10px 12px;
+            font-size: 0.95rem;
+        }
+
+        .chatbot-input {
+            padding: 12px 15px;
+        }
+
+        .chatbot-input input {
+            padding: 10px 12px;
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+
+        .chatbot-input button {
+            width: 44px;
+            height: 44px;
+            font-size: 18px;
+        }
+
+        .notification-badge {
+            min-width: 20px;
+            height: 20px;
+            font-size: 11px;
+            top: -3px;
+            right: -3px;
+        }
+
+        /* Hide tooltips on very small screens to save space */
+        .button-tooltip {
+            display: none;
+        }
+    }
+
+    /* Small devices (landscape phones, 577px to 767px) */
+    @media (min-width: 577px) and (max-width: 767px) {
+        .floating-buttons {
+            bottom: 20px;
+            right: 20px;
+            gap: 12px;
+        }
+
+        .float-whatsapp, .float-chatbot {
+            width: 58px;
+            height: 58px;
+            font-size: 28px;
         }
 
         .chatbot-window {
-            width: 300px;
-            height: 450px;
-            right: -10px;
+            width: 330px;
+            height: 480px;
+            bottom: 75px;
         }
 
         .button-tooltip {
+            display: none; /* Hide tooltips on medium mobile */
+        }
+    }
+
+    /* Ensure buttons are always accessible on mobile */
+    @media (max-width: 768px) {
+        /* Increase touch target size */
+        .float-whatsapp, 
+        .float-chatbot,
+        .chatbot-input button,
+        .btn-close-white {
+            min-width: 48px;
+            min-height: 48px;
+        }
+
+        /* Remove hover effects on mobile (they don't work well) */
+        .float-whatsapp:hover,
+        .float-chatbot:hover {
+            transform: none;
+        }
+
+        /* Add active state instead */
+        .float-whatsapp:active,
+        .float-chatbot:active {
+            transform: scale(0.95);
+        }
+
+        /* Ensure chatbot window doesn't overflow screen */
+        .chatbot-window {
+            max-height: 80vh;
+            max-width: 90vw;
+        }
+
+        /* Better scrolling on mobile */
+        .chatbot-messages {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Fix for safe area on notched phones */
+        .floating-buttons {
+            bottom: max(15px, env(safe-area-inset-bottom));
+            right: max(15px, env(safe-area-inset-right));
+        }
+    }
+
+    /* Handle devices with bottom navigation bar */
+    @media (max-height: 600px) {
+        .chatbot-window {
+            height: 400px;
+            bottom: 70px;
+        }
+    }
+
+    /* Fix for very small screens */
+    @media (max-width: 320px) {
+        .float-whatsapp, .float-chatbot {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+        }
+
+        .chatbot-window {
+            width: calc(100vw - 20px);
+            right: 0;
+        }
+    }
+
+    /* Landscape mode on phones */
+    @media (max-height: 500px) and (orientation: landscape) {
+        .floating-buttons {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .chatbot-window {
+            height: 70vh;
+            max-height: 300px;
+            bottom: 65px;
+        }
+
+        .chatbot-messages {
+            max-height: calc(70vh - 120px);
+        }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+        .float-whatsapp {
+            background: #128C7E;
+            border: 3px solid #000;
+        }
+
+        .float-chatbot {
+            background: #F25F3A;
+            border: 3px solid #000;
+        }
+
+        .button-tooltip {
+            border: 2px solid #000;
+        }
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .float-whatsapp,
+        .float-chatbot,
+        .chatbot-window,
+        .message,
+        .chatbot-input button {
+            animation: none;
+            transition: none;
+        }
+
+        .float-whatsapp,
+        .float-chatbot {
+            animation: none;
+        }
+    }
+
+    /* Print styles */
+    @media print {
+        .floating-buttons {
             display: none;
         }
     }
@@ -311,29 +566,29 @@
        target="_blank" 
        rel="noopener noreferrer"
        aria-label="Chat with us on WhatsApp">
-        <i class="bi bi-whatsapp"></i>
+        <i class="bi bi-whatsapp" aria-hidden="true"></i>
         <span class="button-tooltip">Chat on WhatsApp</span>
     </a>
 
     <!-- Chatbot Button -->
     <div class="chatbot-container">
-        <div class="float-chatbot" id="chatbotToggle">
-            <i class="bi bi-chat-dots"></i>
+        <div class="float-chatbot" id="chatbotToggle" role="button" tabindex="0" aria-label="Open AI chat assistant">
+            <i class="bi bi-chat-dots" aria-hidden="true"></i>
             <span class="notification-badge" id="chatNotification" style="display: none;">1</span>
             <span class="button-tooltip">Ask AI Assistant</span>
         </div>
         
         <!-- Chatbot Window -->
-        <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Chatbot window" aria-hidden="true">
             <div class="chatbot-header">
-                <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix AI">
+                <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix AI" loading="lazy">
                 <div style="flex: 1;">
                     <h6 class="mb-0 text-white">Phoenix AI Assistant</h6>
                     <small class="text-white-50">Online • 24/7 Support</small>
                 </div>
-                <button class="btn-close btn-close-white" id="closeChatbot" aria-label="Close"></button>
+                <button class="btn-close btn-close-white" id="closeChatbot" aria-label="Close chatbot"></button>
             </div>
-            <div class="chatbot-messages" id="chatMessages">
+            <div class="chatbot-messages" id="chatMessages" role="log" aria-live="polite">
                 <div class="message">
                     <div class="bot-message">
                         👋 Hello! I'm your Phoenix AI assistant. How can I help you today?
@@ -341,11 +596,11 @@
                 </div>
             </div>
             <div class="chatbot-input">
-                <input type="text" id="chatInput" placeholder="Type your message...">
-                <button id="sendMessage"><i class="bi bi-send"></i></button>
+                <input type="text" id="chatInput" placeholder="Type your message..." aria-label="Type your message">
+                <button id="sendMessage" aria-label="Send message"><i class="bi bi-send" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/js/chatbot.js"></script>
+<script src="/js/chatbot.js" defer></script>

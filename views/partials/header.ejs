@@ -45,9 +45,9 @@
             <a class="navbar-brand fw-bold" href="/">
                 <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix Innovative Technologies" height="40"
                     class="d-inline-block align-text-top me-2">
-                Phoenix Innovative Technologies
+                <span class="brand-text">Phoenix Innovative Technologies</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -58,7 +58,7 @@
 
                     <!-- Services Mega Menu with Gap Solution -->
                     <li class="nav-item dropdown megamenu services-hover-dropdown">
-                        <a class="nav-link dropdown-toggle" href="/services" id="servicesDropdown">
+                        <a class="nav-link dropdown-toggle" href="/services" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             Services
                             <div class="dropdown-gap"></div>
                         </a>
@@ -363,7 +363,7 @@
 
                     <!-- About Mega Menu with Gap Solution -->
                     <li class="nav-item dropdown megamenu about-hover-dropdown">
-                        <a class="nav-link dropdown-toggle" href="/about" id="aboutDropdown">
+                        <a class="nav-link dropdown-toggle" href="/about" id="aboutDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             About
                             <div class="dropdown-gap"></div>
                         </a>
@@ -680,3 +680,233 @@
     <!-- Link to external JavaScript -->
     <script src="/js/script.js" defer></script>
 </header>
+
+<style>
+/* ===== MOBILE RESPONSIVE HEADER STYLES ===== */
+
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+    /* Top Contact Bar */
+    .top-contact-bar {
+        display: none; /* Hide top bar on mobile to save space */
+    }
+    
+    /* Navbar brand */
+    .navbar-brand {
+        font-size: 1rem !important;
+        max-width: 70%;
+    }
+    
+    .navbar-brand img {
+        height: 30px !important;
+    }
+    
+    .brand-text {
+        font-size: 0.9rem;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    
+    /* Navbar toggler */
+    .navbar-toggler {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Navigation links */
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem !important;
+        font-size: 1rem !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Dropdown menus */
+    .dropdown-menu.megamenu-content {
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 10px 0 !important;
+        padding: 20px 15px !important;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Mega menu columns */
+    .services-dropdown-preview .col-lg-3,
+    .services-dropdown-preview .col-lg-4,
+    .services-dropdown-preview .col-lg-5,
+    .about-dropdown-preview .col-lg-3,
+    .about-dropdown-preview .col-lg-4,
+    .about-dropdown-preview .col-lg-5 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    /* Preview sections on mobile */
+    .service-preview-group,
+    .about-preview-group {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Preview images */
+    .preview-image-container {
+        max-width: 100%;
+        height: 180px !important;
+    }
+    
+    .preview-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Preview text */
+    .service-preview-title,
+    .about-preview-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .service-preview-description,
+    .about-preview-description {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Preview buttons */
+    .service-preview-area .btn,
+    .about-preview-area .btn {
+        padding: 8px 20px !important;
+        font-size: 0.9rem !important;
+        width: 100%;
+    }
+    
+    /* Section titles */
+    .megamenu-title {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Service/About list items */
+    .services-list .dropdown-item,
+    .about-list .dropdown-item {
+        padding: 10px 15px !important;
+        font-size: 0.95rem !important;
+        white-space: normal;
+        line-height: 1.4;
+    }
+    
+    /* Dropdown gap (hide on mobile) */
+    .dropdown-gap {
+        display: none !important;
+    }
+}
+
+/* Small devices (landscape phones, 577px to 767px) */
+@media (min-width: 577px) and (max-width: 767px) {
+    .top-contact-bar {
+        display: none; /* Hide top bar on mobile */
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+    
+    .navbar-brand img {
+        height: 35px !important;
+    }
+    
+    .brand-text {
+        font-size: 1rem;
+    }
+    
+    /* Adjust mega menu for tablets */
+    .services-dropdown-preview .col-lg-3,
+    .services-dropdown-preview .col-lg-4,
+    .services-dropdown-preview .col-lg-5 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    .preview-image-container {
+        height: 200px !important;
+    }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Show top contact bar but adjust text */
+    .top-contact-bar {
+        font-size: 0.85rem;
+    }
+    
+    .contact-item {
+        margin-right: 10px !important;
+    }
+    
+    .contact-item.ms-4 {
+        margin-left: 10px !important;
+    }
+    
+    /* Adjust mega menu columns */
+    .services-dropdown-preview .col-lg-3 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    .services-dropdown-preview .col-lg-4,
+    .services-dropdown-preview .col-lg-5 {
+        width: 50% !important;
+    }
+    
+    .about-dropdown-preview .col-lg-3 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    .about-dropdown-preview .col-lg-4,
+    .about-dropdown-preview .col-lg-5 {
+        width: 50% !important;
+    }
+    
+    .preview-image-container {
+        height: 180px !important;
+    }
+}
+
+/* Ensure touch targets are large enough */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link,
+    .dropdown-item,
+    .btn {
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* Improve spacing in mobile menu */
+    .navbar-collapse {
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 10px 0;
+    }
+    
+    /* Style for active mobile menu items */
+    .nav-item.active .nav-link,
+    .dropdown-item:active {
+        background: rgba(255,107,53,0.2) !important;
+    }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+    .navbar .container {
+        padding-left: max(15px, env(safe-area-inset-left)) !important;
+        padding-right: max(15px, env(safe-area-inset-right)) !important;
+    }
+}
+</style>

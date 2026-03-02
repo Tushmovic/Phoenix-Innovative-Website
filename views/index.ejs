@@ -665,51 +665,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .tech-partners h2 {
-                font-size: 2.2rem;
-            }
-            
-            .logo-slide {
-                width: 150px;
-                margin: 0 10px;
-            }
-            
-            .partner-logo-card {
-                height: 150px;
-                padding: 20px 15px;
-            }
-            
-            .partner-logo {
-                width: 80px;
-                max-height: 50px;
-            }
-            
-            .partner-name {
-                font-size: 0.9rem;
-            }
-            
-            .logo-carousel-container::before,
-            .logo-carousel-container::after {
-                width: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-slide {
-                width: 130px;
-            }
-            
-            .partner-logo-card {
-                height: 130px;
-            }
-            
-            .partner-logo {
-                width: 70px;
-            }
-        }
-
         #cta-banner {
             background: linear-gradient(135deg, #FF6B35, #F25F3A, #E71D36) !important;
             position: relative;
@@ -795,26 +750,276 @@
             75% { transform: translateY(10px) translateX(-20px); }
         }
         
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            /* Hero Section */
+            .hero-carousel {
+                height: 80vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem !important;
+                line-height: 1.3;
+            }
+            
+            .hero-content p {
+                font-size: 1rem !important;
+            }
+            
+            .hero-content .btn {
+                padding: 10px 20px !important;
+                font-size: 1rem !important;
+                width: 100%;
+            }
+            
+            .carousel-caption {
+                display: none !important;
+            }
+            
+            /* Service Cards */
+            .service-image-card {
+                margin-bottom: 20px;
+            }
+            
+            .service-title {
+                font-size: 1.3rem !important;
+            }
+            
+            .service-text {
+                font-size: 0.95rem !important;
+            }
+            
+            .service-btn {
+                padding: 8px 20px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            /* Testimonials */
+            .testimonial-card-modern {
+                padding: 25px 20px !important;
+            }
+            
+            .testimonial-card-modern h5 {
+                font-size: 1.1rem !important;
+            }
+            
+            .testimonial-card-modern p {
+                font-size: 0.95rem !important;
+            }
+            
+            .client-avatar-modern {
+                width: 60px !important;
+                height: 60px !important;
+                margin-right: 15px !important;
+            }
+            
+            /* Stats Section */
+            .stats-showcase {
+                padding: 40px 0 !important;
+            }
+            
+            .stat-card-modern {
+                padding: 25px 15px !important;
+            }
+            
             .stat-number {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
             }
             
             .stat-label {
-                font-size: 1.1rem;
+                font-size: 1rem !important;
             }
             
-            .case-study-card {
-                margin-bottom: 30px;
+            .stat-icon {
+                font-size: 2.2rem !important;
             }
             
-            .partner-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
+            /* Case Studies */
+            .case-studies {
+                padding: 40px 0 !important;
+            }
+            
+            .case-studies h2 {
+                font-size: 2rem !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .case-study-content {
+                padding: 20px !important;
+            }
+            
+            .case-study-content h5 {
+                font-size: 1.2rem !important;
+            }
+            
+            .case-study-stats span {
+                font-size: 1rem !important;
+            }
+            
+            /* Technology Partners */
+            .tech-partners {
+                padding: 40px 0 !important;
+            }
+            
+            .tech-partners h2 {
+                font-size: 2rem !important;
+            }
+            
+            .tech-partners .lead {
+                font-size: 1rem !important;
+                margin-bottom: 30px !important;
+            }
+            
+            .logo-slide {
+                width: 120px !important;
+                margin: 0 8px !important;
+            }
+            
+            .partner-logo-card {
+                height: 120px !important;
+                padding: 15px 10px !important;
+            }
+            
+            .partner-logo {
+                width: 60px !important;
+                max-height: 40px !important;
+            }
+            
+            .partner-name {
+                font-size: 0.8rem !important;
+            }
+            
+            .carousel-btn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1.2rem !important;
+            }
+            
+            .logo-carousel-container::before,
+            .logo-carousel-container::after {
+                width: 40px !important;
+            }
+            
+            /* CTA Banner */
+            #cta-banner {
+                padding: 50px 0 !important;
             }
             
             #cta-banner h2 {
-                font-size: 2rem;
+                font-size: 1.8rem !important;
+            }
+            
+            #cta-banner p {
+                font-size: 1rem !important;
+            }
+            
+            #cta-banner .btn-warning {
+                padding: 12px 25px !important;
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Small devices (landscape phones, 576px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .hero-content h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .service-card {
+                margin-bottom: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem !important;
+            }
+            
+            .case-studies h2 {
+                font-size: 2.2rem !important;
+            }
+            
+            .tech-partners h2 {
+                font-size: 2.2rem !important;
+            }
+            
+            .logo-slide {
+                width: 150px !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .hero-content h1 {
+                font-size: 3rem !important;
+            }
+            
+            .service-card {
+                margin-bottom: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.8rem !important;
+            }
+        }
+        
+        /* Landscape mode for phones */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-carousel {
+                height: 120vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-content p {
+                font-size: 0.95rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .hero-content .btn {
+                padding: 8px 16px !important;
+                font-size: 0.95rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .service-btn,
+            .contact-link,
+            .social-link,
+            .carousel-btn {
+                min-height: 44px !important;
+                min-width: 44px !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+            
+            section {
+                overflow-x: hidden;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left)) !important;
+                padding-right: max(20px, env(safe-area-inset-right)) !important;
             }
         }
     </style>

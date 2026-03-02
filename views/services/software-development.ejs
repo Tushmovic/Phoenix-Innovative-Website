@@ -30,6 +30,7 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .page-hero .btn-outline-light {
@@ -39,11 +40,25 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .page-hero .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .page-hero .btn-light:active {
+            transform: scale(0.95);
         }
         
         .page-hero .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .page-hero .btn-outline-light:active {
+            transform: scale(0.95);
         }
         
         /* Code Window */
@@ -102,6 +117,10 @@
             box-shadow: 0 20px 40px rgba(255,107,53,0.15);
         }
         
+        .service-card:active {
+            transform: translateY(-5px);
+        }
+        
         .service-card h4 {
             color: #333;
             font-size: 1.3rem;
@@ -141,6 +160,10 @@
         .tech-stack-item:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 20px 40px rgba(255,107,53,0.2);
+        }
+        
+        .tech-stack-item:active {
+            transform: scale(0.95);
         }
         
         .tech-stack-item i {
@@ -196,6 +219,15 @@
             position: relative;
         }
         
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+        }
+        
+        .timeline-content:active {
+            transform: scale(1.01);
+        }
+        
         .timeline-content::before {
             content: '';
             position: absolute;
@@ -248,6 +280,10 @@
             box-shadow: 0 20px 40px rgba(255,107,53,0.3);
         }
         
+        .stats-card:active {
+            transform: scale(0.98);
+        }
+        
         .stats-number {
             font-size: 3rem;
             font-weight: 800;
@@ -273,6 +309,10 @@
         .project-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 30px 50px rgba(255,107,53,0.2);
+        }
+        
+        .project-card:active {
+            transform: translateY(-5px);
         }
         
         .project-image {
@@ -377,6 +417,7 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .cta-section .btn-outline-light {
@@ -386,11 +427,25 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
         
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
         
         .floating-shape {
@@ -424,28 +479,298 @@
             color: #666 !important;
         }
         
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
             .page-hero h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+            }
+            
+            .page-hero .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .page-hero .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            .code-window {
+                margin-top: 30px;
+            }
+            
+            .code-content {
+                padding: 15px;
+                font-size: 12px;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+            }
+            
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .service-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .tech-stack-item {
+                padding: 20px 15px;
+            }
+            
+            .tech-stack-item i {
                 font-size: 2.5rem;
             }
             
-            h2.display-5 {
-                font-size: 2.2rem;
+            .tech-stack-item h6 {
+                font-size: 1rem;
+            }
+            
+            /* Timeline mobile adjustments */
+            .process-timeline::before {
+                left: 30px;
             }
             
             .timeline-item {
                 width: 100%;
                 left: 0 !important;
-                padding: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 20px !important;
                 margin-bottom: 30px;
             }
             
-            .process-timeline::before {
-                left: 30px;
+            .timeline-content {
+                padding: 20px;
             }
             
             .timeline-content::before {
                 display: none;
+            }
+            
+            .timeline-date {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .timeline-content p {
+                font-size: 0.95rem !important;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .cta-section .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            .floating-shape {
+                display: none;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-light,
+            .btn-outline-light,
+            .service-card,
+            .tech-stack-item {
+                min-height: 44px;
+            }
+            
+            /* Remove hover effects on mobile */
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .service-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .tech-stack-item:hover {
+                transform: none;
+            }
+            
+            .tech-stack-item:active {
+                transform: scale(0.95);
+            }
+            
+            .timeline-content:hover {
+                transform: none;
+            }
+            
+            .timeline-content:active {
+                transform: scale(1.01);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Center align on mobile */
+            .row.align-items-center {
+                text-align: center;
+            }
+            
+            /* Tech stack in 3 columns on mobile */
+            .tech-stack .col-6 {
+                flex: 0 0 33.333%;
+                max-width: 33.333%;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .tech-stack .col-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px !important;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero,
+            .service-card,
+            .tech-stack-item,
+            .timeline-content,
+            .stats-card,
+            .project-card,
+            .cta-section,
+            .floating-shape {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before,
+            .floating-shape {
+                animation: none;
             }
         }
     </style>
@@ -461,7 +786,7 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h1 class="display-3 fw-bold mb-4">Software Development</h1>
                     <p class="lead mb-4">Custom software solutions that drive business growth. From web and mobile apps to enterprise systems and cloud integration.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex flex-column flex-sm-row gap-3">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Start Your Project</a>
                         <a href="#process" class="btn btn-outline-light btn-lg px-5 py-3">Our Process</a>
                     </div>
@@ -505,7 +830,7 @@
                             <i class="bi bi-window"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Web Applications</h4>
-                        <p class="text-muted">Custom web applications built with modern frameworks like React, Vue, and Angular. Scalable, secure, and responsive.</p>
+                        <p class="text-muted">Custom web apps built with React, Vue, and Angular. Scalable, secure, and responsive.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
@@ -514,7 +839,7 @@
                             <i class="bi bi-phone"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Mobile Apps</h4>
-                        <p class="text-muted">Native and cross-platform mobile applications for iOS and Android that deliver exceptional user experiences.</p>
+                        <p class="text-muted">Native and cross-platform mobile apps for iOS and Android with exceptional user experiences.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
@@ -523,7 +848,7 @@
                             <i class="bi bi-gear"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Enterprise Software</h4>
-                        <p class="text-muted">Custom CRM, ERP, and business management systems tailored to your specific workflows and requirements.</p>
+                        <p class="text-muted">Custom CRM, ERP, and business management systems tailored to your workflows.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
@@ -532,7 +857,7 @@
                             <i class="bi bi-cloud"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Cloud Solutions</h4>
-                        <p class="text-muted">Cloud-native applications and migration services for AWS, Azure, and Google Cloud platforms.</p>
+                        <p class="text-muted">Cloud-native apps and migration services for AWS, Azure, and Google Cloud.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
@@ -562,37 +887,37 @@
         <div class="container">
             <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Technology Stack</h2>
             <div class="row g-4">
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="tech-stack-item">
                         <i class="bi bi-filetype-js"></i>
                         <h6>JavaScript</h6>
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="150">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="150">
                     <div class="tech-stack-item">
                         <i class="bi bi-filetype-py"></i>
                         <h6>Python</h6>
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="tech-stack-item">
                         <i class="bi bi-filetype-java"></i>
                         <h6>Java</h6>
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="250">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="250">
                     <div class="tech-stack-item">
                         <i class="bi bi-filetype-php"></i>
                         <h6>PHP</h6>
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="tech-stack-item">
                         <i class="bi bi-filetype-sql"></i>
                         <h6>SQL</h6>
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="zoom-in" data-aos-delay="350">
+                <div class="col-md-2 col-4" data-aos="zoom-in" data-aos-delay="350">
                     <div class="tech-stack-item">
                         <i class="bi bi-cloud"></i>
                         <h6>AWS</h6>
@@ -607,42 +932,42 @@
         <div class="container">
             <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Development Process</h2>
             <div class="process-timeline">
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 1</span>
                         <h4 class="fw-bold">Discovery & Planning</h4>
                         <p>We understand your requirements, goals, and target audience to create a comprehensive project roadmap.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 2</span>
                         <h4 class="fw-bold">Design & Prototyping</h4>
                         <p>UI/UX design with interactive prototypes to visualize the final product before development begins.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 3</span>
                         <h4 class="fw-bold">Development</h4>
                         <p>Agile development with regular sprints, code reviews, and continuous integration.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 4</span>
                         <h4 class="fw-bold">Testing & QA</h4>
                         <p>Rigorous testing including unit tests, integration tests, and user acceptance testing.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 5</span>
                         <h4 class="fw-bold">Deployment</h4>
                         <p>Smooth deployment with zero downtime and comprehensive documentation.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-content">
                         <span class="timeline-date">Phase 6</span>
                         <h4 class="fw-bold">Support & Maintenance</h4>
@@ -657,25 +982,25 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="stats-number counter-value" data-target="150">0</div>
                         <p class="mb-0">Projects Delivered</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #FF6B35);">
                         <div class="stats-number counter-value" data-target="50">0</div>
                         <p class="mb-0">Happy Clients</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
                         <div class="stats-number counter-value" data-target="5">0</div>
-                        <p class="mb-0">Years Experience</p>
+                        <p class="mb-0">Years Exp</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="stats-number counter-value" data-target="24">0</div>
                         <p class="mb-0">Support (hrs)</p>
@@ -687,14 +1012,14 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div class="floating-shape" style="top: 10%; left: 5%;"></div>
-        <div class="floating-shape" style="bottom: 10%; right: 5%; width: 150px; height: 150px;"></div>
+        <div class="floating-shape" style="top: 10%; left: 5%; display: none;"></div>
+        <div class="floating-shape" style="bottom: 10%; right: 5%; width: 150px; height: 150px; display: none;"></div>
         <div class="container position-relative">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Build Something Amazing?</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Let's discuss your project and turn your ideas into reality.</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Start Your Project</a>
                         <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Us Now</a>
                     </div>

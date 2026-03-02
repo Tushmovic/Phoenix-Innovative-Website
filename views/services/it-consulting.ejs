@@ -30,6 +30,7 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .page-hero .btn-outline-light {
@@ -39,11 +40,20 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .page-hero .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .page-hero .btn-outline-light:active {
+            transform: scale(0.95);
+        }
+        
+        .page-hero .btn-light:active {
+            transform: scale(0.95);
         }
         
         /* Consultant Card */
@@ -59,6 +69,10 @@
         .consultant-card:hover {
             transform: translateY(-10px);
             background: rgba(255,255,255,0.15);
+        }
+        
+        .consultant-card:active {
+            transform: translateY(-5px);
         }
         
         .consultant-card h4 {
@@ -95,6 +109,10 @@
         .service-card:hover {
             transform: translateX(10px);
             box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+        
+        .service-card:active {
+            transform: translateX(5px);
         }
         
         .service-card:hover::before {
@@ -162,6 +180,10 @@
             box-shadow: 0 15px 30px rgba(67,97,238,0.3);
         }
         
+        .strategy-node:active {
+            transform: scale(1.05);
+        }
+        
         .strategy-node i {
             font-size: 32px;
             color: #4361EE;
@@ -197,6 +219,10 @@
         .process-step:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(67,97,238,0.15);
+        }
+        
+        .process-step:active {
+            transform: translateY(-5px);
         }
         
         .process-step h5 {
@@ -235,12 +261,17 @@
             border: 1px solid #e9ecef;
             color: #333;
             font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .expertise-badge:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(67,97,238,0.15);
             border-color: #4361EE;
+        }
+        
+        .expertise-badge:active {
+            transform: scale(0.95);
         }
         
         /* Case Study Cards */
@@ -256,6 +287,10 @@
         .case-study-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 30px 50px rgba(67,97,238,0.2);
+        }
+        
+        .case-study-card:active {
+            transform: translateY(-5px);
         }
         
         .case-study-image {
@@ -321,6 +356,15 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
             animation: rotate 20s linear infinite;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(67,97,238,0.3);
+        }
+        
+        .stats-card:active {
+            transform: scale(0.98);
         }
         
         .stats-number {
@@ -414,6 +458,7 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .cta-section .btn-outline-light {
@@ -423,11 +468,25 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
         
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
         
         /* Section Headers */
@@ -455,17 +514,366 @@
             to { transform: rotate(360deg); }
         }
         
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
             .page-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
             }
             
-            h2.display-5 {
-                font-size: 2.2rem;
+            .page-hero p {
+                font-size: 1rem !important;
             }
             
-            .strategy-line {
-                display: none;
+            .page-hero .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .page-hero .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            .consultant-card {
+                padding: 20px;
+                margin-top: 30px;
+            }
+            
+            .consultant-card .d-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .consultant-card .bg-white {
+                margin: 0 auto 15px !important;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+            }
+            
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .service-card p {
+                font-size: 0.95rem;
+            }
+            
+            .service-card ul li {
+                font-size: 0.9rem;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .strategy-diagram {
+                padding: 30px 15px;
+            }
+            
+            .strategy-diagram .row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .strategy-node {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .strategy-node i {
+                font-size: 24px;
+            }
+            
+            .strategy-diagram p {
+                font-size: 0.9rem;
+            }
+            
+            .expertise-badge {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            
+            .case-study-card {
+                margin-bottom: 20px;
+            }
+            
+            .case-study-content {
+                padding: 20px;
+            }
+            
+            .case-study-content h5 {
+                font-size: 1.1rem;
+            }
+            
+            .case-study-content p {
+                font-size: 0.95rem;
+            }
+            
+            .result-badge {
+                font-size: 12px;
+                padding: 4px 12px;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .testimonial-card h6 {
+                font-size: 1rem;
+            }
+            
+            .testimonial-card small {
+                font-size: 0.85rem;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .cta-section .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .strategy-node {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .stats-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .service-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .strategy-node {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-light,
+            .btn-outline-light,
+            .expertise-badge,
+            .service-card,
+            .case-study-card {
+                min-height: 44px;
+            }
+            
+            /* Remove hover effects on mobile */
+            .consultant-card:hover {
+                transform: none;
+            }
+            
+            .consultant-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .service-card:active {
+                transform: translateX(5px);
+            }
+            
+            .strategy-node:hover {
+                transform: none;
+            }
+            
+            .strategy-node:active {
+                transform: scale(1.05);
+            }
+            
+            .case-study-card:hover {
+                transform: none;
+            }
+            
+            .case-study-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            .expertise-badge:hover {
+                transform: none;
+            }
+            
+            .expertise-badge:active {
+                transform: scale(0.95);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Service cards in full width */
+            .services-section .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Case studies in full width */
+            .case-studies-section .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Testimonials in full width */
+            .testimonials-section .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Center align on mobile */
+            .row.align-items-center {
+                text-align: center;
+            }
+            
+            /* Strategy diagram grid */
+            .strategy-diagram .row {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .strategy-diagram .row {
+                grid-template-columns: 1fr;
+            }
+            
+            .expertise-badge {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero,
+            .consultant-card,
+            .service-card,
+            .service-card::before,
+            .strategy-node,
+            .process-step,
+            .expertise-badge,
+            .case-study-card,
+            .case-study-image::before,
+            .stats-card,
+            .stats-card::after,
+            .cta-section {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before,
+            .case-study-image::before,
+            .stats-card::after {
+                animation: none;
             }
         }
     </style>
@@ -481,7 +889,7 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h1 class="display-3 fw-bold mb-4">IT Consulting & Procurement</h1>
                     <p class="lead mb-4">Strategic technology consulting to optimize your IT investments. Expert guidance on infrastructure, software, and digital transformation.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex flex-column flex-sm-row gap-3">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Free Consultation</a>
                         <a href="#services" class="btn btn-outline-light btn-lg px-5 py-3">Our Services</a>
                     </div>
@@ -591,27 +999,27 @@
         <div class="container">
             <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Our Strategic Framework</h2>
             <div class="strategy-diagram" data-aos="fade-up">
-                <div class="strategy-line"></div>
+                <div class="strategy-line" style="display: none;"></div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="strategy-node">
                             <i class="bi bi-search"></i>
                         </div>
                         <p class="text-center mt-3 fw-bold">Assess</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="strategy-node">
                             <i class="bi bi-diagram-3"></i>
                         </div>
                         <p class="text-center mt-3 fw-bold">Plan</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="strategy-node">
                             <i class="bi bi-gear"></i>
                         </div>
                         <p class="text-center mt-3 fw-bold">Implement</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="strategy-node">
                             <i class="bi bi-graph-up"></i>
                         </div>
@@ -684,25 +1092,25 @@
     <section class="py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="stats-number counter-value" data-target="150">0</div>
                         <p class="mb-0">Projects Completed</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
                         <div class="stats-number counter-value" data-target="50">0</div>
                         <p class="mb-0">Million ₦ Saved</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="stats-number counter-value" data-target="100">0</div>
                         <p class="mb-0">% ROI Average</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
                         <div class="stats-number counter-value" data-target="24">0</div>
                         <p class="mb-0">Industries Served</p>
@@ -746,7 +1154,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Optimize Your IT?</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Get a free 1-hour consultation with our experts.</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Book Consultation</a>
                         <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Now</a>
                     </div>

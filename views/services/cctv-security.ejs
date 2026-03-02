@@ -48,6 +48,10 @@
             background: rgba(255,255,255,0.2);
         }
         
+        .camera-item:active {
+            transform: translateY(-5px);
+        }
+        
         .camera-item h6 {
             color: white;
         }
@@ -74,6 +78,10 @@
             box-shadow: 0 20px 40px rgba(58,12,163,0.15);
         }
         
+        .feature-card:active {
+            transform: translateY(-5px);
+        }
+        
         .feature-icon {
             width: 70px;
             height: 70px;
@@ -97,11 +105,16 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .security-badge:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 20px rgba(58,12,163,0.3);
+        }
+        
+        .security-badge:active {
+            transform: scale(0.95);
         }
         
         .stats-card {
@@ -131,6 +144,10 @@
             box-shadow: 0 20px 40px rgba(58,12,163,0.3);
         }
         
+        .stats-card:active {
+            transform: scale(0.98);
+        }
+        
         .stats-number {
             font-size: 3rem;
             font-weight: 800;
@@ -156,6 +173,10 @@
         .package-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 30px 50px rgba(58,12,163,0.2);
+        }
+        
+        .package-card:active {
+            transform: translateY(-5px);
         }
         
         .package-card.premium {
@@ -207,11 +228,16 @@
             font-weight: 600;
             border-radius: 8px;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-primary:hover {
             background: #3A0CA3;
             color: white;
+        }
+        
+        .btn-outline-primary:active {
+            transform: scale(0.95);
         }
         
         .btn-primary {
@@ -221,11 +247,16 @@
             padding: 12px 20px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(58,12,163,0.4);
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.95);
         }
         
         .btn-light {
@@ -235,6 +266,7 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-light {
@@ -244,11 +276,16 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .btn-outline-light:active {
+            transform: scale(0.95);
         }
         
         .tech-showcase {
@@ -275,6 +312,10 @@
         .tech-item:hover {
             transform: scale(1.1) rotate(360deg);
             box-shadow: 0 20px 30px rgba(58,12,163,0.2);
+        }
+        
+        .tech-item:active {
+            transform: scale(0.95);
         }
         
         .tech-item i {
@@ -352,6 +393,10 @@
         .camera-feed:hover {
             background: #1f1f3f;
             transform: translateX(10px);
+        }
+        
+        .camera-feed:active {
+            transform: translateX(5px);
         }
         
         .camera-feed strong {
@@ -434,13 +479,382 @@
             color: #666 !important;
         }
         
-        @media (max-width: 768px) {
-            h2.display-5 {
-                font-size: 2.2rem;
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+            }
+            
+            .page-hero .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .page-hero .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
             }
             
             .camera-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin: 20px 0;
+            }
+            
+            .camera-item {
+                padding: 15px 10px;
+            }
+            
+            .camera-icon {
+                font-size: 2rem;
+            }
+            
+            .camera-item h6 {
+                font-size: 0.8rem;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+            
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .feature-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .security-badge {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .monitoring-dashboard {
+                padding: 20px;
+                margin-top: 30px;
+            }
+            
+            .monitoring-dashboard h5 {
+                font-size: 1.2rem;
+            }
+            
+            .camera-feed {
+                padding: 12px;
+            }
+            
+            .camera-feed strong {
+                font-size: 0.95rem;
+            }
+            
+            .camera-feed small {
+                font-size: 0.8rem;
+            }
+            
+            .package-card {
+                padding: 30px 20px;
+            }
+            
+            .package-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .package-card .display-4 {
+                font-size: 2rem !important;
+            }
+            
+            .package-card ul li {
+                font-size: 0.95rem;
+            }
+            
+            .package-badge {
+                font-size: 10px;
+                padding: 3px 30px;
+                right: -30px;
+            }
+            
+            .btn-outline-primary,
+            .btn-primary {
+                padding: 10px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .cta-section .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .package-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .package-card .display-4 {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+            
+            .package-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .package-card .display-4 {
+                font-size: 2.2rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-outline-primary,
+            .btn-primary,
+            .btn-light,
+            .btn-outline-light,
+            .security-badge,
+            .tech-item {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .camera-item:hover {
+                transform: none;
+            }
+            
+            .camera-item:active {
+                transform: translateY(-5px);
+            }
+            
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .feature-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .package-card:hover {
+                transform: none;
+            }
+            
+            .package-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            .tech-item:hover {
+                transform: none;
+            }
+            
+            .tech-item:active {
+                transform: scale(0.95);
+            }
+            
+            .camera-feed:hover {
+                transform: none;
+            }
+            
+            .camera-feed:active {
+                transform: translateX(5px);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Packages in full width on mobile */
+            .packages-section .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Testimonials in full width */
+            .testimonials-section .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Center text on mobile */
+            .row.align-items-center {
+                text-align: center;
+            }
+            
+            /* Better badge wrapping */
+            .text-center {
+                padding: 0 10px;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .camera-grid {
+                gap: 5px;
+            }
+            
+            .camera-item {
+                padding: 10px 5px;
+            }
+            
+            .camera-icon {
+                font-size: 1.5rem;
+            }
+            
+            .camera-item h6 {
+                font-size: 0.7rem;
+            }
+            
+            .security-badge {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .package-badge {
+                font-size: 8px;
+                padding: 2px 25px;
+                right: -25px;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero::before,
+            .stats-card::after,
+            .feed-indicator,
+            .tech-item,
+            .camera-item,
+            .feature-card,
+            .package-card,
+            .stats-card,
+            .camera-feed,
+            .btn {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before,
+            .stats-card::after {
+                animation: none;
             }
         }
     </style>
@@ -456,7 +870,7 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h1 class="display-3 fw-bold mb-4 text-white">CCTV & Security Systems</h1>
                     <p class="lead mb-4 text-white">Advanced surveillance solutions to protect what matters most. High-definition cameras, intelligent analytics, and 24/7 monitoring.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex flex-column flex-sm-row gap-3">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Free Security Audit</a>
                         <a href="#features" class="btn btn-outline-light btn-lg px-5 py-3">Explore Solutions</a>
                     </div>
@@ -465,15 +879,15 @@
                     <div class="camera-grid">
                         <div class="camera-item">
                             <i class="bi bi-camera-video camera-icon"></i>
-                            <h6>Dome Cameras</h6>
+                            <h6>Dome</h6>
                         </div>
                         <div class="camera-item">
                             <i class="bi bi-camera-reels camera-icon"></i>
-                            <h6>Bullet Cameras</h6>
+                            <h6>Bullet</h6>
                         </div>
                         <div class="camera-item">
                             <i class="bi bi-camera camera-icon"></i>
-                            <h6>PTZ Cameras</h6>
+                            <h6>PTZ</h6>
                         </div>
                     </div>
                 </div>
@@ -609,25 +1023,25 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="stats-number counter-value" data-target="10000">0</div>
                         <p class="mb-0">Cameras Installed</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #2EC4B6);">
                         <div class="stats-number counter-value" data-target="2000">0</div>
                         <p class="mb-0">Properties Protected</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #FF9F1C);">
                         <div class="stats-number counter-value" data-target="99.9">0</div>
                         <p class="mb-0">Uptime %</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="stats-number counter-value" data-target="24">0</div>
                         <p class="mb-0">Response (sec)</p>
@@ -722,7 +1136,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4 text-white">Secure Your Property Today</h2>
                     <p class="lead mb-5 text-white">Get a free security assessment and quote. No obligation, just peace of mind.</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Free Assessment</a>
                         <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Now</a>
                     </div>

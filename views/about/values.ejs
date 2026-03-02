@@ -64,6 +64,10 @@
             box-shadow: 0 30px 50px rgba(255,107,53,0.2);
         }
 
+        .value-card:active {
+            transform: translateY(-5px) scale(1.01);
+        }
+
         .value-card:hover::before {
             height: 100%;
         }
@@ -124,6 +128,10 @@
             box-shadow: 0 10px 30px rgba(255,107,53,0.1);
         }
 
+        .principle-card:active {
+            transform: translateX(5px);
+        }
+
         .principle-card h4 {
             color: #333 !important;
             font-size: 1.3rem;
@@ -148,6 +156,10 @@
         .culture-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 30px 50px rgba(255,107,53,0.2);
+        }
+
+        .culture-card:active {
+            transform: translateY(-5px);
         }
 
         .culture-image {
@@ -221,6 +233,7 @@
             border: 1px solid #e9ecef;
             color: #333 !important;
             font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .value-badge:hover {
@@ -228,6 +241,10 @@
             box-shadow: 0 10px 25px rgba(255,107,53,0.15);
             border-color: #FF6B35;
             color: #FF6B35 !important;
+        }
+
+        .value-badge:active {
+            transform: scale(0.95);
         }
 
         /* Testimonial Cards */
@@ -271,6 +288,10 @@
             box-shadow: 0 20px 40px rgba(255,107,53,0.3);
         }
 
+        .stats-card:active {
+            transform: scale(0.98);
+        }
+
         .stats-card .display-4,
         .stats-card p {
             color: white !important;
@@ -296,6 +317,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
 
         .cta-section .btn-outline-light {
@@ -305,11 +336,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333 !important;
+        }
+
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
 
         /* Section Headers */
@@ -338,13 +374,307 @@
             color: rgba(255,255,255,0.8) !important;
         }
 
-        @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2.5rem;
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
             }
-
-            h2.display-5 {
-                font-size: 2.2rem;
+            
+            .page-hero h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+                padding: 0 15px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            .value-card {
+                padding: 30px 20px !important;
+            }
+            
+            .value-card h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            .value-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .value-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+            
+            .value-number {
+                font-size: 4rem;
+            }
+            
+            .principle-card {
+                padding: 25px 20px;
+            }
+            
+            .principle-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .principle-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .culture-card {
+                margin-bottom: 20px;
+            }
+            
+            .culture-content {
+                padding: 20px;
+            }
+            
+            .culture-content h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .culture-content p {
+                font-size: 0.95rem !important;
+            }
+            
+            .value-badge {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+                margin: 3px;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .quote-card {
+                padding: 40px 25px !important;
+            }
+            
+            .quote-card h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn-light,
+            .cta-section .btn-outline-light {
+                padding: 12px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .value-card {
+                padding: 30px 20px;
+            }
+            
+            .value-card h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn-light,
+            .btn-outline-light,
+            .value-badge {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .value-card:hover {
+                transform: none;
+            }
+            
+            .value-card:active {
+                transform: translateY(-5px) scale(1.01);
+            }
+            
+            .principle-card:hover {
+                transform: none;
+            }
+            
+            .principle-card:active {
+                transform: translateX(5px);
+            }
+            
+            .culture-card:hover {
+                transform: none;
+            }
+            
+            .culture-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .value-badge:hover {
+                transform: none;
+            }
+            
+            .value-badge:active {
+                transform: scale(0.95);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Center CTA buttons */
+            .cta-section .d-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px !important;
+            }
+            
+            /* Better badge wrapping */
+            .text-center {
+                padding: 0 10px;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-badge {
+                padding: 4px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .culture-image {
+                height: 150px;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero,
+            .value-card,
+            .value-icon,
+            .principle-card,
+            .culture-card,
+            .culture-image::before,
+            .value-badge,
+            .stats-card,
+            .quote-card,
+            .cta-section {
+                animation: none;
+                transition: none;
+            }
+            
+            .value-card::before {
+                transition: none;
+            }
+            
+            .culture-image::before {
+                animation: none;
             }
         }
     </style>
@@ -565,25 +895,25 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="display-4 fw-bold counter-value" data-target="9">0</div>
                         <p class="mb-0">Years Strong</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
                         <div class="display-4 fw-bold counter-value" data-target="100">0</div>
                         <p class="mb-0">Team Members</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
                         <div class="display-4 fw-bold counter-value" data-target="95">0</div>
                         <p class="mb-0">Employee Satisfaction</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="display-4 fw-bold counter-value" data-target="500">0</div>
                         <p class="mb-0">Projects Delivered</p>
@@ -600,7 +930,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Share Our Values?</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Join a team where your values matter</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/about/careers" class="btn btn-light btn-lg px-5 py-3">View Careers</a>
                         <a href="/contact" class="btn btn-outline-light btn-lg px-5 py-3">Contact Us</a>
                     </div>

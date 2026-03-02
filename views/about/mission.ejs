@@ -45,6 +45,10 @@
             box-shadow: 0 30px 60px rgba(46,196,182,0.2);
         }
 
+        .mission-card:active {
+            transform: translateY(-5px);
+        }
+
         .mission-card::before {
             content: '';
             position: absolute;
@@ -103,6 +107,10 @@
             box-shadow: 0 30px 60px rgba(67,97,238,0.3);
         }
 
+        .vision-card:active {
+            transform: translateY(-5px) scale(1.01);
+        }
+
         .vision-card h3,
         .vision-card h4,
         .vision-card p,
@@ -131,6 +139,10 @@
             transform: translateY(-10px);
             border-bottom-color: #2EC4B6;
             box-shadow: 0 20px 40px rgba(46,196,182,0.15);
+        }
+
+        .pillar-card:active {
+            transform: translateY(-5px);
         }
 
         .pillar-card h4 {
@@ -172,6 +184,10 @@
             box-shadow: 0 10px 30px rgba(46,196,182,0.1);
         }
 
+        .goal-card:active {
+            transform: translateX(5px);
+        }
+
         .goal-card h4 {
             color: #333 !important;
             font-size: 1.3rem;
@@ -201,6 +217,10 @@
         .stats-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 20px 40px rgba(46,196,182,0.3);
+        }
+
+        .stats-card:active {
+            transform: scale(0.98);
         }
 
         .stats-card .display-4,
@@ -274,6 +294,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cta-section .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
 
         .cta-section .btn-outline-light {
@@ -283,11 +313,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333 !important;
+        }
+
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
 
         /* Section Headers */
@@ -310,13 +345,305 @@
             color: #28a745 !important;
         }
 
-        @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2.5rem;
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
             }
-
-            h2.display-5 {
-                font-size: 2.2rem;
+            
+            .page-hero h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+                padding: 0 15px;
+            }
+            
+            .mission-card {
+                padding: 30px 20px !important;
+            }
+            
+            .mission-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+            
+            .mission-card h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .mission-card .lead {
+                font-size: 1rem !important;
+            }
+            
+            .mission-card .row {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mission-card .col-md-4 {
+                width: 100%;
+            }
+            
+            .vision-card {
+                padding: 40px 25px !important;
+                margin-top: 30px;
+            }
+            
+            .vision-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .vision-card li {
+                font-size: 0.95rem !important;
+            }
+            
+            .pillar-card {
+                padding: 30px 20px;
+            }
+            
+            .pillar-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .pillar-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .pillar-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .goal-card {
+                padding: 25px 20px;
+            }
+            
+            .goal-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .goal-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .quote-card {
+                padding: 40px 25px !important;
+            }
+            
+            .quote-card h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .quote-card::before,
+            .quote-card::after {
+                font-size: 100px;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn-light,
+            .cta-section .btn-outline-light {
+                padding: 12px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                max-width: 220px;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.8rem !important;
+            }
+            
+            .mission-card h2 {
+                font-size: 2rem !important;
+            }
+            
+            .vision-card {
+                margin-top: 30px;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .vision-card {
+                padding: 40px 30px;
+            }
+            
+            .stats-card .display-4 {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn-light,
+            .btn-outline-light,
+            .pillar-card,
+            .goal-card {
+                min-height: 44px;
+            }
+            
+            /* Remove hover effects on mobile */
+            .mission-card:hover {
+                transform: none;
+            }
+            
+            .mission-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .vision-card:hover {
+                transform: none;
+            }
+            
+            .vision-card:active {
+                transform: translateY(-5px) scale(1.01);
+            }
+            
+            .pillar-card:hover {
+                transform: none;
+            }
+            
+            .pillar-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .goal-card:hover {
+                transform: none;
+            }
+            
+            .goal-card:active {
+                transform: translateX(5px);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Center CTA buttons */
+            .cta-section .d-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px !important;
+            }
+            
+            /* Vision section layout */
+            .vision-section .row {
+                flex-direction: column;
+            }
+            
+            .vision-section .col-lg-6 {
+                width: 100%;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .mission-card .row.mt-5 {
+                margin-top: 20px !important;
+            }
+            
+            .progress {
+                height: 20px;
+            }
+            
+            .progress-bar {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero,
+            .mission-card,
+            .vision-card,
+            .pillar-card,
+            .goal-card,
+            .stats-card,
+            .quote-card,
+            .cta-section {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before,
+            .mission-card::before,
+            .quote-card::before,
+            .quote-card::after {
+                animation: none;
             }
         }
     </style>
@@ -503,25 +830,25 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="display-4 fw-bold counter-value" data-target="2025">0</div>
                         <p class="mb-0">Founded</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
                         <div class="display-4 fw-bold counter-value" data-target="9">0</div>
                         <p class="mb-0">Countries Served</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="display-4 fw-bold counter-value" data-target="100">0</div>
                         <p class="mb-0">Team Members</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #2EC4B6, #4361EE);">
                         <div class="display-4 fw-bold counter-value" data-target="500">0</div>
                         <p class="mb-0">Projects</p>
@@ -538,7 +865,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Be Part of Our Mission</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Join us in building a smarter, more connected Africa</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Partner With Us</a>
                         <a href="/about/careers" class="btn btn-outline-light btn-lg px-5 py-3">Join Our Team</a>
                     </div>

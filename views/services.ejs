@@ -148,6 +148,8 @@
             position: relative;
             overflow: hidden;
             z-index: 3;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .service-btn::before {
@@ -168,6 +170,10 @@
         .service-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255,107,53,0.3);
+        }
+        
+        .service-btn:active {
+            transform: scale(0.95);
         }
         
         .stats-section {
@@ -243,6 +249,8 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 50px;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .cta-section .btn-light:hover {
@@ -250,13 +258,210 @@
             box-shadow: 0 10px 25px rgba(255,255,255,0.3);
         }
         
-        @media (max-width: 768px) {
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
+        }
+        
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
             .page-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+                padding: 0 15px;
             }
             
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            .service-card {
+                margin-bottom: 0;
+            }
+            
+            .service-image {
+                height: 200px;
+            }
+            
+            .service-content {
+                padding: 20px;
+            }
+            
+            .service-content h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            .service-content p {
+                font-size: 0.95rem !important;
+                margin-bottom: 15px;
+            }
+            
+            .service-btn {
+                padding: 10px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .service-overlay span {
+                font-size: 1rem !important;
+                padding: 10px 20px !important;
+            }
+            
+            .stats-section {
+                padding: 40px 0;
+            }
+            
+            .stat-item {
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .stat-label {
+                font-size: 0.95rem !important;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn-light {
+                padding: 12px 30px !important;
+                font-size: 1rem !important;
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.8rem !important;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .service-image {
+                height: 180px;
+            }
+            
+            .service-content h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .service-content p {
+                font-size: 0.9rem !important;
+            }
+            
+            .service-btn {
+                padding: 8px 20px !important;
+                font-size: 0.9rem !important;
+                width: 100%;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-image {
+                height: 200px;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .service-btn,
+            .cta-section .btn-light {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .service-card:active {
+                transform: scale(0.98);
+            }
+            
+            .service-overlay {
+                display: none; /* Hide overlay on mobile, use button instead */
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats on mobile */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .service-card,
+            .service-image img,
+            .service-overlay,
+            .service-btn,
+            .stat-item,
+            .cta-section::before {
+                animation: none;
+                transition: none;
             }
         }
     </style>
@@ -280,8 +485,8 @@
                 <!-- Renewable Energy -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-image">
-                        <img src="/images/solar_installers.jpg" alt="Renewable Energy">
-                        <!-- Make the entire overlay clickable -->
+                        <img src="/images/solar_installers.jpg" alt="Renewable Energy" loading="lazy">
+                        <!-- Make the entire overlay a clickable link (hidden on mobile) -->
                         <a href="/services/renewable-energy" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -298,7 +503,7 @@
                 <!-- Network Infrastructure -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-image">
-                        <img src="/images/Networking BANNER 1.png" alt="Network Infrastructure">
+                        <img src="/images/Networking BANNER 1.png" alt="Network Infrastructure" loading="lazy">
                         <a href="/services/network-infrastructure" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -315,7 +520,7 @@
                 <!-- ISP & Internet -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-image">
-                        <img src="/images/fiber-cables-1200x675.jpg" alt="ISP Services">
+                        <img src="/images/fiber-cables-1200x675.jpg" alt="ISP Services" loading="lazy">
                         <a href="/services/isp-internet" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -332,7 +537,7 @@
                 <!-- CCTV & Security -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-image">
-                        <img src="/images/CCTV Banner 1.png" alt="Security Systems">
+                        <img src="/images/CCTV Banner 1.png" alt="Security Systems" loading="lazy">
                         <a href="/services/cctv-security" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -349,7 +554,7 @@
                 <!-- Software Development -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-image">
-                        <img src="/images/website-development-process-full-guide-1-fb.jpg" alt="Software Development">
+                        <img src="/images/website-development-process-full-guide-1-fb.jpg" alt="Software Development" loading="lazy">
                         <a href="/services/software-development" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -366,7 +571,7 @@
                 <!-- IT Consulting -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-image">
-                        <img src="/images/Consultant Banner 1.png" alt="IT Consulting">
+                        <img src="/images/Consultant Banner 1.png" alt="IT Consulting" loading="lazy">
                         <a href="/services/it-consulting" class="service-overlay-link">
                             <div class="service-overlay">
                                 <span>View Details</span>
@@ -387,25 +592,25 @@
     <section class="stats-section">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stat-item">
                         <div class="stat-number">500+</div>
                         <div class="stat-label">Projects Delivered</div>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stat-item">
                         <div class="stat-number">50+</div>
                         <div class="stat-label">Team Experts</div>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stat-item">
                         <div class="stat-number">9</div>
                         <div class="stat-label">Countries Served</div>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stat-item">
                         <div class="stat-number">24/7</div>
                         <div class="stat-label">Support Available</div>

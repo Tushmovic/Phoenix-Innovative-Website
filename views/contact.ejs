@@ -91,6 +91,10 @@
             color: #F25F3A !important;
         }
 
+        .contact-link:active {
+            transform: scale(0.95);
+        }
+
         /* Contact Form */
         .form-container {
             background: white;
@@ -147,11 +151,16 @@
             width: 100%;
             transition: all 0.3s ease;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-submit:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
         }
 
         .btn-submit i {
@@ -234,6 +243,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .social-icon-large:hover {
@@ -241,6 +251,10 @@
             background: linear-gradient(135deg, #FF6B35, #F25F3A);
             color: white !important;
             box-shadow: 0 15px 30px rgba(255,107,53,0.3);
+        }
+
+        .social-icon-large:active {
+            transform: scale(0.95);
         }
 
         .social-icon-large.facebook:hover { background: linear-gradient(135deg, #1877f2, #0d5ab9); }
@@ -276,11 +290,16 @@
             border-radius: 50px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-section .btn-light:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .cta-section .btn-light:active {
+            transform: scale(0.95);
         }
 
         .cta-section .btn-outline-light {
@@ -292,11 +311,16 @@
             border-radius: 50px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .cta-section .btn-outline-light:hover {
             background: white;
             color: #333 !important;
+        }
+
+        .cta-section .btn-outline-light:active {
+            transform: scale(0.95);
         }
 
         /* Success/Error Alerts */
@@ -330,28 +354,228 @@
             }
         }
 
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
             .page-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
             }
-
-            .form-container {
-                padding: 30px 20px;
+            
+            .page-hero p {
+                font-size: 1rem !important;
+                padding: 0 15px;
             }
-
+            
             .contact-card {
-                padding: 30px 20px;
+                padding: 30px 20px !important;
             }
-
+            
+            .contact-card h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .contact-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .contact-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+            }
+            
+            .form-container {
+                padding: 30px 20px !important;
+            }
+            
+            .form-container h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .form-control, .form-select {
+                padding: 12px 15px !important;
+                font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+            
+            .btn-submit {
+                padding: 14px 20px !important;
+                font-size: 1rem !important;
+            }
+            
+            .map-container {
+                height: 300px !important;
+            }
+            
+            .faq-container {
+                padding: 0 10px;
+            }
+            
+            .accordion-button {
+                padding: 15px 20px !important;
+                font-size: 0.95rem !important;
+            }
+            
+            .accordion-body {
+                padding: 0 20px 20px 20px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .social-connect {
+                padding: 40px 0;
+            }
+            
+            .social-connect h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .social-connect p {
+                font-size: 0.95rem !important;
+            }
+            
             .social-icon-large {
                 width: 50px;
                 height: 50px;
                 font-size: 24px;
                 margin: 0 5px;
             }
-
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
             .cta-section h2 {
-                font-size: 2rem;
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn-light,
+            .cta-section .btn-outline-light {
+                padding: 12px 25px !important;
+                font-size: 0.95rem !important;
+                width: 100%;
+                max-width: 250px;
+                margin: 5px auto;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.8rem !important;
+            }
+            
+            .contact-card {
+                padding: 40px 30px !important;
+            }
+            
+            .form-container {
+                padding: 40px 30px !important;
+            }
+            
+            .map-container {
+                height: 350px !important;
+            }
+            
+            .social-icon-large {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .map-container {
+                height: 400px;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .contact-link,
+            .btn-submit,
+            .social-icon-large,
+            .cta-section .btn-light,
+            .cta-section .btn-outline-light {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .contact-card:hover {
+                transform: none;
+            }
+            
+            .contact-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .social-icon-large:hover {
+                transform: none;
+            }
+            
+            .social-icon-large:active {
+                transform: scale(0.95);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for contact cards */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stack CTA buttons on mobile */
+            .cta-section .d-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px !important;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero::before,
+            .page-hero::after,
+            .contact-card,
+            .contact-icon,
+            .btn-submit,
+            .social-icon-large,
+            .cta-section::before {
+                animation: none;
+                transition: none;
             }
         }
     </style>
@@ -607,7 +831,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Ready to Start Your Project?</h2>
                     <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Get in touch today and let's discuss how we can help your business grow</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="tel:+2349135926075" class="btn btn-light btn-lg px-5 py-3">
                             <i class="bi bi-telephone me-2"></i>Call Us Now
                         </a>

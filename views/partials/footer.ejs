@@ -7,25 +7,25 @@
     
     <div class="footer-main">
         <div class="container">
-            <div class="row g-5">
+            <div class="row g-4 g-lg-5">
                 <!-- Company Info -->
                 <div class="col-lg-4 footer-col" data-aos="fade-up" data-aos-delay="100">
                     <div class="footer-logo mb-4">
-                        <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix Innovative Technologies" height="50">
+                        <img src="/images/Phoenix_LOGO-removebg-preview.png" alt="Phoenix Innovative Technologies" height="50" width="50" loading="lazy">
                         <span class="logo-text">Phoenix Innovative Technologies</span>
                     </div>
                     <p class="footer-about">Building Intelligent Systems for a Smarter World. We deliver cutting-edge technology solutions across Africa.</p>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/share/18C4Nzh9hY/" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                        <a href="https://www.facebook.com/share/18C4Nzh9hY/" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://www.instagram.com/phoenixintech?igsh=MTIyeHVmenlvcm1nag==" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                        <a href="https://www.instagram.com/phoenixintech?igsh=MTIyeHVmenlvcm1nag==" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@phoenixintech?_r=1&_t=ZS-949xlyDatRn" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+                        <a href="https://www.tiktok.com/@phoenixintech?_r=1&_t=ZS-949xlyDatRn" target="_blank" rel="noopener noreferrer" class="social-link tiktok" aria-label="Follow us on TikTok">
                             <i class="bi bi-tiktok"></i>
                         </a>
-                        <a href="https://wa.me/2349135926075" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                        <a href="https://wa.me/2349135926075" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" aria-label="Chat on WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
                     </div>
@@ -60,19 +60,19 @@
                     <h5 class="footer-title">Contact Info</h5>
                     <ul class="footer-contact">
                         <li>
-                            <i class="bi bi-envelope"></i>
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
                             <a href="mailto:phoenixinnovative2025@gmail.com">phoenixinnovative2025@gmail.com</a>
                         </li>
                         <li>
-                            <i class="bi bi-whatsapp"></i>
+                            <i class="bi bi-whatsapp" aria-hidden="true"></i>
                             <a href="https://wa.me/2349135926075" target="_blank">+234 913 592 6075</a>
                         </li>
                         <li>
-                            <i class="bi bi-geo-alt"></i>
+                            <i class="bi bi-geo-alt" aria-hidden="true"></i>
                             <span>Abuja, Nigeria</span>
                         </li>
                         <li>
-                            <i class="bi bi-clock"></i>
+                            <i class="bi bi-clock" aria-hidden="true"></i>
                             <span>Mon - Fri: 8:00 AM - 6:00 PM</span>
                         </li>
                     </ul>
@@ -90,10 +90,10 @@
                 <div class="col-md-6 text-md-end">
                     <div class="footer-policy-links">
                         <a href="/privacy" class="policy-link">Privacy Policy</a>
-                        <span class="policy-separator">|</span>
+                        <span class="policy-separator" aria-hidden="true">|</span>
                         <a href="/terms" class="policy-link">Terms of Service</a>
-                        <span class="policy-separator">|</span>
-                        <span class="credit">Designed with <i class="bi bi-heart-fill text-danger"></i></span>
+                        <span class="policy-separator" aria-hidden="true">|</span>
+                        <span class="credit">Designed with <i class="bi bi-heart-fill text-danger" aria-hidden="true"></i><span class="visually-hidden">love</span></span>
                     </div>
                 </div>
             </div>
@@ -163,6 +163,9 @@
 
 .footer-logo img {
     transition: transform 0.5s ease;
+    width: auto;
+    max-width: 100%;
+    height: 50px;
 }
 
 .footer-logo:hover img {
@@ -182,12 +185,14 @@
     color: rgba(255,255,255,0.7);
     line-height: 1.8;
     margin-bottom: 25px;
+    font-size: 1rem;
 }
 
 /* Social Links */
 .footer-social {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .social-link {
@@ -203,6 +208,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
 }
 
 .social-link::before {
@@ -271,6 +277,7 @@
     align-items: center;
     transition: all 0.3s ease;
     position: relative;
+    font-size: 1rem;
 }
 
 .footer-links a i {
@@ -304,6 +311,7 @@
     gap: 12px;
     color: rgba(255,255,255,0.7);
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .footer-contact li:hover {
@@ -315,6 +323,8 @@
     font-size: 1.2rem;
     color: #FF6B35;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .footer-contact li:hover i {
@@ -326,10 +336,15 @@
     color: rgba(255,255,255,0.7);
     text-decoration: none;
     transition: all 0.3s ease;
+    word-break: break-word;
 }
 
 .footer-contact a:hover {
     color: #FF6B35;
+}
+
+.footer-contact span {
+    word-break: break-word;
 }
 
 /* Footer Bottom */
@@ -344,6 +359,7 @@
     color: rgba(255,255,255,0.6);
     margin: 0;
     transition: all 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .copyright:hover {
@@ -379,6 +395,10 @@
     color: rgba(255,255,255,0.6);
     margin: 0;
     transition: all 0.3s ease;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .credit:hover {
@@ -395,23 +415,167 @@
     50% { transform: scale(1.2); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Visually hidden for accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 576px) {
     .footer-main {
-        padding: 60px 0 30px;
+        padding: 40px 0 20px;
     }
     
     .footer-col {
+        margin-bottom: 30px;
         text-align: center;
+    }
+    
+    .footer-col:last-child {
+        margin-bottom: 0;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .footer-logo img {
+        height: 45px;
+        width: auto;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .footer-about {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .footer-social {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .footer-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
     }
     
     .footer-title::after {
         left: 50%;
         transform: translateX(-50%);
+        width: 60px;
+    }
+    
+    .footer-col:hover .footer-title::after {
+        width: 80px;
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-links a {
+        justify-content: center;
+        font-size: 0.95rem;
+    }
+    
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-contact li {
+        justify-content: center;
+        text-align: center;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .footer-contact i {
+        margin-right: 8px;
+    }
+    
+    .footer-bottom {
+        padding: 15px 0;
+    }
+    
+    .footer-bottom .row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .copyright {
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    
+    .footer-policy-links {
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .policy-link {
+        font-size: 0.9rem;
+    }
+    
+    .credit {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small devices (landscape phones, 577px to 767px) */
+@media (min-width: 577px) and (max-width: 767px) {
+    .footer-main {
+        padding: 50px 0 30px;
+    }
+    
+    .footer-col {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+        justify-content: center;
     }
     
     .footer-social {
         justify-content: center;
+    }
+    
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .footer-links a {
@@ -422,17 +586,118 @@
         justify-content: center;
     }
     
-    .footer-bottom .row {
-        flex-direction: column;
-        gap: 10px;
+    .copyright {
+        text-align: center;
     }
     
     .footer-policy-links {
         justify-content: center;
     }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer-main {
+        padding: 60px 0 30px;
+    }
     
-    .copyright {
-        text-align: center;
+    .footer-col {
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+        flex-wrap: wrap;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .footer-social {
+        flex-wrap: wrap;
+    }
+    
+    .social-link {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+    
+    .footer-title {
+        font-size: 1.2rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.95rem;
+    }
+    
+    .footer-contact li {
+        font-size: 0.95rem;
+    }
+    
+    .footer-contact i {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media (max-width: 768px) {
+    .social-link,
+    .footer-links a,
+    .policy-link,
+    .footer-contact a {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .footer-links a {
+        padding: 8px 12px;
+    }
+    
+    .footer-contact li {
+        min-height: 44px;
+    }
+    
+    /* Improve readability */
+    .footer-about {
+        max-width: 100%;
+    }
+    
+    /* Fix any overflow issues */
+    .footer-contact a,
+    .footer-contact span {
+        word-break: break-word;
+        text-align: left;
+    }
+    
+    .footer-contact li {
+        align-items: center;
+    }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+    .footer-main .container,
+    .footer-bottom .container {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+}
+
+/* Print styles */
+@media print {
+    .site-footer {
+        background: #f8f9fa;
+        color: #333;
+    }
+    
+    .footer-wave,
+    .footer-social,
+    .credit i {
+        display: none;
     }
 }
 </style>

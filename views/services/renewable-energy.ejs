@@ -59,6 +59,10 @@
             transform: rotate(0deg) scale(1.02);
         }
         
+        .service-image-large:active {
+            transform: scale(1.01);
+        }
+        
         .feature-box {
             padding: 40px 30px;
             background: white;
@@ -73,6 +77,10 @@
             transform: translateY(-10px);
             border-bottom-color: var(--phoenix-sunset);
             box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+        }
+        
+        .feature-box:active {
+            transform: translateY(-5px);
         }
         
         .feature-box h4 {
@@ -114,12 +122,17 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-warning:hover {
             background: #e55a2b;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+        
+        .btn-warning:active {
+            transform: scale(0.95);
         }
         
         .btn-light {
@@ -129,11 +142,16 @@
             padding: 15px 40px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-light:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+        
+        .btn-light:active {
+            transform: scale(0.95);
         }
         
         .cta-section {
@@ -174,9 +192,234 @@
             font-weight: 700;
         }
         
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .service-hero {
+                padding: 100px 0 60px;
+            }
+            
             .service-hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
+            }
+            
+            .service-hero p {
+                font-size: 1rem !important;
+            }
+            
+            .service-hero .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            .service-image-large {
+                margin-top: 30px;
+                transform: rotate(2deg);
+            }
+            
+            .service-image-large:hover {
+                transform: rotate(0deg) scale(1.02);
+            }
+            
+            .feature-box {
+                padding: 30px 20px;
+            }
+            
+            .feature-box h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .feature-box p {
+                font-size: 0.95rem !important;
+            }
+            
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+            
+            .stats-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .stats-section p {
+                font-size: 0.95rem;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            h2.text-center {
+                font-size: 1.8rem !important;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .service-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .feature-box h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .feature-box h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-warning,
+            .btn-light {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .service-image-large:hover {
+                transform: rotate(2deg);
+            }
+            
+            .service-image-large:active {
+                transform: scale(1.01);
+            }
+            
+            .feature-box:hover {
+                transform: none;
+            }
+            
+            .feature-box:active {
+                transform: translateY(-5px);
+            }
+            
+            .btn-warning:hover {
+                transform: none;
+                background: var(--phoenix-sunset);
+            }
+            
+            .btn-warning:active {
+                transform: scale(0.95);
+                background: #e55a2b;
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+                margin-bottom: 20px;
+            }
+            
+            /* Center align on mobile */
+            .row.align-items-center {
+                text-align: center;
+            }
+            
+            /* Features in full width on mobile */
+            .features-section .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .service-hero h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.5rem !important;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .service-hero::before,
+            .service-image-large,
+            .feature-box,
+            .cta-section::before,
+            .btn-warning,
+            .btn-light {
+                animation: none;
+                transition: none;
+            }
+            
+            .service-hero::before,
+            .cta-section::before {
+                animation: none;
             }
         }
     </style>
@@ -243,19 +486,19 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row text-center">
-                <div class="col-md-3 reveal-section">
+                <div class="col-6 col-md-3 reveal-section">
                     <div class="stats-number counter-number" data-target="500">0</div>
                     <p>Systems Installed</p>
                 </div>
-                <div class="col-md-3 reveal-section">
+                <div class="col-6 col-md-3 reveal-section">
                     <div class="stats-number counter-number" data-target="40">0</div>
-                    <p>Energy Cost Saved</p>
+                    <p>Energy Saved</p>
                 </div>
-                <div class="col-md-3 reveal-section">
+                <div class="col-6 col-md-3 reveal-section">
                     <div class="stats-number counter-number" data-target="1000">0</div>
-                    <p>Tons CO₂ Reduced</p>
+                    <p>CO₂ Reduced</p>
                 </div>
-                <div class="col-md-3 reveal-section">
+                <div class="col-6 col-md-3 reveal-section">
                     <div class="stats-number counter-number" data-target="10">0</div>
                     <p>Years Warranty</p>
                 </div>

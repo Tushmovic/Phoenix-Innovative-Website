@@ -88,6 +88,10 @@
             box-shadow: 0 30px 50px rgba(46,196,182,0.2);
         }
         
+        .package-card:active {
+            transform: translateY(-5px);
+        }
+        
         .package-card.popular::before {
             content: 'BEST VALUE';
             position: absolute;
@@ -152,6 +156,10 @@
             box-shadow: 0 20px 40px rgba(46,196,182,0.15);
         }
         
+        .feature-card:active {
+            transform: translateY(-5px);
+        }
+        
         .feature-icon {
             width: 80px;
             height: 80px;
@@ -183,6 +191,10 @@
         .stats-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 20px 40px rgba(46,196,182,0.3);
+        }
+        
+        .stats-card:active {
+            transform: scale(0.98);
         }
         
         .stats-number {
@@ -221,11 +233,16 @@
             padding: 15px 40px;
             font-size: 1.2rem;
             border-radius: 50px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(46,196,182,0.4);
+        }
+        
+        .btn-primary:active {
+            transform: scale(0.95);
         }
         
         .btn-outline-primary {
@@ -235,11 +252,16 @@
             padding: 12px 20px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-primary:hover {
             background: #2EC4B6;
             color: white;
+        }
+        
+        .btn-outline-primary:active {
+            transform: scale(0.95);
         }
         
         .btn-warning {
@@ -249,12 +271,17 @@
             padding: 12px 20px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-warning:hover {
             background: #e55a2b;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+        
+        .btn-warning:active {
+            transform: scale(0.95);
         }
         
         .btn-light {
@@ -264,6 +291,7 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-light {
@@ -273,11 +301,16 @@
             padding: 15px 30px;
             font-weight: 600;
             border-radius: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .btn-outline-light:hover {
             background: white;
             color: #333;
+        }
+        
+        .btn-outline-light:active {
+            transform: scale(0.95);
         }
         
         .cta-section {
@@ -309,9 +342,396 @@
             color: #dc3545 !important;
         }
         
-        @media (max-width: 768px) {
+        /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+        
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.2rem !important;
+            }
+            
+            .page-hero p {
+                font-size: 1rem !important;
+            }
+            
+            .page-hero .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .page-hero .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+            
+            .speed-meter {
+                width: 150px;
+                height: 150px;
+                margin: 20px auto;
+            }
+            
+            .speed-meter svg {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .speed-value {
+                font-size: 2rem;
+            }
+            
+            .speed-value small {
+                font-size: 0.8rem;
+            }
+            
+            .package-card {
+                padding: 30px 20px;
+                margin-bottom: 20px;
+            }
+            
+            .package-name {
+                font-size: 1.5rem !important;
+            }
+            
+            .package-price {
+                font-size: 2rem !important;
+            }
+            
+            .package-price small {
+                font-size: 0.9rem;
+            }
+            
+            .package-features li {
+                font-size: 0.95rem;
+                padding: 8px 0;
+            }
+            
             .package-card.popular {
                 transform: scale(1);
+                margin: 10px 0;
+            }
+            
+            .package-card.popular::before {
+                font-size: 10px;
+                padding: 3px 30px;
+                right: -30px;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+            
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .feature-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+            
+            .stats-card {
+                padding: 25px 15px;
+            }
+            
+            .stats-number {
+                font-size: 2rem !important;
+            }
+            
+            .stats-card p {
+                font-size: 0.9rem !important;
+            }
+            
+            .speed-test {
+                padding: 30px 20px;
+            }
+            
+            .speed-test h3 {
+                font-size: 1.8rem !important;
+            }
+            
+            .speed-test p {
+                font-size: 1rem !important;
+            }
+            
+            .speed-result {
+                font-size: 2.5rem !important;
+            }
+            
+            .btn-primary {
+                padding: 12px 25px !important;
+                font-size: 1rem !important;
+                width: 100%;
+            }
+            
+            .coverage-map {
+                padding: 25px 20px;
+            }
+            
+            .coverage-map h4 {
+                font-size: 1.3rem !important;
+                margin-bottom: 15px;
+            }
+            
+            .coverage-map ul li {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
+            }
+            
+            .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .testimonial-card p {
+                font-size: 0.95rem !important;
+            }
+            
+            .testimonial-card h6 {
+                font-size: 1rem !important;
+            }
+            
+            .testimonial-card small {
+                font-size: 0.85rem;
+            }
+            
+            .testimonial-card .bi-star-fill {
+                font-size: 1rem;
+            }
+            
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+            
+            .cta-section .d-flex {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .cta-section .btn {
+                width: 100%;
+                padding: 12px !important;
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Small devices (landscape phones, 577px to 767px) */
+        @media (min-width: 577px) and (max-width: 767px) {
+            .page-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .package-name {
+                font-size: 1.8rem !important;
+            }
+            
+            .package-price {
+                font-size: 2.5rem !important;
+            }
+            
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.2rem !important;
+            }
+            
+            .speed-result {
+                font-size: 3rem !important;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem !important;
+            }
+        }
+        
+        /* Medium devices (tablets, 768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .package-name {
+                font-size: 1.8rem !important;
+            }
+            
+            .package-price {
+                font-size: 2.5rem !important;
+            }
+            
+            .feature-card h4 {
+                font-size: 1.2rem !important;
+            }
+            
+            .stats-number {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        /* Touch target optimization for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .btn-primary,
+            .btn-outline-primary,
+            .btn-warning,
+            .btn-light,
+            .btn-outline-light {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Remove hover effects on mobile */
+            .package-card:hover {
+                transform: none;
+            }
+            
+            .package-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .feature-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .stats-card:hover {
+                transform: none;
+            }
+            
+            .stats-card:active {
+                transform: scale(0.98);
+            }
+            
+            /* Improve spacing */
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Fix any horizontal scrolling */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            /* Better grid for stats */
+            .row.g-4 {
+                --bs-gutter-y: 1rem;
+            }
+            
+            /* Stats in 2 columns on mobile */
+            .stats-section .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            /* Packages in full width on mobile */
+            .packages-section .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Testimonials in full width */
+            .testimonials-section .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            /* Center align on mobile */
+            .row.align-items-center {
+                text-align: center;
+            }
+            
+            /* Coverage map columns stack */
+            .coverage-map .col-md-6 {
+                margin-bottom: 20px;
+            }
+            
+            .coverage-map .col-md-6:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 380px) {
+            .speed-meter {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .speed-meter svg {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .speed-value {
+                font-size: 1.5rem;
+            }
+            
+            .package-card.popular::before {
+                font-size: 8px;
+                padding: 2px 25px;
+                right: -25px;
+            }
+            
+            .package-name {
+                font-size: 1.3rem !important;
+            }
+            
+            .package-price {
+                font-size: 1.8rem !important;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+        
+        /* Fix for notched phones */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero::before,
+            .speed-meter .progress-circle,
+            .package-card,
+            .feature-card,
+            .stats-card,
+            .btn,
+            .btn-primary,
+            .btn-outline-primary,
+            .btn-warning {
+                animation: none;
+                transition: none;
+            }
+            
+            .page-hero::before {
+                animation: none;
             }
         }
     </style>
@@ -327,7 +747,7 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h1 class="display-3 fw-bold mb-4 text-white">ISP & Internet Services</h1>
                     <p class="lead mb-4 text-white">Lightning-fast, reliable internet connectivity for businesses and homes. Fiber optic and wireless solutions with 99.9% uptime guarantee.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex flex-column flex-sm-row gap-3">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Check Availability</a>
                         <a href="#packages" class="btn btn-outline-light btn-lg px-5 py-3">View Packages</a>
                     </div>
@@ -352,7 +772,7 @@
     <section class="py-5" id="packages">
         <div class="container">
             <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Internet Packages</h2>
-            <div class="row align-items-center">
+            <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
                     <div class="package-card">
                         <div class="package-name">Basic</div>
@@ -442,25 +862,25 @@
     <section class="py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="stats-card">
                         <div class="stats-number counter-value" data-target="5000">0</div>
                         <p class="mb-0">Happy Customers</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="stats-card" style="background: linear-gradient(135deg, #4361EE, #3A0CA3);">
                         <div class="stats-number counter-value" data-target="50">0</div>
                         <p class="mb-0">Cities Covered</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="stats-card" style="background: linear-gradient(135deg, #FF9F1C, #FF6B35);">
                         <div class="stats-number counter-value" data-target="1000">0</div>
                         <p class="mb-0">KM Fiber Laid</p>
                     </div>
                 </div>
-                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="stats-card" style="background: linear-gradient(135deg, #3A0CA3, #4361EE);">
                         <div class="stats-number counter-value" data-target="99.9">0</div>
                         <p class="mb-0">Uptime %</p>
@@ -564,7 +984,7 @@
                 <div class="col-lg-8">
                     <h2 class="display-4 fw-bold mb-4 text-white">Ready to Get Connected?</h2>
                     <p class="lead mb-5 text-white">Check availability in your area and get connected today!</p>
-                    <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="/contact" class="btn btn-light btn-lg px-5 py-3">Check Availability</a>
                         <a href="tel:+2349135926075" class="btn btn-outline-light btn-lg px-5 py-3">Call Now</a>
                     </div>
