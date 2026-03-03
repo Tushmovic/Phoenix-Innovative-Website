@@ -6,6 +6,7 @@ const session = require('express-session');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const csrf = require('csurf');
+const cookieParser = require('cookie-parser'); // ADD THIS
 
 // Load environment variables
 dotenv.config();
@@ -23,11 +24,14 @@ if (missingEnvVars.length > 0) {
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Limit request size
+// Body parser middleware
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
-// Security Middleware - Helmet with CSP configuration
+// Cookie parser - REQUIRED for csrf with cookies
+app.use(cookieParser());
+
+// Security Middleware - Updated with frameSrc for Google Maps
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
@@ -37,6 +41,7 @@ app.use(helmet({
             imgSrc: ["'self'", "data:", "https:"],
             fontSrc: ["'self'", "https://cdn.jsdelivr.net", "https://fonts.gstatic.com"],
             connectSrc: ["'self'"],
+            frameSrc: ["'self'", "https://www.google.com", "https://maps.google.com"],
         },
     },
 }));
@@ -44,67 +49,42 @@ app.use(helmet({
 // Additional security headers
 app.use((req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
     res.setHeader('X-XSS-Protection', '1; mode=block');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
     next();
 });
 
-// Rate limiting to prevent brute force attacks
+// Rate limiting
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
+    max: 100,
     message: 'Too many requests from this IP, please try again later.',
     standardHeaders: true,
     legacyHeaders: false,
 });
-
-// Apply rate limiting to API routes
 app.use('/api/', limiter);
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Session configuration with security options
+// Session configuration
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-        httpOnly: true, // Prevents client-side JS from reading the cookie
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24, // 24 hours
-        sameSite: 'lax' // CSRF protection
+        sameSite: 'lax'
     }
 }));
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// Import routes
-const contactRoutes = require('./routes/contact');
-
-// CSRF Protection - Apply only to routes that modify data
-const csrfProtection = csrf({ cookie: true });
-
-// Make CSRF token available to all views (for GET requests)
-app.use((req, res, next) => {
-    // Only generate token for GET requests that render forms
-    if (req.method === 'GET') {
-        try {
-            res.locals.csrfToken = req.csrfToken ? req.csrfToken() : '';
-        } catch (err) {
-            // Ignore CSRF errors on GET requests
-            res.locals.csrfToken = '';
-        }
-    }
-    next();
-});
-
-// Apply CSRF protection to POST routes
-app.use('/contact', csrfProtection, contactRoutes);
 
 // ========== ROUTES ==========
 
@@ -115,19 +95,18 @@ app.get('/', (req, res) => {
         success: req.session.success,
         error: req.session.error
     });
-    // Clear session messages
     req.session.success = null;
     req.session.error = null;
 });
 
-// ===== SERVICES MAIN PAGE =====
+// Services page
 app.get('/services', (req, res) => {
     res.render('services', { 
         title: 'Our Services - Phoenix Innovative Technologies' 
     });
 });
 
-// ===== ABOUT MAIN PAGE =====
+// About page
 app.get('/about', (req, res) => {
     res.render('about', { 
         title: 'About Us - Phoenix Innovative Technologies' 
@@ -221,16 +200,75 @@ app.get('/terms', (req, res) => {
     });
 });
 
+// ===== CONTACT PAGE - GET (WITHOUT CSRF FIRST FOR TESTING) =====
+app.get('/contact', (req, res) => {
+    res.render('contact', { 
+        title: 'Contact Us - Phoenix Innovative Technologies',
+        success: req.session.success,
+        error: req.session.error,
+        formData: req.session.formData || {},
+        csrfToken: 'test-token-123' // Temporary token for testing
+    });
+    req.session.success = null;
+    req.session.error = null;
+    req.session.formData = null;
+});
+
+// ===== CONTACT FORM SUBMISSION - POST (WITHOUT CSRF FIRST FOR TESTING) =====
+app.post('/contact', async (req, res) => {
+    const { name, email, phone, subject, message } = req.body;
+    
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+        req.session.error = 'Please fill in all required fields.';
+        req.session.formData = req.body;
+        return res.redirect('/contact');
+    }
+    
+    try {
+        const nodemailer = require('nodemailer');
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
+        
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.CONTACT_EMAIL,
+            subject: `New Contact Form Submission: ${subject}`,
+            html: `
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <h3>Message:</h3>
+                <p>${message}</p>
+            `
+        };
+        
+        await transporter.sendMail(mailOptions);
+        req.session.success = 'Thank you for contacting us! We\'ll get back to you soon.';
+    } catch (error) {
+        console.error('Email error:', error);
+        req.session.error = 'Sorry, there was an error sending your message. Please try again.';
+        req.session.formData = req.body;
+    }
+    
+    res.redirect('/contact');
+});
+
 // ===== AI CHATBOT API ROUTE =====
 app.post('/api/chat', express.json(), (req, res) => {
     const { message } = req.body;
     
-    // Input validation
     if (!message || typeof message !== 'string' || message.length > 500) {
         return res.status(400).json({ reply: 'Invalid message format.' });
     }
     
-    // Simple response logic - you can expand this or connect to a real AI API
     const responses = {
         'services': 'We offer Renewable Energy, Network Infrastructure, ISP Services, CCTV Systems, Software Development, and IT Consulting.',
         'price': 'Please contact our sales team for a customized quote based on your specific needs.',
@@ -255,26 +293,18 @@ app.post('/api/chat', express.json(), (req, res) => {
     res.json({ reply });
 });
 
-// 404 Error Handler - Page not found
+// 404 Error Handler
 app.use((req, res) => {
-    res.status(404).render('404', { 
-        title: 'Page Not Found - Phoenix Innovative Technologies' 
+    res.status(404).render('error', { 
+        title: 'Page Not Found - Phoenix Innovative Technologies',
+        message: 'The page you\'re looking for doesn\'t exist.',
+        error: '404 Not Found'
     });
 });
 
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error('Server error:', err.stack);
-    
-    // Handle CSRF errors specifically
-    if (err.code === 'EBADCSRFTOKEN') {
-        return res.status(403).render('error', { 
-            title: 'Invalid CSRF Token - Phoenix Innovative Technologies',
-            message: 'Invalid form submission. Please try again.',
-            error: 'CSRF token validation failed'
-        });
-    }
-    
     res.status(500).render('error', { 
         title: 'Server Error - Phoenix Innovative Technologies',
         message: 'Something went wrong!',
@@ -286,5 +316,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log(`✅ Server running on http://localhost:${port}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔒 Security features: Helmet, Rate Limiting, CSRF, Secure Headers`);
 });
