@@ -1603,22 +1603,153 @@
         </div>
     </section>
     
-    <!-- CALL TO ACTION BANNER -->
-    <section class="py-5 text-white" id="cta-banner">
-        <div class="container position-relative">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h2 class="display-4 fw-bold mb-3" data-aos="fade-right">Ready to Transform Your Business Technology?</h2>
-                    <p class="lead mb-0" data-aos="fade-right" data-aos-delay="100">Get a free consultation and quote from our experts today. No obligations, just professional advice.</p>
+            <!-- CALL TO ACTION BANNER -->
+            <section class="py-5" id="cta-banner">
+                <div class="container position-relative">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h2 class="display-4 fw-bold mb-3" data-aos="fade-right">Ready to Transform Your Business Technology?</h2>
+                            <p class="lead mb-0" data-aos="fade-right" data-aos-delay="100">Get a free consultation and quote from our experts today. No obligations, just professional advice.</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
+                            <a href="/contact" class="btn-cta">
+                                <i class="bi bi-telephone me-2"></i>Contact Us Now
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
-                    <a href="/contact" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
-                        <i class="bi bi-telephone me-2"></i>Contact Us Now
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+
+            <style>
+            /* CTA Banner Styles */
+            #cta-banner {
+                background: linear-gradient(135deg, #FF6B35, #F25F3A, #E71D36) !important;
+                position: relative;
+                overflow: hidden;
+                padding: 80px 0 !important;
+            }
+
+            #cta-banner::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+                animation: rotate 30s linear infinite;
+            }
+
+            #cta-banner::after {
+                content: '';
+                position: absolute;
+                bottom: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+                animation: rotate 40s linear infinite reverse;
+            }
+
+            @keyframes rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+
+            #cta-banner h2 {
+                color: white !important;
+                font-size: 2.8rem;
+                font-weight: 800;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+                position: relative;
+                z-index: 2;
+            }
+
+            #cta-banner p {
+                color: rgba(255,255,255,0.95) !important;
+                font-size: 1.3rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            /* CTA Button */
+            .btn-cta {
+                display: inline-block;
+                background: white;
+                color: #FF6B35 !important;
+                border: none;
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                border-radius: 50px;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: relative;
+                z-index: 2;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .btn-cta:hover {
+                transform: scale(1.1) translateY(-5px);
+                box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+                color: #F25F3A !important;
+                background: white;
+                text-decoration: none;
+            }
+
+            .btn-cta:active {
+                transform: scale(1.05) translateY(-2px);
+            }
+
+            .btn-cta i {
+                margin-right: 8px;
+            }
+
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                #cta-banner {
+                    padding: 60px 0 !important;
+                }
+                
+                #cta-banner h2 {
+                    font-size: 2rem !important;
+                    text-align: center;
+                }
+                
+                #cta-banner p {
+                    font-size: 1.1rem !important;
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+                
+                .btn-cta {
+                    display: block;
+                    width: 100%;
+                    max-width: 280px;
+                    margin: 0 auto;
+                    text-align: center;
+                    padding: 12px 30px;
+                    font-size: 1.1rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                #cta-banner h2 {
+                    font-size: 1.8rem !important;
+                }
+                
+                #cta-banner p {
+                    font-size: 1rem !important;
+                }
+                
+                .btn-cta {
+                    max-width: 250px;
+                    padding: 12px 25px;
+                    font-size: 1rem;
+                }
+            }
+            </style>
     
     <%- include('partials/footer'); %>
     
