@@ -1,8 +1,11 @@
 services:
   - type: web
     name: phoenix-innovative
-    env: node
-    buildCommand: npm install
+    runtime: node
+    repo: https://github.com/yourusername/phoenix-innovative-website
+    plan: free
+    region: oregon
+    buildCommand: ./render-build.sh
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -12,8 +15,8 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: EMAIL_USER
-        sync: false # Set manually in dashboard
+        sync: false
       - key: EMAIL_PASS
-        sync: false # Set manually in dashboard
+        sync: false
       - key: CONTACT_EMAIL
-        sync: false # Set manually in dashboard
+        sync: false
