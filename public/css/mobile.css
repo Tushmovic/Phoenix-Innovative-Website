@@ -50,19 +50,6 @@
         font-size: 0.9rem;
     }
     
-    /* Footer */
-    .footer-col {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .footer-logo {
-        justify-content: center;
-    }
-    
-    .footer-social {
-        justify-content: center;
-    }
 }
 
 /* Phones only (below 576px) */
