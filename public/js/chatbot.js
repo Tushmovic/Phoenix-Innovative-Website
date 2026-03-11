@@ -1,4 +1,5 @@
-// chatbot.js
+// chatbot.js - Improved version with better error handling and API integration
+
 document.addEventListener('DOMContentLoaded', function() {
     const chatbotWindow = document.getElementById('chatbotWindow');
     const chatbotToggle = document.getElementById('chatbotToggle');
@@ -8,21 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('sendMessage');
     const notificationBadge = document.getElementById('chatNotification');
     
+    // Check if elements exist
+    if (!chatbotWindow || !chatbotToggle) {
+        console.warn('Chatbot elements not found');
+        return;
+    }
+    
     let isOpen = false;
     
     // Toggle chatbot window
-    function toggleChatbot() {
+    function toggleChatbot(e) {
+        if (e) e.stopPropagation();
         isOpen = !isOpen;
-        chatbotWindow.style.display = isOpen ? 'flex' : 'none';
         
         if (isOpen) {
-            chatInput.focus();
-            if (notificationBadge) {
-                notificationBadge.style.display = 'none';
-            }
+            chatbotWindow.classList.add('active');
+            if (chatInput) chatInput.focus();
+            if (notificationBadge) notificationBadge.style.display = 'none';
+        } else {
+            chatbotWindow.classList.remove('active');
         }
     }
     
+    // Event listeners
     if (chatbotToggle) {
         chatbotToggle.addEventListener('click', toggleChatbot);
     }
@@ -31,8 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
         closeChatbot.addEventListener('click', toggleChatbot);
     }
     
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isOpen && 
+            !chatbotWindow.contains(e.target) && 
+            !chatbotToggle.contains(e.target)) {
+            toggleChatbot();
+        }
+    });
+    
     // Send message function
     async function sendMessage() {
+        if (!chatInput || !chatMessages) return;
+        
         const message = chatInput.value.trim();
         if (!message) return;
         
@@ -44,33 +64,56 @@ document.addEventListener('DOMContentLoaded', function() {
         const typingId = showTypingIndicator();
         
         try {
-            // Simulate AI response (replace with actual API call)
-            setTimeout(() => {
-                removeTypingIndicator(typingId);
-                
-                let response = "Thank you for your message. Our team will get back to you soon. For immediate assistance, please call +234 913 592 6075.";
-                
-                if (message.toLowerCase().includes('service')) {
-                    response = "We offer Renewable Energy, Network Infrastructure, ISP Services, CCTV Systems, Software Development, and IT Consulting. Which service are you interested in?";
-                } else if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
-                    response = "Pricing varies based on your specific needs. Please contact our sales team for a customized quote.";
-                } else if (message.toLowerCase().includes('contact')) {
-                    response = "You can reach us at +234 913 592 6075 or email phoenixinnovative2025@gmail.com";
-                } else if (message.toLowerCase().includes('location')) {
-                    response = "We are based in Abuja, Nigeria, and serve clients across the country.";
-                }
-                
-                addMessage(response, 'bot');
-                
-                // Show notification if window is closed
-                if (!isOpen && notificationBadge) {
-                    notificationBadge.style.display = 'flex';
-                }
-            }, 1500);
+            // Call the API endpoint
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const data = await response.json();
+            
+            // Remove typing indicator
+            removeTypingIndicator(typingId);
+            
+            // Add bot response
+            addMessage(data.reply || 'Thank you for your message. Our team will contact you soon.', 'bot');
+            
+            // Show notification if window is closed
+            if (!isOpen && notificationBadge) {
+                notificationBadge.style.display = 'flex';
+                // Auto-hide notification after 5 seconds
+                setTimeout(() => {
+                    if (notificationBadge) notificationBadge.style.display = 'none';
+                }, 5000);
+            }
             
         } catch (error) {
+            console.error('Chatbot error:', error);
             removeTypingIndicator(typingId);
-            addMessage('Sorry, I\'m having trouble connecting. Please try again.', 'bot');
+            
+            // Fallback response
+            let fallbackResponse = "Thank you for your message. For immediate assistance, please call +234 913 592 6075 or email phoenixinnovative2025@gmail.com";
+            
+            // Simple keyword matching as fallback
+            const lowerMsg = message.toLowerCase();
+            if (lowerMsg.includes('service')) {
+                fallbackResponse = "We offer Renewable Energy, Network Infrastructure, ISP Services, CCTV Systems, Software Development, and IT Consulting.";
+            } else if (lowerMsg.includes('price') || lowerMsg.includes('cost')) {
+                fallbackResponse = "Please contact our sales team for a customized quote based on your specific needs.";
+            } else if (lowerMsg.includes('contact') || lowerMsg.includes('phone')) {
+                fallbackResponse = "You can reach us at +234 913 592 6075 or email phoenixinnovative2025@gmail.com";
+            } else if (lowerMsg.includes('location') || lowerMsg.includes('address')) {
+                fallbackResponse = "We are based in Abuja, Nigeria, and serve clients across the country.";
+            }
+            
+            addMessage(fallbackResponse, 'bot');
         }
     }
     
@@ -118,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (chatInput) {
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                e.preventDefault();
                 sendMessage();
             }
         });

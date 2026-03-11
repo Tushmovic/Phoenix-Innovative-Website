@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: phoenix-innovative
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: EMAIL_USER
+        sync: false # Set manually in dashboard
+      - key: EMAIL_PASS
+        sync: false # Set manually in dashboard
+      - key: CONTACT_EMAIL
+        sync: false # Set manually in dashboard

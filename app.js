@@ -6,7 +6,7 @@ const session = require('express-session');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const csrf = require('csurf');
-const cookieParser = require('cookie-parser'); // ADD THIS
+const cookieParser = require('cookie-parser');
 
 // Load environment variables
 dotenv.config();
@@ -81,6 +81,9 @@ app.use(session({
         sameSite: 'lax'
     }
 }));
+
+// CSRF Protection - Initialize after cookieParser and session
+const csrfProtection = csrf({ cookie: true });
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
@@ -200,22 +203,23 @@ app.get('/terms', (req, res) => {
     });
 });
 
-// ===== CONTACT PAGE - GET (WITHOUT CSRF FIRST FOR TESTING) =====
-app.get('/contact', (req, res) => {
+// ===== CONTACT PAGE - GET WITH CSRF PROTECTION =====
+app.get('/contact', csrfProtection, (req, res) => {
     res.render('contact', { 
         title: 'Contact Us - Phoenix Innovative Technologies',
         success: req.session.success,
         error: req.session.error,
         formData: req.session.formData || {},
-        csrfToken: 'test-token-123' // Temporary token for testing
+        csrfToken: req.csrfToken() // Generate real CSRF token
     });
+    // Clear session messages after rendering
     req.session.success = null;
     req.session.error = null;
     req.session.formData = null;
 });
 
-// ===== CONTACT FORM SUBMISSION - POST (WITHOUT CSRF FIRST FOR TESTING) =====
-app.post('/contact', async (req, res) => {
+// ===== CONTACT FORM SUBMISSION - POST WITH CSRF PROTECTION =====
+app.post('/contact', csrfProtection, async (req, res) => {
     const { name, email, phone, subject, message } = req.body;
     
     // Validate required fields
@@ -227,17 +231,25 @@ app.post('/contact', async (req, res) => {
     
     try {
         const nodemailer = require('nodemailer');
+        
+        // Create transporter with better error handling
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
-            }
+            },
+            // Add timeout to prevent hanging
+            timeout: 10000 // 10 seconds
         });
         
+        // Verify transporter configuration
+        await transporter.verify();
+        
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: `"Phoenix Innovative Technologies" <${process.env.EMAIL_USER}>`,
             to: process.env.CONTACT_EMAIL,
+            replyTo: email,
             subject: `New Contact Form Submission: ${subject}`,
             html: `
                 <h2>New Contact Form Submission</h2>
@@ -246,15 +258,45 @@ app.post('/contact', async (req, res) => {
                 <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
                 <p><strong>Subject:</strong> ${subject}</p>
                 <h3>Message:</h3>
-                <p>${message}</p>
+                <p>${message.replace(/\n/g, '<br>')}</p>
+                <hr>
+                <p><small>Received at: ${new Date().toLocaleString()}</small></p>
+            `,
+            // Plain text version for email clients that don't support HTML
+            text: `
+                New Contact Form Submission
+                ===========================
+                Name: ${name}
+                Email: ${email}
+                Phone: ${phone || 'Not provided'}
+                Subject: ${subject}
+                
+                Message:
+                --------
+                ${message}
+                
+                ---
+                Received: ${new Date().toLocaleString()}
             `
         };
         
         await transporter.sendMail(mailOptions);
+        console.log(`✅ Email sent successfully from ${email} to ${process.env.CONTACT_EMAIL}`);
         req.session.success = 'Thank you for contacting us! We\'ll get back to you soon.';
     } catch (error) {
-        console.error('Email error:', error);
-        req.session.error = 'Sorry, there was an error sending your message. Please try again.';
+        console.error('❌ Email error:', error.message);
+        
+        // Provide user-friendly error message
+        let errorMessage = 'Sorry, there was an error sending your message. Please try again.';
+        
+        if (error.code === 'EAUTH') {
+            errorMessage = 'Email authentication failed. Please try again later.';
+            console.error('🔐 Gmail authentication error - check EMAIL_USER and EMAIL_PASS');
+        } else if (error.code === 'ESOCKET' || error.code === 'ETIMEDOUT') {
+            errorMessage = 'Network connection error. Please try again.';
+        }
+        
+        req.session.error = errorMessage;
         req.session.formData = req.body;
     }
     
@@ -302,6 +344,20 @@ app.use((req, res) => {
     });
 });
 
+// CSRF Error Handler - Special handling for CSRF token errors
+app.use((err, req, res, next) => {
+    if (err.code === 'EBADCSRFTOKEN') {
+        // Handle CSRF token errors
+        console.error('CSRF token error:', err);
+        return res.status(403).render('error', {
+            title: 'Security Error - Phoenix Innovative Technologies',
+            message: 'Invalid form submission. Please try again.',
+            error: 'CSRF token validation failed'
+        });
+    }
+    next(err);
+});
+
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error('Server error:', err.stack);
@@ -312,15 +368,16 @@ app.use((err, req, res, next) => {
     });
 });
 
+// Force HTTPS in production
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && !req.secure && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect('https://' + req.headers.host + req.url);
+  }
+  next();
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`✅ Server running on http://localhost:${port}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-});
-// Force HTTPS in production
-app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production' && !req.secure) {
-    return res.redirect('https://' + req.headers.host + req.url);
-  }
-  next();
 });
