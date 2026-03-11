@@ -1,3 +1,47 @@
+// ===== ERROR HANDLING AND DIAGNOSTICS (ADD THIS AT THE VERY TOP) =====
+console.log('🚀 Starting Phoenix Innovative Technologies Server...');
+console.log('Node version:', process.version);
+console.log('Current directory:', process.cwd());
+console.log('NODE_ENV:', process.env.NODE_ENV || 'development');
+
+// Check if express can be loaded
+try {
+    require.resolve('express');
+    console.log('✅ Express module found');
+} catch (e) {
+    console.error('❌ Express module not found. This indicates a problem with node_modules installation.');
+    console.error('Error details:', e.message);
+    console.error('Please run: npm install');
+    process.exit(1);
+}
+
+// Check all required dependencies
+const requiredModules = [
+    'express',
+    'path',
+    'dotenv',
+    'body-parser',
+    'express-session',
+    'helmet',
+    'express-rate-limit',
+    'csurf',
+    'cookie-parser',
+    'nodemailer',
+    'ejs'
+];
+
+console.log('\n📦 Checking dependencies:');
+requiredModules.forEach(module => {
+    try {
+        require.resolve(module);
+        console.log(`  ✅ ${module}`);
+    } catch (e) {
+        console.error(`  ❌ ${module} - NOT FOUND`);
+    }
+});
+console.log(''); // Empty line for spacing
+
+// ===== MODULE IMPORTS =====
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -18,7 +62,12 @@ const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 if (missingEnvVars.length > 0) {
     console.error('❌ Missing required environment variables:', missingEnvVars.join(', '));
     console.error('Please check your .env file');
-    process.exit(1);
+    // Don't exit in production, just warn
+    if (process.env.NODE_ENV !== 'production') {
+        process.exit(1);
+    } else {
+        console.warn('⚠️ Running in production with missing env vars - some features may not work');
+    }
 }
 
 const app = express();
@@ -71,7 +120,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Session configuration
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'fallback-secret-do-not-use-in-production',
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -378,6 +427,7 @@ app.use((req, res, next) => {
 
 // Start server
 app.listen(port, () => {
-    console.log(`✅ Server running on http://localhost:${port}`);
+    console.log(`\n✅ Server running on http://localhost:${port}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`📝 Ready to accept connections\n`);
 });
