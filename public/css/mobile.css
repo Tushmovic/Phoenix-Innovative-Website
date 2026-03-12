@@ -80,3 +80,62 @@
         height: 200px;
     }
 }
+/* ===== CONTACT INFO ICON ALIGNMENT FIX ===== */
+@media (max-width: 768px) {
+    /* Contact Info container */
+    .footer-contact {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    /* Each contact item */
+    .footer-contact li {
+        display: flex !important;
+        align-items: flex-start !important; /* Align items to the top */
+        justify-content: flex-start !important;
+        width: 100% !important;
+        max-width: 320px !important; /* Limits width for better readability */
+        margin: 0 auto 12px auto !important; /* Center the items */
+        padding: 0 !important;
+        list-style: none !important;
+        gap: 12px !important; /* Space between icon and text */
+    }
+    
+    /* Icons styling */
+    .footer-contact i {
+        font-size: 1.1rem !important;
+        color: #FF6B35 !important;
+        min-width: 24px !important; /* Fixed width for icons */
+        text-align: center !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important; /* Prevents icon from shrinking */
+        line-height: 1.5 !important;
+        align-self: flex-start !important; /* Keep icon at top */
+    }
+    
+    /* Text container (both links and spans) */
+    .footer-contact a,
+    .footer-contact span {
+        font-size: 0.9rem !important;
+        color: rgba(255,255,255,0.8) !important;
+        text-decoration: none !important;
+        word-break: break-word !important;
+        line-height: 1.5 !important;
+        flex: 1 !important; /* Takes remaining space */
+        text-align: left !important;
+        padding: 0 !important;
+    }
+    
+    /* Hover effect */
+    .footer-contact a:hover {
+        color: #FF6B35 !important;
+    }
+    
+    /* Special handling for email to prevent overflow */
+    .footer-contact li:first-child a {
+        word-break: break-all !important;
+    }
+}
