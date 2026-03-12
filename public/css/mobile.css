@@ -50,6 +50,19 @@
         font-size: 0.9rem;
     }
     
+    /* Footer */
+    .footer-col {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
 }
 
 /* Phones only (below 576px) */
@@ -67,159 +80,177 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE LAYOUT FIX ===== */
+/* ===== FOOTER - PRESERVE DESKTOP LAYOUT ON MOBILE ===== */
 @media (max-width: 768px) {
     .footer-main .row {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important; /* 2 equal columns */
-        gap: 20px !important;
-    }
-    
-    /* Make the first column (Company Info) span full width */
-    .footer-main .row .col-lg-4:first-child {
-        grid-column: 1 / -1 !important; /* Span both columns */
-        margin-bottom: 10px !important;
-    }
-    
-    /* Style each footer column */
-    .footer-col {
-        text-align: left !important; /* Keep text left-aligned */
-        margin-bottom: 0 !important;
-        padding: 0 10px !important;
-    }
-    
-    /* Company info specific styling */
-    .footer-main .row .col-lg-4:first-child .footer-logo {
-        justify-content: flex-start !important; /* Logo left-aligned */
-    }
-    
-    .footer-main .row .col-lg-4:first-child .footer-about {
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-    
-    .footer-main .row .col-lg-4:first-child .footer-social {
-        justify-content: flex-start !important; /* Social icons left-aligned */
-    }
-    
-    /* Footer titles */
-    .footer-title {
-        text-align: left !important;
-        margin-bottom: 15px !important;
-        font-size: 1.1rem !important; /* Slightly smaller but still readable */
-    }
-    
-    .footer-title::after {
-        left: 0 !important;
-        transform: none !important;
-        width: 40px !important;
-    }
-    
-    /* Footer links */
-    .footer-links {
-        align-items: flex-start !important;
-    }
-    
-    .footer-links a {
-        justify-content: flex-start !important;
-        font-size: 0.95rem !important;
-        padding: 5px 0 !important;
-    }
-    
-    /* Contact info */
-    .footer-contact {
-        align-items: flex-start !important;
-    }
-    
-    .footer-contact li {
-        justify-content: flex-start !important;
-        text-align: left !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        font-size: 0.95rem !important;
-        word-break: break-word !important;
-    }
-    
-    .footer-contact i {
-        margin-right: 10px !important;
-        min-width: 20px !important;
-    }
-    
-    /* Footer bottom section */
-    .footer-bottom .row {
-        flex-direction: row !important;
+        display: flex !important;
         flex-wrap: wrap !important;
-        gap: 10px !important;
+        margin: 0 -10px !important;
     }
     
-    .footer-bottom .col-md-6 {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        text-align: center !important;
+    /* Force all 4 columns to sit side-by-side */
+    .footer-main .col-lg-4,
+    .footer-main .col-lg-2,
+    .footer-main .col-lg-3 {
+        flex: 0 0 25% !important; /* Each column takes exactly 25% width */
+        max-width: 25% !important;
+        padding: 0 10px !important;
+        margin-bottom: 20px !important;
     }
     
-    .copyright {
-        text-align: center !important;
+    /* Override Bootstrap's responsive classes */
+    .footer-main .col-lg-4 {
+        width: 25% !important;
+    }
+    
+    .footer-main .col-lg-2 {
+        width: 25% !important;
+    }
+    
+    .footer-main .col-lg-3 {
+        width: 25% !important;
+    }
+    
+    /* Make content smaller but keep proportions */
+    .footer-logo img {
+        height: 35px !important; /* Slightly smaller logo */
+        width: auto !important;
+    }
+    
+    .logo-text {
         font-size: 0.9rem !important;
     }
     
-    .footer-policy-links {
-        justify-content: center !important;
-        gap: 15px !important;
-        flex-wrap: wrap !important;
-    }
-}
-
-/* Even smaller phones (below 576px) */
-@media (max-width: 576px) {
-    .footer-main .row {
-        grid-template-columns: 1fr !important; /* Single column on very small phones */
-        gap: 25px !important;
-    }
-    
-    .footer-main .row .col-lg-4:first-child {
-        grid-column: auto !important;
-    }
-    
-    .footer-col {
-        text-align: center !important;
-        padding: 0 !important;
+    .footer-about {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 10px !important;
     }
     
     .footer-title {
-        text-align: center !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 10px !important;
+        white-space: nowrap !important; /* Prevent titles from wrapping */
     }
     
     .footer-title::after {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+        width: 25px !important; /* Shorter underline */
+        height: 2px !important;
     }
     
-    .footer-links {
-        align-items: center !important;
-    }
-    
-    .footer-links a {
-        justify-content: center !important;
-    }
-    
-    .footer-contact {
-        align-items: center !important;
+    .footer-links a,
+    .footer-contact li {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        white-space: nowrap !important; /* Keep links on one line */
     }
     
     .footer-contact li {
-        justify-content: center !important;
-        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        margin-bottom: 8px !important;
     }
     
-    .footer-logo {
-        justify-content: center !important;
+    .footer-contact i {
+        font-size: 0.8rem !important;
+        min-width: 12px !important;
     }
     
+    /* Social icons - smaller but still in a row */
     .footer-social {
-        justify-content: center !important;
+        gap: 5px !important;
+    }
+    
+    .social-link {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Footer bottom - keep side by side */
+    .footer-bottom .row {
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .footer-bottom .col-md-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        text-align: left !important;
+    }
+    
+    .footer-bottom .col-md-6:last-child {
+        text-align: right !important;
+    }
+    
+    .copyright {
+        font-size: 0.7rem !important;
+        text-align: left !important;
+        margin: 0 !important;
+    }
+    
+    .footer-policy-links {
+        justify-content: flex-end !important;
+        gap: 8px !important;
+    }
+    
+    .policy-link {
+        font-size: 0.7rem !important;
+    }
+    
+    .policy-separator {
+        margin: 0 2px !important;
+    }
+    
+    .credit {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Hide wave on mobile to save space */
+    .footer-wave {
+        display: none !important;
+    }
+}
+
+/* Even smaller phones - make it work on tiny screens */
+@media (max-width: 480px) {
+    .footer-main .col-lg-4,
+    .footer-main .col-lg-2,
+    .footer-main .col-lg-3 {
+        padding: 0 5px !important;
+    }
+    
+    .logo-text {
+        font-size: 0.8rem !important;
+    }
+    
+    .footer-about {
+        font-size: 0.7rem !important;
+    }
+    
+    .footer-title {
+        font-size: 0.8rem !important;
+    }
+    
+    .footer-links a,
+    .footer-contact li {
+        font-size: 0.65rem !important;
+    }
+    
+    .footer-contact i {
+        font-size: 0.7rem !important;
+    }
+    
+    .social-link {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .copyright,
+    .policy-link,
+    .credit {
+        font-size: 0.6rem !important;
     }
 }
