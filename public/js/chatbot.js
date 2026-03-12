@@ -1,5 +1,67 @@
 // chatbot.js - Improved version with better error handling and API integration
 
+// ===== VISIBILITY FIX - Ensure floating buttons are always visible =====
+(function() {
+    // Add immediate style to force visibility
+    const style = document.createElement('style');
+    style.textContent = `
+        .floating-buttons { 
+            visibility: visible !important; 
+            opacity: 1 !important; 
+            display: flex !important; 
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            z-index: 9999999999 !important;
+        }
+        .float-whatsapp, .float-chatbot { 
+            visibility: visible !important; 
+            opacity: 1 !important; 
+            display: flex !important; 
+        }
+        @media (max-width: 768px) {
+            .floating-buttons {
+                bottom: 15px !important;
+                right: 15px !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Force visibility immediately
+    const forceVisibility = function() {
+        const floatingButtons = document.querySelector('.floating-buttons');
+        const whatsappBtn = document.querySelector('.float-whatsapp');
+        const chatbotBtn = document.querySelector('.float-chatbot');
+        
+        if (floatingButtons) {
+            floatingButtons.style.setProperty('visibility', 'visible', 'important');
+            floatingButtons.style.setProperty('opacity', '1', 'important');
+            floatingButtons.style.setProperty('display', 'flex', 'important');
+        }
+        
+        if (whatsappBtn) {
+            whatsappBtn.style.setProperty('visibility', 'visible', 'important');
+            whatsappBtn.style.setProperty('opacity', '1', 'important');
+            whatsappBtn.style.setProperty('display', 'flex', 'important');
+        }
+        
+        if (chatbotBtn) {
+            chatbotBtn.style.setProperty('visibility', 'visible', 'important');
+            chatbotBtn.style.setProperty('opacity', '1', 'important');
+            chatbotBtn.style.setProperty('display', 'flex', 'important');
+        }
+    };
+    
+    // Run immediately
+    forceVisibility();
+    
+    // Run again after a tiny delay
+    setTimeout(forceVisibility, 100);
+    setTimeout(forceVisibility, 500);
+})();
+
+// ===== MAIN CHATBOT FUNCTIONALITY =====
 document.addEventListener('DOMContentLoaded', function() {
     const chatbotWindow = document.getElementById('chatbotWindow');
     const chatbotToggle = document.getElementById('chatbotToggle');
@@ -13,6 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!chatbotWindow || !chatbotToggle) {
         console.warn('Chatbot elements not found');
         return;
+    }
+    
+    // Force buttons visible again after DOM is loaded
+    const floatingButtons = document.querySelector('.floating-buttons');
+    if (floatingButtons) {
+        floatingButtons.style.setProperty('visibility', 'visible', 'important');
+        floatingButtons.style.setProperty('opacity', '1', 'important');
+        floatingButtons.style.setProperty('display', 'flex', 'important');
     }
     
     let isOpen = false;
@@ -29,6 +99,20 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             chatbotWindow.classList.remove('active');
         }
+        
+        // Ensure buttons remain visible after toggle
+        setTimeout(() => {
+            const whatsappBtn = document.querySelector('.float-whatsapp');
+            const chatbotBtn = document.querySelector('.float-chatbot');
+            if (whatsappBtn) {
+                whatsappBtn.style.setProperty('visibility', 'visible', 'important');
+                whatsappBtn.style.setProperty('opacity', '1', 'important');
+            }
+            if (chatbotBtn) {
+                chatbotBtn.style.setProperty('visibility', 'visible', 'important');
+                chatbotBtn.style.setProperty('opacity', '1', 'important');
+            }
+        }, 10);
     }
     
     // Event listeners
@@ -174,3 +258,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 30000);
 });
+
+// ===== ADDITIONAL VISIBILITY CHECKS =====
+// Run after window loads
+window.addEventListener('load', function() {
+    const whatsappBtn = document.querySelector('.float-whatsapp');
+    const chatbotBtn = document.querySelector('.float-chatbot');
+    
+    if (whatsappBtn) {
+        whatsappBtn.style.setProperty('visibility', 'visible', 'important');
+        whatsappBtn.style.setProperty('opacity', '1', 'important');
+    }
+    if (chatbotBtn) {
+        chatbotBtn.style.setProperty('visibility', 'visible', 'important');
+        chatbotBtn.style.setProperty('opacity', '1', 'important');
+    }
+});
+
+// Run on scroll (in case something hides them)
+window.addEventListener('scroll', function() {
+    const whatsappBtn = document.querySelector('.float-whatsapp');
+    const chatbotBtn = document.querySelector('.float-chatbot');
+    
+    if (whatsappBtn && whatsappBtn.style.visibility !== 'visible') {
+        whatsappBtn.style.setProperty('visibility', 'visible', 'important');
+    }
+    if (chatbotBtn && chatbotBtn.style.visibility !== 'visible') {
+        chatbotBtn.style.setProperty('visibility', 'visible', 'important');
+    }
+});
+
+// Periodic check (every 2 seconds) to ensure visibility
+setInterval(function() {
+    const whatsappBtn = document.querySelector('.float-whatsapp');
+    const chatbotBtn = document.querySelector('.float-chatbot');
+    
+    if (whatsappBtn && window.getComputedStyle(whatsappBtn).visibility !== 'visible') {
+        whatsappBtn.style.setProperty('visibility', 'visible', 'important');
+        whatsappBtn.style.setProperty('opacity', '1', 'important');
+    }
+    if (chatbotBtn && window.getComputedStyle(chatbotBtn).visibility !== 'visible') {
+        chatbotBtn.style.setProperty('visibility', 'visible', 'important');
+        chatbotBtn.style.setProperty('opacity', '1', 'important');
+    }
+}, 2000);
