@@ -1,52 +1,20 @@
 <!-- Floating Action Buttons - Always Visible -->
 <link rel="stylesheet" href="/css/chatbot.css">
 
-<!-- Add inline style to ensure visibility -->
-<style>
-    /* Emergency fix - forces buttons to be visible */
-    .floating-buttons {
-        position: fixed !important;
-        bottom: 30px !important;
-        right: 30px !important;
-        z-index: 9999999999 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    .float-whatsapp, .float-chatbot {
-        visibility: visible !important;
-        opacity: 1 !important;
-        display: flex !important;
-    }
-    
-    /* Mobile fix */
-    @media (max-width: 768px) {
-        .floating-buttons {
-            bottom: 15px !important;
-            right: 15px !important;
-        }
-    }
-</style>
-
-<div class="floating-buttons" style="visibility: visible !important; opacity: 1 !important; display: flex !important;">
+<div class="floating-buttons">
     <!-- WhatsApp Button -->
     <a href="https://wa.me/2349135926075?text=Hello%20Phoenix%20Innovative%20Technologies%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
        class="float-whatsapp" 
        target="_blank" 
        rel="noopener noreferrer"
-       aria-label="Chat with us on WhatsApp"
-       style="visibility: visible !important; opacity: 1 !important; display: flex !important;">
+       aria-label="Chat with us on WhatsApp">
         <i class="bi bi-whatsapp" aria-hidden="true"></i>
         <span class="button-tooltip">Chat on WhatsApp</span>
     </a>
 
     <!-- Chatbot Button -->
     <div class="chatbot-container">
-        <div class="float-chatbot" id="chatbotToggle" role="button" tabindex="0" aria-label="Open AI chat assistant"
-             style="visibility: visible !important; opacity: 1 !important; display: flex !important;">
+        <div class="float-chatbot" id="chatbotToggle" role="button" tabindex="0" aria-label="Open AI chat assistant">
             <i class="bi bi-chat-dots" aria-hidden="true"></i>
             <span class="notification-badge" id="chatNotification" style="display: none;">1</span>
             <span class="button-tooltip">Ask AI Assistant</span>
