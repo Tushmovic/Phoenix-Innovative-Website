@@ -80,7 +80,7 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE VIEW (COMPACT & FITTED) ===== */
+/* ===== FOOTER - MOBILE VIEW (UPDATED LAYOUT) ===== */
 @media (max-width: 768px) {
     /* Main footer container - ensure no overflow */
     .footer-main {
@@ -114,44 +114,52 @@
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 8px !important;
+        gap: 10px !important;
         margin-bottom: 10px !important;
         flex-wrap: nowrap !important;
     }
     
     .footer-main .col-lg-4:first-child .footer-logo img {
-        height: 35px !important;
+        height: 40px !important;
         width: auto !important;
         flex-shrink: 0 !important;
     }
     
     .footer-main .col-lg-4:first-child .logo-text {
-        font-size: 1rem !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        max-width: 200px !important;
+        font-size: 1.1rem !important;
+        white-space: normal !important; /* Allow wrapping if needed */
+        text-align: center !important;
+        max-width: 250px !important;
     }
     
-    /* ===== ROW 2: Description Text (Centered, Compact) ===== */
+    /* ===== ROW 2: Description Text (Centered) ===== */
     .footer-main .col-lg-4:first-child .footer-about {
         text-align: center !important;
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
         line-height: 1.4 !important;
-        margin: 0 auto 20px auto !important;
+        margin: 0 auto 25px auto !important;
         max-width: 100% !important;
-        padding: 0 5px !important;
+        padding: 0 10px !important;
     }
     
-    /* ===== ROW 3: Three Columns Side by Side ===== */
-    .footer-main .row .col-lg-2:nth-child(2),
-    .footer-main .row .col-lg-3:nth-child(3),
+    /* ===== ROW 3: Quick Links and Our Services Side by Side ===== */
+    /* Hide the third column (contact) from this row */
     .footer-main .row .col-lg-3:last-child {
-        width: 33.33% !important;
-        max-width: 33.33% !important;
-        flex: 0 0 33.33% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        margin-top: 20px !important;
+        clear: both !important;
+    }
+    
+    /* Make Quick Links and Our Services 50% each */
+    .footer-main .row .col-lg-2:nth-child(2),
+    .footer-main .row .col-lg-3:nth-child(3) {
+        width: 50% !important;
+        max-width: 50% !important;
+        flex: 0 0 50% !important;
         float: left !important;
-        padding: 0 5px !important;
+        padding: 0 8px !important;
         margin: 0 !important;
         box-sizing: border-box !important;
     }
@@ -165,9 +173,9 @@
     
     /* Column Titles */
     .footer-title {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
         text-align: center !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 10px !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
@@ -177,7 +185,7 @@
     .footer-title::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 20px !important;
+        width: 25px !important;
         height: 2px !important;
     }
     
@@ -190,14 +198,12 @@
     
     .footer-links li {
         text-align: center !important;
-        margin-bottom: 6px !important;
-        font-size: 0.7rem !important;
-        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
     }
     
     .footer-links a {
-        font-size: 0.7rem !important;
-        padding: 2px 0 !important;
+        font-size: 0.8rem !important;
+        padding: 3px 0 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
@@ -209,16 +215,14 @@
         display: none !important; /* Hide arrows */
     }
     
-    /* Our Services List */
-    .footer-links li a {
-        font-size: 0.7rem !important;
-    }
-    
-    /* Contact Info */
+    /* ===== ROW 4: Contact Info (Full Width) ===== */
     .footer-contact {
-        padding: 0 !important;
+        padding: 0 15px !important;
         margin: 0 !important;
         list-style: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
     
     .footer-contact li {
@@ -226,54 +230,49 @@
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        font-size: 0.65rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 6px !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 10px !important;
         width: 100% !important;
+        max-width: 280px !important;
+        word-break: break-word !important;
+        white-space: normal !important; /* Allow wrapping */
     }
     
     .footer-contact i {
-        font-size: 0.7rem !important;
-        margin-right: 3px !important;
+        font-size: 0.9rem !important;
+        margin-right: 8px !important;
         flex-shrink: 0 !important;
     }
     
     .footer-contact a {
-        font-size: 0.65rem !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
+        font-size: 0.8rem !important;
+        word-break: break-word !important;
+        white-space: normal !important;
         display: inline-block !important;
-        max-width: calc(100% - 15px) !important;
     }
     
     .footer-contact span {
-        font-size: 0.65rem !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
-        display: inline-block !important;
-        max-width: calc(100% - 15px) !important;
+        font-size: 0.8rem !important;
+        word-break: break-word !important;
+        white-space: normal !important;
     }
     
-    /* ===== ROW 4: Social Icons (Horizontal) ===== */
+    /* ===== ROW 5: Social Icons (Horizontal) ===== */
     .footer-main .col-lg-4:first-child .footer-social {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 10px !important;
-        margin: 20px 0 15px 0 !important;
+        gap: 15px !important;
+        margin: 25px 0 20px 0 !important;
         width: 100% !important;
         clear: both !important;
     }
     
     .footer-social .social-link {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 1rem !important;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.1rem !important;
         margin: 0 !important;
         flex-shrink: 0 !important;
     }
@@ -302,38 +301,32 @@
     }
     
     .copyright {
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
         text-align: center !important;
-        margin-bottom: 8px !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        margin-bottom: 10px !important;
+        white-space: normal !important;
     }
     
     .footer-policy-links {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 8px !important;
+        gap: 10px !important;
         flex-wrap: wrap !important;
     }
     
     .policy-link {
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
         white-space: nowrap !important;
     }
     
     .policy-separator {
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
     }
     
     .credit {
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
         white-space: nowrap !important;
-    }
-    
-    .credit i {
-        font-size: 0.6rem !important;
     }
     
     /* Hide wave on mobile */
@@ -344,35 +337,31 @@
 
 /* For very small screens (below 360px) */
 @media (max-width: 360px) {
-    .footer-main .row .col-lg-2:nth-child(2),
-    .footer-main .row .col-lg-3:nth-child(3),
-    .footer-main .row .col-lg-3:last-child {
-        padding: 0 2px !important;
+    .footer-main .col-lg-4:first-child .logo-text {
+        font-size: 1rem !important;
+        max-width: 200px !important;
     }
     
     .footer-title {
+        font-size: 0.85rem !important;
+    }
+    
+    .footer-links a {
         font-size: 0.75rem !important;
     }
     
-    .footer-links a,
-    .footer-contact li,
-    .footer-contact a,
-    .footer-contact span {
-        font-size: 0.6rem !important;
+    .footer-contact li {
+        font-size: 0.75rem !important;
+        max-width: 250px !important;
     }
     
     .footer-contact i {
-        font-size: 0.6rem !important;
+        font-size: 0.85rem !important;
     }
     
     .footer-social .social-link {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 0.9rem !important;
-    }
-    
-    .footer-main .col-lg-4:first-child .logo-text {
-        font-size: 0.9rem !important;
-        max-width: 150px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1rem !important;
     }
 }
