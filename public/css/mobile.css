@@ -80,121 +80,183 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE VIEW (As You Requested) ===== */
+/* ===== FOOTER - MOBILE VIEW (COMPACT & FITTED) ===== */
 @media (max-width: 768px) {
-    /* Main footer container */
+    /* Main footer container - ensure no overflow */
+    .footer-main {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        padding: 40px 0 20px !important;
+    }
+    
+    .footer-main .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        max-width: 100% !important;
+    }
+    
     .footer-main .row {
         display: flex !important;
         flex-direction: column !important;
+        margin: 0 !important;
+        width: 100% !important;
     }
     
     /* ===== ROW 1: Logo and Company Name (Centered) ===== */
+    .footer-main .col-lg-4:first-child {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-bottom: 15px !important;
+    }
+    
     .footer-main .col-lg-4:first-child .footer-logo {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 10px !important;
+        gap: 8px !important;
         margin-bottom: 10px !important;
+        flex-wrap: nowrap !important;
     }
     
     .footer-main .col-lg-4:first-child .footer-logo img {
-        height: 45px !important;
+        height: 35px !important;
         width: auto !important;
+        flex-shrink: 0 !important;
     }
     
     .footer-main .col-lg-4:first-child .logo-text {
-        font-size: 1.2rem !important;
-        text-align: center !important;
+        font-size: 1rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 200px !important;
     }
     
-    /* ===== ROW 2: Description Text (Centered) ===== */
+    /* ===== ROW 2: Description Text (Centered, Compact) ===== */
     .footer-main .col-lg-4:first-child .footer-about {
         text-align: center !important;
-        max-width: 90% !important;
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
         margin: 0 auto 20px auto !important;
-        font-size: 0.95rem !important;
-        line-height: 1.5 !important;
-    }
-    
-    /* ===== ROW 3: Three Columns (Quick Links, Services, Contact) ===== */
-    .footer-main .row {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr 1fr !important;
-        gap: 10px !important;
-        margin-bottom: 20px !important;
-    }
-    
-    /* Target the three columns */
-    .footer-main .col-lg-2:nth-child(2),
-    .footer-main .col-lg-3:nth-child(3),
-    .footer-main .col-lg-3:last-child {
-        width: 100% !important;
         max-width: 100% !important;
-        flex: 1 !important;
         padding: 0 5px !important;
     }
     
-    /* Column titles */
+    /* ===== ROW 3: Three Columns Side by Side ===== */
+    .footer-main .row .col-lg-2:nth-child(2),
+    .footer-main .row .col-lg-3:nth-child(3),
+    .footer-main .row .col-lg-3:last-child {
+        width: 33.33% !important;
+        max-width: 33.33% !important;
+        flex: 0 0 33.33% !important;
+        float: left !important;
+        padding: 0 5px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Clearfix for the row */
+    .footer-main .row::after {
+        content: "" !important;
+        display: table !important;
+        clear: both !important;
+    }
+    
+    /* Column Titles */
     .footer-title {
-        font-size: 1rem !important;
+        font-size: 0.85rem !important;
         text-align: center !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 8px !important;
         white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        padding-bottom: 5px !important;
     }
     
     .footer-title::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 30px !important;
+        width: 20px !important;
+        height: 2px !important;
     }
     
-    /* Quick Links and Services lists */
+    /* Quick Links List */
     .footer-links {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
         padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
     }
     
     .footer-links li {
         text-align: center !important;
-        margin-bottom: 8px !important;
-        list-style: none !important;
+        margin-bottom: 6px !important;
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
     }
     
     .footer-links a {
-        justify-content: center !important;
-        font-size: 0.9rem !important;
-        padding: 4px 0 !important;
+        font-size: 0.7rem !important;
+        padding: 2px 0 !important;
         white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        display: block !important;
+        width: 100% !important;
     }
     
     .footer-links a i {
-        display: none !important; /* Hide arrows on mobile for cleaner look */
+        display: none !important; /* Hide arrows */
     }
     
-    /* Contact info */
+    /* Our Services List */
+    .footer-links li a {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Contact Info */
     .footer-contact {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
         padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
     }
     
     .footer-contact li {
-        justify-content: center !important;
-        text-align: center !important;
-        font-size: 0.9rem !important;
-        margin-bottom: 8px !important;
-        white-space: nowrap !important;
         display: flex !important;
         align-items: center !important;
-        gap: 5px !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 0.65rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 6px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        width: 100% !important;
     }
     
     .footer-contact i {
-        margin-right: 5px !important;
-        font-size: 0.9rem !important;
+        font-size: 0.7rem !important;
+        margin-right: 3px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .footer-contact a {
+        font-size: 0.65rem !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        max-width: calc(100% - 15px) !important;
+    }
+    
+    .footer-contact span {
+        font-size: 0.65rem !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        max-width: calc(100% - 15px) !important;
     }
     
     /* ===== ROW 4: Social Icons (Horizontal) ===== */
@@ -202,51 +264,76 @@
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 15px !important;
-        margin: 20px 0 10px 0 !important;
+        gap: 10px !important;
+        margin: 20px 0 15px 0 !important;
+        width: 100% !important;
+        clear: both !important;
     }
     
     .footer-social .social-link {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 1.2rem !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1rem !important;
         margin: 0 !important;
-    }
-    
-    /* Hide the original social icons section if it appears elsewhere */
-    .footer-main .col-lg-4:first-child .footer-social {
-        grid-column: 1 / -1 !important;
+        flex-shrink: 0 !important;
     }
     
     /* ===== Footer Bottom Section ===== */
+    .footer-bottom {
+        padding: 15px 0 !important;
+    }
+    
+    .footer-bottom .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
     .footer-bottom .row {
+        display: flex !important;
         flex-direction: column !important;
         text-align: center !important;
     }
     
     .footer-bottom .col-md-6 {
-        flex: 0 0 100% !important;
+        width: 100% !important;
         max-width: 100% !important;
-        text-align: center !important;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
     }
     
     .copyright {
+        font-size: 0.7rem !important;
         text-align: center !important;
-        font-size: 0.85rem !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 8px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     .footer-policy-links {
+        display: flex !important;
         justify-content: center !important;
-        gap: 15px !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
     }
     
     .policy-link {
-        font-size: 0.85rem !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+    
+    .policy-separator {
+        font-size: 0.7rem !important;
     }
     
     .credit {
-        font-size: 0.85rem !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+    
+    .credit i {
+        font-size: 0.6rem !important;
     }
     
     /* Hide wave on mobile */
@@ -255,29 +342,37 @@
     }
 }
 
-/* Even smaller phones */
-@media (max-width: 480px) {
-    /* Make the three columns a bit more compact */
-    .footer-main .row {
-        gap: 5px !important;
+/* For very small screens (below 360px) */
+@media (max-width: 360px) {
+    .footer-main .row .col-lg-2:nth-child(2),
+    .footer-main .row .col-lg-3:nth-child(3),
+    .footer-main .row .col-lg-3:last-child {
+        padding: 0 2px !important;
     }
     
     .footer-title {
-        font-size: 0.9rem !important;
+        font-size: 0.75rem !important;
     }
     
     .footer-links a,
-    .footer-contact li {
-        font-size: 0.8rem !important;
+    .footer-contact li,
+    .footer-contact a,
+    .footer-contact span {
+        font-size: 0.6rem !important;
     }
     
     .footer-contact i {
-        font-size: 0.8rem !important;
+        font-size: 0.6rem !important;
     }
     
     .footer-social .social-link {
-        width: 35px !important;
-        height: 35px !important;
-        font-size: 1rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .footer-main .col-lg-4:first-child .logo-text {
+        font-size: 0.9rem !important;
+        max-width: 150px !important;
     }
 }
