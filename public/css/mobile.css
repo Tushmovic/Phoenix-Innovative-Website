@@ -80,7 +80,7 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE VIEW (FIXED LAYOUT) ===== */
+/* ===== FOOTER - MOBILE VIEW (CENTERED COLUMNS, ALIGNED ICONS) ===== */
 @media (max-width: 768px) {
     /* Main footer container - ensure no overflow */
     .footer-main {
@@ -141,8 +141,8 @@
         padding: 0 10px !important;
     }
     
-    /* ===== ROW 3: Quick Links and Our Services Side by Side ===== */
-    /* Target Quick Links column (currently col-lg-2) */
+    /* ===== ROW 3: Quick Links and Our Services Side by Side (CENTERED) ===== */
+    /* Target Quick Links column */
     .footer-main .col-lg-2:nth-child(2) {
         width: 50% !important;
         max-width: 50% !important;
@@ -151,9 +151,10 @@
         padding: 0 8px !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+        text-align: center !important;
     }
     
-    /* Target Our Services column (currently the first col-lg-3) */
+    /* Target Our Services column */
     .footer-main .col-lg-3:nth-child(3) {
         width: 50% !important;
         max-width: 50% !important;
@@ -162,9 +163,41 @@
         padding: 0 8px !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+        text-align: center !important;
     }
     
-    /* Hide Contact Info from this row - will appear in next row */
+    /* Center the content inside these columns */
+    .footer-main .col-lg-2:nth-child(2) .footer-links,
+    .footer-main .col-lg-3:nth-child(3) .footer-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .footer-main .col-lg-2:nth-child(2) .footer-links li,
+    .footer-main .col-lg-3:nth-child(3) .footer-links li {
+        text-align: center !important;
+        margin-bottom: 8px !important;
+        list-style: none !important;
+        width: 100% !important;
+    }
+    
+    .footer-main .col-lg-2:nth-child(2) .footer-links a,
+    .footer-main .col-lg-3:nth-child(3) .footer-links a {
+        font-size: 0.8rem !important;
+        padding: 3px 0 !important;
+        display: inline-block !important;
+        text-align: center !important;
+    }
+    
+    .footer-main .col-lg-2:nth-child(2) .footer-links a i,
+    .footer-main .col-lg-3:nth-child(3) .footer-links a i {
+        display: none !important;
+    }
+    
+    /* Hide Contact Info from this row */
     .footer-main .col-lg-3:last-child {
         width: 100% !important;
         max-width: 100% !important;
@@ -196,59 +229,36 @@
         height: 2px !important;
     }
     
-    /* Quick Links List */
-    .footer-links {
-        padding: 0 !important;
-        margin: 0 !important;
-        list-style: none !important;
-    }
-    
-    .footer-links li {
-        text-align: center !important;
-        margin-bottom: 8px !important;
-    }
-    
-    .footer-links a {
-        font-size: 0.8rem !important;
-        padding: 3px 0 !important;
-        display: block !important;
-        width: 100% !important;
-    }
-    
-    .footer-links a i {
-        display: none !important;
-    }
-    
     /* ===== ROW 4: Contact Info with Proper Icon Alignment ===== */
     .footer-contact {
         padding: 0 !important;
-        margin: 0 !important;
+        margin: 0 auto !important;
         list-style: none !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        max-width: 300px !important;
     }
     
     .footer-contact li {
         display: flex !important;
-        align-items: flex-start !important; /* Changed from center to flex-start */
-        justify-content: center !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
         text-align: left !important;
         font-size: 0.8rem !important;
         line-height: 1.5 !important;
         margin-bottom: 12px !important;
         width: 100% !important;
-        max-width: 280px !important;
         word-break: break-word !important;
         white-space: normal !important;
     }
     
     .footer-contact i {
         font-size: 1rem !important;
-        min-width: 24px !important; /* Fixed width for icons */
+        min-width: 24px !important;
         text-align: center !important;
-        margin-right: 10px !important;
-        margin-top: 2px !important; /* Slight adjustment to align with text */
+        margin-right: 12px !important;
+        margin-top: 3px !important; /* Aligns icon with first line of text */
         flex-shrink: 0 !important;
         color: #FF6B35 !important;
     }
@@ -259,12 +269,12 @@
         word-break: break-word !important;
         white-space: normal !important;
         line-height: 1.5 !important;
-        flex: 1 !important; /* Takes remaining space */
+        flex: 1 !important;
     }
     
     /* Special handling for email to prevent overflow */
     .footer-contact li:first-child a {
-        word-break: break-all !important; /* Breaks email if needed */
+        word-break: break-all !important;
     }
     
     /* ===== ROW 5: Social Icons (Horizontal) ===== */
@@ -357,18 +367,19 @@
         font-size: 0.85rem !important;
     }
     
-    .footer-links a {
+    .footer-main .col-lg-2:nth-child(2) .footer-links a,
+    .footer-main .col-lg-3:nth-child(3) .footer-links a {
         font-size: 0.75rem !important;
     }
     
     .footer-contact li {
         font-size: 0.75rem !important;
-        max-width: 250px !important;
     }
     
     .footer-contact i {
         font-size: 0.9rem !important;
         min-width: 22px !important;
+        margin-right: 10px !important;
     }
     
     .footer-social .social-link {
