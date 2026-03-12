@@ -80,275 +80,154 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE VIEW (CENTERED COLUMNS, ALIGNED ICONS) ===== */
+/* ===== FOOTER - MOBILE VIEW (UPDATED FOR YOUR HTML) ===== */
 @media (max-width: 768px) {
-    /* Main footer container - ensure no overflow */
     .footer-main {
-        overflow-x: hidden !important;
-        width: 100% !important;
         padding: 40px 0 20px !important;
-    }
-    
-    .footer-main .container {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        max-width: 100% !important;
     }
     
     .footer-main .row {
         display: flex !important;
         flex-direction: column !important;
-        margin: 0 !important;
-        width: 100% !important;
     }
     
-    /* ===== ROW 1: Logo and Company Name (Centered) ===== */
+    /* ===== ROW 1: Company Info (Logo, Name, Description) ===== */
     .footer-main .col-lg-4:first-child {
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
-        margin-bottom: 15px !important;
+        margin-bottom: 20px !important;
     }
     
     .footer-main .col-lg-4:first-child .footer-logo {
-        display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
-        gap: 10px !important;
         margin-bottom: 10px !important;
-        flex-wrap: nowrap !important;
     }
     
-    .footer-main .col-lg-4:first-child .footer-logo img {
-        height: 40px !important;
-        width: auto !important;
-        flex-shrink: 0 !important;
-    }
-    
-    .footer-main .col-lg-4:first-child .logo-text {
-        font-size: 1.1rem !important;
-        white-space: normal !important;
-        text-align: center !important;
-    }
-    
-    /* ===== ROW 2: Description Text (Centered) ===== */
     .footer-main .col-lg-4:first-child .footer-about {
         text-align: center !important;
-        font-size: 0.9rem !important;
-        line-height: 1.4 !important;
-        margin: 0 auto 25px auto !important;
         max-width: 100% !important;
-        padding: 0 10px !important;
+        margin: 0 auto 15px auto !important;
     }
     
-    /* ===== ROW 3: Quick Links and Our Services Side by Side (CENTERED) ===== */
-    /* Target Quick Links column */
+    /* ===== ROW 2: Quick Links and Our Services Side by Side ===== */
+    /* Quick Links column */
     .footer-main .col-lg-2:nth-child(2) {
         width: 50% !important;
-        max-width: 50% !important;
-        flex: 0 0 50% !important;
         float: left !important;
-        padding: 0 8px !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
+        padding-right: 10px !important;
+        margin-bottom: 20px !important;
     }
     
-    /* Target Our Services column */
+    /* Our Services column */
     .footer-main .col-lg-3:nth-child(3) {
         width: 50% !important;
-        max-width: 50% !important;
-        flex: 0 0 50% !important;
         float: left !important;
-        padding: 0 8px !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
+        padding-left: 10px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Center titles */
+    .footer-main .col-lg-2:nth-child(2) .footer-title,
+    .footer-main .col-lg-3:nth-child(3) .footer-title {
         text-align: center !important;
     }
     
-    /* Center the content inside these columns */
+    .footer-main .col-lg-2:nth-child(2) .footer-title::after,
+    .footer-main .col-lg-3:nth-child(3) .footer-title::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    
+    /* Center list items */
     .footer-main .col-lg-2:nth-child(2) .footer-links,
     .footer-main .col-lg-3:nth-child(3) .footer-links {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        padding: 0 !important;
-        margin: 0 !important;
     }
     
     .footer-main .col-lg-2:nth-child(2) .footer-links li,
     .footer-main .col-lg-3:nth-child(3) .footer-links li {
         text-align: center !important;
-        margin-bottom: 8px !important;
-        list-style: none !important;
-        width: 100% !important;
     }
     
     .footer-main .col-lg-2:nth-child(2) .footer-links a,
     .footer-main .col-lg-3:nth-child(3) .footer-links a {
-        font-size: 0.8rem !important;
-        padding: 3px 0 !important;
-        display: inline-block !important;
-        text-align: center !important;
+        justify-content: center !important;
     }
     
     .footer-main .col-lg-2:nth-child(2) .footer-links a i,
     .footer-main .col-lg-3:nth-child(3) .footer-links a i {
-        display: none !important;
+        display: none !important; /* Hide arrows on mobile for cleaner look */
     }
     
-    /* Hide Contact Info from this row */
+    /* ===== ROW 3: Contact Info (Full Width) ===== */
     .footer-main .col-lg-3:last-child {
         width: 100% !important;
-        max-width: 100% !important;
-        flex: 0 0 100% !important;
         clear: both !important;
-        margin-top: 25px !important;
-        padding: 0 15px !important;
+        margin-top: 10px !important;
     }
     
-    /* Clearfix for the row */
-    .footer-main .row::after {
-        content: "" !important;
-        display: table !important;
-        clear: both !important;
-    }
-    
-    /* Column Titles */
-    .footer-title {
-        font-size: 0.9rem !important;
+    .footer-main .col-lg-3:last-child .footer-title {
         text-align: center !important;
-        margin-bottom: 12px !important;
-        white-space: nowrap !important;
     }
     
-    .footer-title::after {
+    .footer-main .col-lg-3:last-child .footer-title::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 25px !important;
-        height: 2px !important;
     }
     
-    /* ===== ROW 4: Contact Info with Proper Icon Alignment ===== */
+    /* Contact info items with proper icon alignment */
     .footer-contact {
-        padding: 0 !important;
-        margin: 0 auto !important;
-        list-style: none !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        max-width: 300px !important;
     }
     
     .footer-contact li {
         display: flex !important;
         align-items: flex-start !important;
         justify-content: flex-start !important;
-        text-align: left !important;
-        font-size: 0.8rem !important;
-        line-height: 1.5 !important;
-        margin-bottom: 12px !important;
         width: 100% !important;
-        word-break: break-word !important;
-        white-space: normal !important;
+        max-width: 300px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: left !important;
+        gap: 12px !important;
     }
     
     .footer-contact i {
-        font-size: 1rem !important;
-        min-width: 24px !important;
+        min-width: 20px !important;
         text-align: center !important;
-        margin-right: 12px !important;
-        margin-top: 3px !important; /* Aligns icon with first line of text */
-        flex-shrink: 0 !important;
-        color: #FF6B35 !important;
+        margin-top: 3px !important;
     }
     
     .footer-contact a,
     .footer-contact span {
-        font-size: 0.8rem !important;
-        word-break: break-word !important;
-        white-space: normal !important;
-        line-height: 1.5 !important;
         flex: 1 !important;
+        word-break: break-word !important;
+        line-height: 1.4 !important;
     }
     
-    /* Special handling for email to prevent overflow */
-    .footer-contact li:first-child a {
-        word-break: break-all !important;
-    }
-    
-    /* ===== ROW 5: Social Icons (Horizontal) ===== */
+    /* ===== ROW 4: Social Icons (Horizontal) ===== */
     .footer-main .col-lg-4:first-child .footer-social {
-        display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
-        gap: 15px !important;
-        margin: 30px 0 20px 0 !important;
-        width: 100% !important;
+        margin-top: 20px !important;
         clear: both !important;
     }
     
-    .footer-social .social-link {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 1.1rem !important;
-        margin: 0 !important;
-        flex-shrink: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    
-    /* ===== Footer Bottom Section ===== */
-    .footer-bottom {
-        padding: 15px 0 !important;
-    }
-    
-    .footer-bottom .container {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-    
+    /* ===== Footer Bottom ===== */
     .footer-bottom .row {
-        display: flex !important;
         flex-direction: column !important;
         text-align: center !important;
     }
     
     .footer-bottom .col-md-6 {
         width: 100% !important;
-        max-width: 100% !important;
-        flex: 0 0 100% !important;
-        padding: 0 !important;
-    }
-    
-    .copyright {
-        font-size: 0.75rem !important;
         text-align: center !important;
-        margin-bottom: 10px !important;
-        white-space: normal !important;
     }
     
     .footer-policy-links {
-        display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
-        gap: 10px !important;
-        flex-wrap: wrap !important;
-    }
-    
-    .policy-link {
-        font-size: 0.75rem !important;
-        white-space: nowrap !important;
-    }
-    
-    .policy-separator {
-        font-size: 0.75rem !important;
-    }
-    
-    .credit {
-        font-size: 0.75rem !important;
-        white-space: nowrap !important;
     }
     
     /* Hide wave on mobile */
@@ -357,34 +236,14 @@
     }
 }
 
-/* For very small screens (below 360px) */
-@media (max-width: 360px) {
-    .footer-main .col-lg-4:first-child .logo-text {
-        font-size: 1rem !important;
-    }
-    
-    .footer-title {
-        font-size: 0.85rem !important;
-    }
-    
-    .footer-main .col-lg-2:nth-child(2) .footer-links a,
-    .footer-main .col-lg-3:nth-child(3) .footer-links a {
-        font-size: 0.75rem !important;
-    }
-    
+/* Small phones */
+@media (max-width: 480px) {
     .footer-contact li {
-        font-size: 0.75rem !important;
+        max-width: 260px !important;
+        font-size: 0.9rem !important;
     }
     
     .footer-contact i {
-        font-size: 0.9rem !important;
-        min-width: 22px !important;
-        margin-right: 10px !important;
-    }
-    
-    .footer-social .social-link {
-        width: 34px !important;
-        height: 34px !important;
         font-size: 1rem !important;
     }
 }
