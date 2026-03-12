@@ -80,7 +80,7 @@
         height: 200px;
     }
 }
-/* ===== FOOTER - MOBILE VIEW (UPDATED LAYOUT) ===== */
+/* ===== FOOTER - MOBILE VIEW (FIXED LAYOUT) ===== */
 @media (max-width: 768px) {
     /* Main footer container - ensure no overflow */
     .footer-main {
@@ -127,9 +127,8 @@
     
     .footer-main .col-lg-4:first-child .logo-text {
         font-size: 1.1rem !important;
-        white-space: normal !important; /* Allow wrapping if needed */
+        white-space: normal !important;
         text-align: center !important;
-        max-width: 250px !important;
     }
     
     /* ===== ROW 2: Description Text (Centered) ===== */
@@ -143,18 +142,8 @@
     }
     
     /* ===== ROW 3: Quick Links and Our Services Side by Side ===== */
-    /* Hide the third column (contact) from this row */
-    .footer-main .row .col-lg-3:last-child {
-        width: 100% !important;
-        max-width: 100% !important;
-        flex: 0 0 100% !important;
-        margin-top: 20px !important;
-        clear: both !important;
-    }
-    
-    /* Make Quick Links and Our Services 50% each */
-    .footer-main .row .col-lg-2:nth-child(2),
-    .footer-main .row .col-lg-3:nth-child(3) {
+    /* Target Quick Links column (currently col-lg-2) */
+    .footer-main .col-lg-2:nth-child(2) {
         width: 50% !important;
         max-width: 50% !important;
         flex: 0 0 50% !important;
@@ -162,6 +151,27 @@
         padding: 0 8px !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+    }
+    
+    /* Target Our Services column (currently the first col-lg-3) */
+    .footer-main .col-lg-3:nth-child(3) {
+        width: 50% !important;
+        max-width: 50% !important;
+        flex: 0 0 50% !important;
+        float: left !important;
+        padding: 0 8px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Hide Contact Info from this row - will appear in next row */
+    .footer-main .col-lg-3:last-child {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        clear: both !important;
+        margin-top: 25px !important;
+        padding: 0 15px !important;
     }
     
     /* Clearfix for the row */
@@ -175,11 +185,8 @@
     .footer-title {
         font-size: 0.9rem !important;
         text-align: center !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 12px !important;
         white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        padding-bottom: 5px !important;
     }
     
     .footer-title::after {
@@ -204,20 +211,17 @@
     .footer-links a {
         font-size: 0.8rem !important;
         padding: 3px 0 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
         display: block !important;
         width: 100% !important;
     }
     
     .footer-links a i {
-        display: none !important; /* Hide arrows */
+        display: none !important;
     }
     
-    /* ===== ROW 4: Contact Info (Full Width) ===== */
+    /* ===== ROW 4: Contact Info with Proper Icon Alignment ===== */
     .footer-contact {
-        padding: 0 15px !important;
+        padding: 0 !important;
         margin: 0 !important;
         list-style: none !important;
         display: flex !important;
@@ -227,35 +231,40 @@
     
     .footer-contact li {
         display: flex !important;
-        align-items: center !important;
+        align-items: flex-start !important; /* Changed from center to flex-start */
         justify-content: center !important;
-        text-align: center !important;
+        text-align: left !important;
         font-size: 0.8rem !important;
-        line-height: 1.4 !important;
-        margin-bottom: 10px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 12px !important;
         width: 100% !important;
         max-width: 280px !important;
         word-break: break-word !important;
-        white-space: normal !important; /* Allow wrapping */
+        white-space: normal !important;
     }
     
     .footer-contact i {
-        font-size: 0.9rem !important;
-        margin-right: 8px !important;
+        font-size: 1rem !important;
+        min-width: 24px !important; /* Fixed width for icons */
+        text-align: center !important;
+        margin-right: 10px !important;
+        margin-top: 2px !important; /* Slight adjustment to align with text */
         flex-shrink: 0 !important;
+        color: #FF6B35 !important;
     }
     
-    .footer-contact a {
-        font-size: 0.8rem !important;
-        word-break: break-word !important;
-        white-space: normal !important;
-        display: inline-block !important;
-    }
-    
+    .footer-contact a,
     .footer-contact span {
         font-size: 0.8rem !important;
         word-break: break-word !important;
         white-space: normal !important;
+        line-height: 1.5 !important;
+        flex: 1 !important; /* Takes remaining space */
+    }
+    
+    /* Special handling for email to prevent overflow */
+    .footer-contact li:first-child a {
+        word-break: break-all !important; /* Breaks email if needed */
     }
     
     /* ===== ROW 5: Social Icons (Horizontal) ===== */
@@ -264,7 +273,7 @@
         justify-content: center !important;
         align-items: center !important;
         gap: 15px !important;
-        margin: 25px 0 20px 0 !important;
+        margin: 30px 0 20px 0 !important;
         width: 100% !important;
         clear: both !important;
     }
@@ -275,6 +284,9 @@
         font-size: 1.1rem !important;
         margin: 0 !important;
         flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
     
     /* ===== Footer Bottom Section ===== */
@@ -339,7 +351,6 @@
 @media (max-width: 360px) {
     .footer-main .col-lg-4:first-child .logo-text {
         font-size: 1rem !important;
-        max-width: 200px !important;
     }
     
     .footer-title {
@@ -356,7 +367,8 @@
     }
     
     .footer-contact i {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
+        min-width: 22px !important;
     }
     
     .footer-social .social-link {
