@@ -118,6 +118,11 @@ app.use('/api/', limiter);
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ===== ROBOTS.TXT FIX - Serve robots.txt directly =====
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
+
 // Session configuration
 app.use(session({
     secret: process.env.SESSION_SECRET || 'fallback-secret-do-not-use-in-production',
