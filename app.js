@@ -421,7 +421,14 @@ app.use((err, req, res, next) => {
         error: process.env.NODE_ENV === 'development' ? err.message : 'Please try again later.'
     });
 });
-
+// Force non-www to www redirect
+app.use((req, res, next) => {
+    const host = req.headers.host;
+    if (process.env.NODE_ENV === 'production' && host && host.startsWith('phoenixintech.com') && !host.startsWith('www')) {
+        return res.redirect(301, 'https://www.' + host + req.url);
+    }
+    next();
+});
 // Force HTTPS in production
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production' && !req.secure && req.headers['x-forwarded-proto'] !== 'https') {
