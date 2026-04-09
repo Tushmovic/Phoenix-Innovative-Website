@@ -580,3 +580,21 @@
         display: none !important;
     }
 }
+
+/* Force floating buttons to stay on top regardless of stacking contexts */
+.floating-buttons {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    z-index: 2147483647 !important;
+    isolation: isolate !important;
+}
+
+/* Prevent hero sections from interfering */
+.hero-carousel,
+.hero-content,
+.carousel,
+.carousel-inner,
+.carousel-item {
+    isolation: isolate !important;
+}

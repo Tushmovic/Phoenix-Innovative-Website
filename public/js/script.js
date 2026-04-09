@@ -271,3 +271,12 @@ function initAboutDropdown() {
     
     console.log('About dropdown initialized successfully.');
 }
+// Force floating buttons to remain visible
+setTimeout(function() {
+    const buttons = document.querySelector('.floating-buttons');
+    if (buttons) {
+        buttons.style.visibility = 'visible';
+        buttons.style.opacity = '1';
+        buttons.style.display = 'flex';
+    }
+}, 100);
