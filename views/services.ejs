@@ -422,8 +422,19 @@
                 transform: scale(0.98);
             }
             
+            /* On mobile, ALWAYS show a visible "Click to Learn More" indicator */
             .service-overlay {
-                display: none; /* Hide overlay on mobile, use button instead */
+                opacity: 0.7 !important;
+                background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)) !important;
+            }
+            
+            .service-overlay span {
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                background: rgba(255,107,53,0.9) !important;
+                font-size: 0.9rem !important;
+                padding: 8px 16px !important;
+                pointer-events: none;
             }
             
             /* Improve spacing */
@@ -488,13 +499,13 @@
                         <img src="/images/solar-roof-Desktop.webp"
                              srcset="/images/solar-roof-Mobile.webp 400w, /images/solar-roof-Desktop.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="Solar panel installation for businesses and homes in Nigeria - Phoenix Renewable Energy"
+                             alt="Solar panel installation for businesses and homes in Abuja Nigeria - Phoenix Renewable Energy offers professional solar power system installation"
                              width="800" height="450"
                              loading="lazy">
-                        <!-- Make the entire overlay a clickable link (hidden on mobile) -->
+                        <!-- Make the entire overlay a clickable link -->
                         <a href="/services/renewable-energy" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Solar</span>
                             </div>
                         </a>
                     </div>
@@ -511,12 +522,12 @@
                         <img src="/images/Networking-banner-Mobile.webp"
                              srcset="/images/Networking-banner-Thumbnail.webp 400w, /images/Networking-banner-Mobile.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="Enterprise network infrastructure setup and cabling services in Abuja Nigeria - Phoenix Networking Solutions"
+                             alt="Enterprise network infrastructure and structured cabling services in Abuja Nigeria - Phoenix Networking Solutions for businesses"
                              width="800" height="450"
                              loading="lazy">
                         <a href="/services/network-infrastructure" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Network</span>
                             </div>
                         </a>
                     </div>
@@ -533,12 +544,12 @@
                         <img src="/images/fiber-cables-Desktop.webp"
                              srcset="/images/fiber-cables-Mobile.webp 400w, /images/fiber-cables-Desktop.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="Fiber optic internet installation for businesses in Nigeria - Phoenix ISP Services"
+                             alt="Fiber optic internet installation and ISP services for businesses in Nigeria - Phoenix ISP provides high-speed connectivity"
                              width="800" height="450"
                              loading="lazy">
                         <a href="/services/isp-internet" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Internet</span>
                             </div>
                         </a>
                     </div>
@@ -555,12 +566,12 @@
                         <img src="/images/CCTV Banner-Mobile.webp"
                              srcset="/images/CCTV Banner-Thumbnail.webp 400w, /images/CCTV Banner-Mobile.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="CCTV security camera installation for offices and homes in Nigeria - Phoenix Security Systems"
+                             alt="CCTV security camera installation for offices homes and businesses in Nigeria - Phoenix Security Systems provides surveillance solutions"
                              width="800" height="450"
                              loading="lazy">
                         <a href="/services/cctv-security" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Security</span>
                             </div>
                         </a>
                     </div>
@@ -577,12 +588,12 @@
                         <img src="/images/website-development-Desktop.webp"
                              srcset="/images/website-development-mobile.webp 400w, /images/website-development-Desktop.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="Custom software development and web development services in Abuja Nigeria - Phoenix Software Solutions"
+                             alt="Custom software development and web development services in Abuja Nigeria - Phoenix Software Solutions builds business applications"
                              width="800" height="450"
                              loading="lazy">
                         <a href="/services/software-development" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Software</span>
                             </div>
                         </a>
                     </div>
@@ -599,12 +610,12 @@
                         <img src="/images/Consultant Banner-Mobile.webp"
                              srcset="/images/Consultant Banner-Thumbnail.webp 400w, /images/Consultant Banner-Mobile.webp 800w"
                              sizes="(max-width: 768px) 400px, 800px"
-                             alt="IT consulting and technology procurement services for Nigerian businesses - Phoenix IT Consulting"
+                             alt="IT consulting and technology procurement services for Nigerian businesses - Phoenix IT Consulting helps with digital transformation"
                              width="800" height="450"
                              loading="lazy">
                         <a href="/services/it-consulting" class="service-overlay-link">
                             <div class="service-overlay">
-                                <span>View Details</span>
+                                <span>Click to Learn More About Consulting</span>
                             </div>
                         </a>
                     </div>
