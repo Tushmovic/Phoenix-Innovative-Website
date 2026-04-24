@@ -429,7 +429,7 @@ router.post('/', [
                             <p style="margin-top: 15px;">
                                 📍 Abuja, Nigeria<br>
                                 📞 +234 913 592 6075<br>
-                                ✉️ phoenixinnovative2025@gmail.com
+                                ✉️ contact.phoenixintech@gmail.com
                             </p>
                         </div>
                         
