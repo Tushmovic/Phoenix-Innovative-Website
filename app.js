@@ -421,6 +421,14 @@ app.use((err, req, res, next) => {
         error: process.env.NODE_ENV === 'development' ? err.message : 'Please try again later.'
     });
 });
+// Force HTTPS in production
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production' && !req.secure && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect('https://' + req.headers.host + req.url);
+  }
+  next();
+});
+
 // Force non-www to www redirect
 app.use((req, res, next) => {
     const host = req.headers.host;
@@ -428,13 +436,6 @@ app.use((req, res, next) => {
         return res.redirect(301, 'https://www.' + host + req.url);
     }
     next();
-});
-// Force HTTPS in production
-app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production' && !req.secure && req.headers['x-forwarded-proto'] !== 'https') {
-    return res.redirect('https://' + req.headers.host + req.url);
-  }
-  next();
 });
 
 // Start server
